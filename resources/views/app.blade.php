@@ -65,8 +65,7 @@
                 }
             }
         </script>
-
-
+        <script type="text/javascript" src="https://botsailor.com/script/webchat-link.js?code=1772975582263600"></script>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
