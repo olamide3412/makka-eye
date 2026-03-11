@@ -19,54 +19,43 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Texas Trust Credit') }}</title>
+        <title>{{ config('app.name', 'Makkah Specialist Eye Hospital') }}</title>
 
-        <meta name="description" content="Texas Trust Multidynamic Inspection LTD offers motorcycles, food items, fertilizers, electronics, solar systems, real estate and more. Buy products with cash or flexible credit options you can trust.">
-        <meta name="keywords" content="Texas Loan, Texas Trust, Texas Trust Credits, buy on credit Nigeria, shop on credit, motorcycle sales, electronics sales, solar systems Nigeria, fertilizer supply, food items wholesale, flexible payment, installment purchase, product financing, trusted credit company">
-        <link rel="canonical" href="https://texastrustcredits.com">
+        <meta name="description" content="Makkah Specialist Eye Hospital is a leading eye care facility dedicated to providing world-class ophthalmology services. Comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and 24/7 emergency eye care.">
+        <meta name="keywords" content="Makkah Eye Hospital, ophthalmology, eye care, cataract surgery, LASIK, glaucoma treatment, retinal disorders, pediatric ophthalmology, corneal transplantation, diabetic eye care, emergency eye care, Makkah Saudi Arabia">
         <meta name="robots" content="index, follow">
 
-        <meta property="og:title" content="Texas Trust Credit">
-        <meta property="og:description" content="Texas Trust Credit offers quality products with flexible cash and credit purchase options you can trust.">
-        <meta property="og:image" content="{{ asset('images/texasbanner.png') }}">
-        <meta property="og:url" content="https://texastrustcredits.com">
+        <meta property="og:title" content="Makkah Specialist Eye Hospital">
+        <meta property="og:description" content="World-class ophthalmology services with advanced technology and experienced medical professionals.">
+        <meta property="og:image" content="{{ asset('images/logo.png') }}">
 
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Texas Trust Credit">
-        <meta name="twitter:description" content="Shop motorcycles, food items, electronics, solar systems, and more with cash or convenient credit options.">
-        <meta name="twitter:image" content="{{ asset('images/texasbanner.png') }}">
+        <meta name="twitter:title" content="Makkah Specialist Eye Hospital">
+        <meta name="twitter:description" content="Comprehensive eye care, cataract surgery, LASIK, and 24/7 emergency services.">
+        <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
 
 
         <script type="application/ld+json">
             {
                 "@@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "Texas Trust Credit",
-                "description": "Texas Trust Credit provides quality products with flexible cash and credit purchase options including motorcycles, food items, electronics, solar systems, and real estate.",
-                "url": "https://texastrustcredits.com",
+                "@type": "MedicalOrganization",
+                "name": "Makkah Specialist Eye Hospital",
+                "description": "A leading eye care facility providing world-class ophthalmology services including comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and emergency eye care.",
                 "logo": "{{ Vite::asset('resources/images/logo.png') }}",
-                "sameAs": [
-                    "https://wa.me/2348033351418"
-                ],
                 "address": {
                     "@type": "PostalAddress",
-                    "streetAddress": "No. 25 Retail Plaza",
-                    "addressLocality": "Kano",
-                    "addressRegion": "Kano State",
-                    "addressCountry": "Nigeria"
+                    "addressLocality": "Makkah",
+                    "addressCountry": "Saudi Arabia"
                 },
                 "contactPoint": {
                     "@type": "ContactPoint",
-                    "telephone": "+2348033351418",
-                    "contactType": "Customer Support",
-                    "areaServed": "NG",
-                    "availableLanguage": "English",
-                    "email": "support@texastrustcredits.com"
+                    "contactType": "Patient Services",
+                    "availableLanguage": ["English", "Arabic"],
+                    "email": "patient.services@makkaheye.com"
                 }
             }
         </script>
         <script type="text/javascript" src="https://botsailor.com/script/webchat-link.js?code=1772975582263600"></script>
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

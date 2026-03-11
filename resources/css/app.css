@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 
 
 @import 'tailwindcss';
@@ -10,14 +10,15 @@
 @source '../**/*.js';
 
 @theme {
-    --color-primary: #0284c7;
+    --color-primary: #0A96EB;
+    --color-primary-dark: #0880cc;
     --color-secondary-100: #e0f2fe;
     --color-secondary-200: #bae6fd;
     --color-secondary-300: #7dd3fc;
     --color-secondary-400: #38bdf8;
-    --color-secondary-500: #0ea5e9;
-    --color-secondary-600: #0284c7;
-    --color-secondary-700: #0369a1;
+    --color-secondary-500: #0A96EB;
+    --color-secondary-600: #0880cc;
+    --color-secondary-700: #066aa8;
     --color-table: #cfd1cd;
     --color-dark: #0a0a0a;
     --color-light: #fcfafa;
@@ -126,7 +127,7 @@
     html {
         background-color: var(--bg);
         color: var(--text);
-        font-family: "Poppins", sans-serif;
+        font-family: "Rubik", sans-serif;
         transition: background-color 0.3s, color 0.3s;
     }
 
