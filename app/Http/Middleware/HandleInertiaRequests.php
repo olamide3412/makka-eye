@@ -47,7 +47,8 @@ class HandleInertiaRequests extends Middleware
              'flash' => [
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),
-                'message' => fn () => $request->session()->get('message')
+                'message' => fn () => $request->session()->get('message'),
+                'success_tracking' => fn () => $request->session()->get('success_tracking'),
             ],
             'support' => [
                 'phone' => '+2348066950049',

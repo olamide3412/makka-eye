@@ -45,6 +45,10 @@ onMounted(() => {
         <NavLink :href="route('about')" :active="$page.component === 'About'">About</NavLink>
         <NavLink :href="route('services')" :active="$page.component === 'Services'">Services</NavLink>
         <NavLink :href="route('contact')" :active="$page.component === 'Contact'">Contact</NavLink>
+        <NavLink :href="route('login')" v-if="!$page.props.auth.user" @click="toggle" class="block py-2 hover:text-primary transition-colors">Login</NavLink>
+        <NavLink :href="route('dashboard')" v-if="$page.props.auth.user" @click="toggle" class="block py-2 hover:text-primary transition-colors">Dashboard</NavLink>
+        
+
         
         <!-- Theme Toggle -->
         <button @click="toggleTheme" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle Theme">
@@ -56,10 +60,15 @@ onMounted(() => {
           </svg>
         </button>
 
-        <!-- Book Appointment CTA -->
-        <Link :href="route('contact')" class="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2.5 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg">
-          Book Appointment
-        </Link>
+        <!-- CTA Buttons -->
+        <div class="flex items-center space-x-3">
+            <Link :href="route('track-appointment')" class="text-primary hover:text-primary-dark font-medium transition-colors duration-300">
+              Track
+            </Link>
+            <Link :href="route('book-appointment')" class="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2.5 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg">
+              Book
+            </Link>
+        </div>
       </div>
 
       <!-- Mobile: Theme Toggle + Hamburger -->
@@ -91,9 +100,14 @@ onMounted(() => {
           <li><Link :href="route('about')" @click="toggle" class="block py-2 hover:text-primary transition-colors">About Us</Link></li>
           <li><Link :href="route('services')" @click="toggle" class="block py-2 hover:text-primary transition-colors">Services</Link></li>
           <li><Link :href="route('contact')" @click="toggle" class="block py-2 hover:text-primary transition-colors">Contact</Link></li>
+          <li><Link :href="route('login')" v-if="!$page.props.auth.user" @click="toggle" class="block py-2 hover:text-primary transition-colors">Login</Link></li>
+          <li><Link :href="route('dashboard')" v-if="$page.props.auth.user" @click="toggle" class="block py-2 hover:text-primary transition-colors">Dashboard</Link></li>
         </ul>
-        <div class="mt-4 text-center">
-          <Link :href="route('contact')" @click="toggle" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2.5 rounded-full transition-colors duration-300">
+        <div class="mt-4 text-center space-y-3">
+          <Link :href="route('track-appointment')" @click="toggle" class="block text-primary hover:text-primary-dark font-medium transition-colors">
+            Track Appointment
+          </Link>
+          <Link :href="route('book-appointment')" @click="toggle" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2.5 rounded-full transition-colors duration-300">
             Book Appointment
           </Link>
         </div>

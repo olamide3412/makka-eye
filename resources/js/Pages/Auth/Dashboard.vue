@@ -1,43 +1,45 @@
 <script setup>
-import CountCard from '@/Components/Auth/Dashboard/CountCard.vue';
-import IconUtils from '@/Utils/icons';
-
+import { Head } from '@inertiajs/vue3'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 
 defineProps({
-    counts:{
-        type:Object,
-        required: true
-    },
-    orderStats:{
-        type:Object,
-        required: true
-    }
-
+    stats: Object
 })
-
 </script>
+
 <template>
-    <div class="container mx-auto p-4">
-        <h4  class="'text-sm md:text-base lg:text-lg xl:text-xl font-bold py-1 text-primary dark:text-gray-200 cursor-pointer hover:text-lg lg:hover:text-2xl w-full mt-4 mb-2 uppercase'">
-           DashBoard
-        </h4>
+    <AuthenticatedLayout>
+        <Head title="Dashboard Overview" />
 
-        <!-- Users Section -->
-        <div class="container mx-auto p-6">
-            <h3 class="text-2xl font-bold mb-3">Statistics</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Welcome to Makkah Eye Hospital Panel</h1>
+            <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">Here is a quick overview of your patient appointments.</p>
+        </div>
 
-                <CountCard title="Pending Orders" :count="orderStats.pending_orders.toString()" :icon="IconUtils.logIcon()" />
-                <CountCard title="Processing Orders" :count="orderStats.processing_orders.toString()" :icon="IconUtils.logIcon()" />
-                <CountCard title="Completed orders" :count="orderStats.completed_orders.toString()" :icon="IconUtils.logIcon()" />
-                <CountCard title="Rejected Orders" :count="orderStats.rejected_orders.toString()" :icon="IconUtils.logIcon()" />
-                <CountCard title="Cancelled Orders" :count="orderStats.cancelled_orders.toString()" :icon="IconUtils.logIcon()" />
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <!-- Total -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-blue-500">
+                <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Total Appointments</h3>
+                <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">{{ stats?.total || 0 }}</p>
+            </div>
+            
+            <!-- Pending -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-yellow-500">
+                <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Pending</h3>
+                <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">{{ stats?.pending || 0 }}</p>
+            </div>
 
-                <CountCard title="Users" :count="counts.users.toString()" :icon="IconUtils.userIcon()" />
-                <CountCard title="Administrator" :count="counts.admins.toString()" :icon="IconUtils.adminIcon()" />
-                <CountCard title="Super Administrator" :count="counts.superAdmins.toString()" :icon="IconUtils.superAdminIcon()" />
-                <CountCard title="Logs" :count="counts.logs.toString()" :icon="IconUtils.logIcon()" />
+            <!-- Confirmed -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-green-500">
+                <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Confirmed</h3>
+                <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">{{ stats?.confirmed || 0 }}</p>
+            </div>
+
+            <!-- Cancelled -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 border-l-4 border-red-500">
+                <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Cancelled</h3>
+                <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">{{ stats?.cancelled || 0 }}</p>
             </div>
         </div>
-    </div>
+    </AuthenticatedLayout>
 </template>

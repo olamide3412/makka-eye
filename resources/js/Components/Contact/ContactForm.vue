@@ -74,19 +74,16 @@ const submit = () => {
                     </div>
                 </form>
             </div>
-             <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
+             <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
                  <div class="text-center">
                      <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Emergency & Appointments</h3>
-                     <p class="mt-2 text-base text-gray-500 dark:text-gray-300">Available 24/7</p>
+                     <p class="mt-2 text-base text-gray-500 dark:text-gray-300">+234 916 666 1264</p>
                  </div>
                  <div class="text-center">
                      <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">General Inquiries</h3>
-                     <p class="mt-2 text-base text-gray-500 dark:text-gray-300">patient.services@makkaheye.com</p>
+                     <p class="mt-2 text-base text-gray-500 dark:text-gray-300">makkah.ibadan@albasar.com</p>
                  </div>
-                 <div class="text-center">
-                     <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Address</h3>
-                     <p class="mt-2 text-base text-gray-500 dark:text-gray-300">Makkah, Saudi Arabia</p>
-                 </div>
+                 
              </div>
         </div>
     </div>
