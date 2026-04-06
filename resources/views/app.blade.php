@@ -1580,7 +1580,7 @@
 <body>
     @inertia()
 
-    <script type="text/javascript" src="https://botsailor.com/script/webchat-link.js?code=1772975582263600"></script>
+    <script src="https://botsailor.com/script/webchat-link.js?code=1772975582263600&v=3"></script>
 
 </body>
 
