@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'MSEHIBADAN Admin2',
                 'password' => Hash::make('Admin@2026'),
-                'role' => 'admin',
+                'role' => RoleEnums::Administrator->value,
             ]
         );
 
