@@ -1,31 +1,32 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-const testimonials = [
-    {
-        text: 'The care I received at Makkah Specialist Eye Hospital was exceptional. The cataract surgery was seamless and my vision has never been better. The entire staff was professional and compassionate.',
-        name: 'Ahmed Al-Rashid',
-    },
-    {
-        text: 'I brought my daughter for a routine eye check-up and was impressed by how the pediatric team handled everything. They made her feel comfortable and the diagnosis was thorough.',
-        name: 'Fatima Hassan',
-    },
-    {
-        text: 'After years of struggling with glaucoma, the treatment plan from the specialists here has significantly improved my quality of life. I highly recommend their glaucoma management program.',
-        name: 'Omar Saleh',
-    },
-    {
-        text: 'The emergency team was incredible when I had an eye injury late at night. They responded quickly and the treatment was excellent. Truly a 24/7 facility you can count on.',
-        name: 'Khalid Al-Mansour',
-    },
+const props = defineProps({
+    items: {
+        type: Array,
+        default: null,
+    }
+});
+
+const fallbackTestimonials = [
+    { text: 'The care I received at Makkah Specialist Eye Hospital was exceptional. The cataract surgery was seamless and my vision has never been better.', name: 'Ahmed Al-Rashid', rating: 5 },
+    { text: 'I brought my daughter for a routine eye check-up and was impressed by how the pediatric team handled everything. They made her feel comfortable.', name: 'Fatima Hassan', rating: 5 },
+    { text: 'After years of struggling with glaucoma, the treatment plan from the specialists here has significantly improved my quality of life.', name: 'Omar Saleh', rating: 5 },
+    { text: 'The emergency team was incredible when I had an eye injury late at night. They responded quickly and the treatment was excellent.', name: 'Khalid Al-Mansour', rating: 5 },
 ];
 
+const testimonials = computed(() =>
+    props.items && props.items.length > 0
+        ? props.items.map(t => ({ text: t.message, name: t.name, rating: t.rating }))
+        : fallbackTestimonials
+);
+
 const currentPage = ref(0);
-const totalPages = Math.ceil(testimonials.length / 2);
+const totalPages = computed(() => Math.ceil(testimonials.value.length / 2));
 let autoSlide = null;
 
 const nextPage = () => {
-    currentPage.value = (currentPage.value + 1) % totalPages;
+    currentPage.value = (currentPage.value + 1) % totalPages.value;
 };
 
 onMounted(() => {
@@ -57,7 +58,14 @@ onUnmounted(() => {
                     >
                         <!-- Large quote mark -->
                         <span class="text-6xl text-primary font-serif leading-none absolute top-4 left-6 select-none">"</span>
-                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-10 mb-6 text-base md:text-lg italic">
+                        <!-- Stars -->
+                        <div class="flex gap-0.5 mt-4 mb-3">
+                            <svg v-for="n in 5" :key="n" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"
+                                :class="n <= (t.rating || 5) ? 'text-yellow-400' : 'text-gray-200 dark:text-gray-700'">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-base md:text-lg italic">
                             {{ t.text }}
                         </p>
                         <h4 class="font-bold text-gray-900 dark:text-white text-lg" style="font-family: Georgia, serif;">{{ t.name }}</h4>
@@ -78,6 +86,7 @@ onUnmounted(() => {
         </div>
     </section>
 </template>
+
 
 <style scoped>
 .fade-enter-active,

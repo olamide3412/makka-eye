@@ -2,24 +2,86 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TestimonyController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // Public Pages
+// Public Pages
 Route::get('/', function () {
-    return Inertia::render('Home');
+    $testimonials = \App\Models\Testimony::approved()->take(8)->get(['name', 'occupation', 'rating', 'message']);
+    return Inertia::render('Home', ['testimonials' => $testimonials])->withViewData([
+        'meta' => [
+            'title' => 'Makkah Specialist Eye Hospital | Premier Eye Care Services',
+            'description' => 'Makkah Specialist Eye Hospital is a leading eye care facility providing comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency care.'
+        ]
+    ]);
 })->name('home');
 
-Route::inertia('/about-us','About')->name('about');
-Route::inertia('/services','Services')->name('services');
-Route::inertia('/contact','Contact')->name('contact');
-Route::inertia('/faq','FAQ')->name('faq');
+Route::get('/about-us', function () {
+    return Inertia::render('About')->withViewData([
+        'meta' => [
+            'title' => 'About Us | Makkah Specialist Eye Hospital',
+            'description' => 'Learn more about Makkah Specialist Eye Hospital, our team of dedicated professionals, state-of-the-art facilities, and mission to deliver exceptional eye care.'
+        ]
+    ]);
+})->name('about');
+
+Route::get('/services', function () {
+    return Inertia::render('Services')->withViewData([
+        'meta' => [
+            'title' => 'Our Services | Makkah Specialist Eye Hospital',
+            'description' => 'Explore our wide range of eye care services, including cataract surgery, glaucoma management, LASIK, and pediatric ophthalmology.'
+        ]
+    ]);
+})->name('services');
+
+Route::get('/contact', function () {
+    return Inertia::render('Contact')->withViewData([
+        'meta' => [
+            'title' => 'Contact Us | Makkah Specialist Eye Hospital',
+            'description' => 'Get in touch with us for inquiries, directions, or booking assistance. We are located at Elebu Junction, Alao-Akala Express, Ibadan.'
+        ]
+    ]);
+})->name('contact');
+
+Route::get('/faq', function () {
+    return Inertia::render('FAQ')->withViewData([
+        'meta' => [
+            'title' => 'Frequently Asked Questions | Makkah Specialist Eye Hospital',
+            'description' => 'Find answers to common questions about eye health, treatments, appointment scheduling, and hospital services.'
+        ]
+    ]);
+})->name('faq');
 
 // Public Appointment Booking
-Route::inertia('/book-appointment', 'BookAppointment')->name('book-appointment');
-Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::get('/book-appointment', function () {
+    return Inertia::render('BookAppointment')->withViewData([
+        'meta' => [
+            'title' => 'Book Appointment | Makkah Specialist Eye Hospital',
+            'description' => 'Schedule your eye exam or medical consultation online at Makkah Specialist Eye Hospital.'
+        ]
+    ]);
+})->name('book-appointment');
 
+Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
 Route::get('/track-appointment', [AppointmentController::class, 'monitor'])->name('track-appointment');
+
+// ── Public Blog ─────────────────────────────────────────────────────────────
+Route::get('/blog', [BlogController::class, 'publicIndex'])->name('blog.index');
+Route::get('/blog/{slug}', [BlogController::class, 'publicShow'])->name('blog.show');
+
+// ── Public Testimonials ──────────────────────────────────────────────────────
+Route::get('/testimonials', [TestimonyController::class, 'publicIndex'])->name('testimonials.index');
+Route::post('/testimonials', [TestimonyController::class, 'publicStore'])->name('testimonials.store');
+
+// ── Public News & Media ──────────────────────────────────────────────────────
+Route::get('/news', [NewsController::class, 'publicIndex'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'publicShow'])->name('news.show');
 
 // Auth Routes
 Route::get('/login', [AuthController::class, 'showLinkRequestForm'])->name('login')->middleware('guest');
@@ -29,9 +91,40 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 // Dashboard & Staff Routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    
+
     // Manage specific Appointments
     Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::get('/appointments/{appointment}', [AppointmentController::class, 'show'])->name('appointments.show');
     Route::put('/appointments/{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
+
+    // ── Image Upload ─────────────────────────────────────────────────────────
+    Route::post('/admin/upload-image', [ImageUploadController::class, 'store'])->name('admin.upload-image');
+    Route::post('/admin/upload-media', [ImageUploadController::class, 'uploadMedia'])->name('admin.upload-media');
+
+    // ── Admin Blog ───────────────────────────────────────────────────────────
+    Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog.index');
+    Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
+    Route::post('/admin/blog', [BlogController::class, 'store'])->name('admin.blog.store');
+    Route::get('/admin/blog/{blog}/edit', [BlogController::class, 'edit'])->name('admin.blog.edit');
+    Route::put('/admin/blog/{blog}', [BlogController::class, 'update'])->name('admin.blog.update');
+    Route::delete('/admin/blog/{blog}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
+
+    // ── Admin Testimonials ───────────────────────────────────────────────────
+    Route::get('/admin/testimonials', [TestimonyController::class, 'index'])->name('admin.testimonials.index');
+    Route::patch('/admin/testimonials/{testimony}/approve', [TestimonyController::class, 'approve'])->name('admin.testimonials.approve');
+    Route::patch('/admin/testimonials/{testimony}/reject', [TestimonyController::class, 'reject'])->name('admin.testimonials.reject');
+    Route::delete('/admin/testimonials/{testimony}', [TestimonyController::class, 'destroy'])->name('admin.testimonials.destroy');
+
+    // ── Admin News & Media ───────────────────────────────────────────────────
+    Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
+    Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/admin/news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    // ── Admin Settings ───────────────────────────────────────────────────────
+    Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings.index');
+    Route::post('/admin/settings', [SettingController::class, 'update'])->name('admin.settings.update');
 });
+

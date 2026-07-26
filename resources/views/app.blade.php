@@ -20,52 +20,104 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'Makkah Specialist Eye Hospital') }}</title>
+    <title>@isset($meta['title']){{ $meta['title'] }}@else{{ config('app.name', 'Makkah Specialist Eye Hospital') }}@endisset</title>
 
     <meta name="description"
-        content="Makkah Specialist Eye Hospital is a leading eye care facility dedicated to providing world-class ophthalmology services. Comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and 24/7 emergency eye care.">
+        content="@isset($meta['description']){{ $meta['description'] }}@else{{ 'Makkah Specialist Eye Hospital is a leading eye care facility dedicated to providing world-class ophthalmology services. Comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and 24/7 emergency eye care.' }}@endisset">
     <meta name="keywords"
-        content="Makkah Eye Hospital, ophthalmology, eye care, cataract surgery, LASIK, glaucoma treatment, retinal disorders, pediatric ophthalmology, corneal transplantation, diabetic eye care, emergency eye care, Makkah Saudi Arabia">
+        content="Makkah Eye Hospital, ophthalmology, eye care, cataract surgery, LASIK, glaucoma treatment, retinal disorders, pediatric ophthalmology, corneal transplantation, diabetic eye care, emergency eye care, Makkah Saudi Arabia, Ibadan, Nigeria">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:title" content="Makkah Specialist Eye Hospital">
-    <meta property="og:description"
-        content="World-class ophthalmology services with advanced technology and experienced medical professionals.">
-    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+    <!-- ── SEO: Open Graph (Facebook / LinkedIn) ──────────────────────── -->
+    @isset($meta)
+        <meta property="og:title" content="{{ $meta['title'] }}">
+        <meta property="og:description" content="{{ $meta['description'] }}">
+        <meta property="og:image" content="{{ $meta['image'] ?? asset('images/logo.png') }}">
+        <meta property="og:type" content="{{ $meta['type'] ?? 'website' }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:site_name" content="Makkah Specialist Eye Hospital">
+        <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_SA' : 'en_GB' }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Makkah Specialist Eye Hospital">
-    <meta name="twitter:description"
-        content="Comprehensive eye care, cataract surgery, LASIK, and 24/7 emergency services.">
-    <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+        <!-- ── SEO: Twitter / X Card ──────────────────────────────────── -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $meta['title'] }}">
+        <meta name="twitter:description" content="{{ $meta['description'] }}">
+        <meta name="twitter:image" content="{{ $meta['image'] ?? asset('images/logo.png') }}">
+        <meta name="twitter:site" content="@MakkahIbadan">
+    @else
+        <meta property="og:title" content="Makkah Specialist Eye Hospital | Premier Eye Care Services">
+        <meta property="og:description" content="Makkah Specialist Eye Hospital is a leading eye care facility providing comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency care.">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Makkah Specialist Eye Hospital">
+        <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_SA' : 'en_GB' }}">
+        <meta property="og:image" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:url" content="{{ url()->current() }}">
 
+        <!-- ── SEO: Twitter / X Card ──────────────────────────────────── -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Makkah Specialist Eye Hospital | Premier Eye Care Services">
+        <meta name="twitter:description" content="Makkah Specialist Eye Hospital provides comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency eye care.">
+        <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+        <meta name="twitter:site" content="@MakkahIbadan">
+    @endisset
 
+    <!-- ── SEO: JSON-LD Structured Data (Organization) ───────────────── -->
     <script type="application/ld+json">
-            {
-                "@@context": "https://schema.org",
-                "@type": "MedicalOrganization",
-                "name": "Makkah Specialist Eye Hospital",
-                "description": "A leading eye care facility providing world-class ophthalmology services including comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and emergency eye care.",
-                "logo": "{{ Vite::asset('resources/images/logo.png') }}",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Makkah",
-                    "addressCountry": "Saudi Arabia"
-                },
-                "contactPoint": {
-                    "@type": "ContactPoint",
-                    "contactType": "Patient Services",
-                    "availableLanguage": ["English", "Arabic"],
-                    "email": "patient.services@makkaheye.com"
-                }
-            }
-        </script>
+    {
+        "@@context": "https://schema.org",
+        "@type": "MedicalOrganization",
+        "name": "Makkah Specialist Eye Hospital",
+        "alternateName": "MSEH Ibadan",
+        "description": "A leading eye care facility providing world-class ophthalmology services including comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and emergency eye care.",
+        "url": "{{ config('app.url') }}",
+        "logo": "{{ asset('images/logo.png') }}",
+        "foundingDate": "2023",
+        "legalName": "Makkah Specialist Eye Hospital",
+        "sameAs": [
+            "https://www.facebook.com/p/Makkah-specialist-eye-hospital-Ibadan-61578301984579/",
+            "https://www.instagram.com/mseh_ibdan",
+            "https://www.tiktok.com/@mseh_ibadan",
+            "https://x.com/MakkahIbadan",
+            "https://wa.me/2349166661264"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Ark07 Elebu Junction, Alao-Akala express",
+            "addressLocality": "Ibadan",
+            "addressRegion": "Oyo State",
+            "addressCountry": "NG"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+2349166661264",
+            "contactType": "Customer Support",
+            "areaServed": "NG",
+            "availableLanguage": ["English", "Yoruba"],
+            "email": "makkah.ibadan@albasar.com"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Makkah Specialist Eye Hospital Services",
+            "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Comprehensive Eye Examinations" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cataract Surgery & Lens Implantation" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Glaucoma Diagnostic & Surgical Care" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "LASIK & Refractive Vision Correction" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pediatric Ophthalmology" } }
+            ]
+        }
+    }
+    </script>
 
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-    <script src="https://botsailor.com/script/webchat-link.js?code=1772975582263600&v=3"></script>
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))

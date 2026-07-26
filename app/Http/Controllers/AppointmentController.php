@@ -64,6 +64,10 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        if (!filter_var(\App\Models\Setting::get('enable_appointments', 'true'), FILTER_VALIDATE_BOOLEAN)) {
+            return redirect()->back()->with('error', 'Online appointment booking is currently paused.');
+        }
+
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',

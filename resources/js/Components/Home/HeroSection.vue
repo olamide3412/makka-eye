@@ -1,17 +1,26 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
-import { ref, onMounted, onUnmounted } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-const slides = ref([
-    'https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=2070&auto=format&fit=crop',
-]);
+const page = usePage();
+const slides = computed(() => {
+    const customSlides = page.props.settings?.hero_slides;
+    if (customSlides && Array.isArray(customSlides) && customSlides.length > 0) {
+        return customSlides.map(slide => slide.value);
+    }
+    // Fallback default slides
+    return [
+        'https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2070&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=2070&auto=format&fit=crop',
+    ];
+});
 
 const currentSlide = ref(0);
 let slideInterval = null;
 
 const nextSlide = () => {
+    if (slides.value.length === 0) return;
     currentSlide.value = (currentSlide.value + 1) % slides.value.length;
 };
 
@@ -35,7 +44,7 @@ onUnmounted(() => {
             <transition-group name="fade" tag="div" class="w-full h-full relative">
                 <div 
                     v-for="(slide, index) in slides" 
-                    :key="slide"
+                    :key="index + '-' + slide"
                     v-show="currentSlide === index"
                     class="absolute inset-0 w-full h-full"
                 >
@@ -53,15 +62,15 @@ onUnmounted(() => {
         <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 w-full text-center">
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight" style="font-family: Georgia, serif;">
-                Your Vision, <br class="hidden sm:block" />
-                <span class="text-primary">Our Mission</span>
+                {{ $t('hero.headline1') }} <br class="hidden sm:block" />
+                <span class="text-primary">{{ $t('hero.headline2') }}</span>
             </h1>
             <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed">
-                Expert ophthalmology services with advanced technology and compassionate care for your entire family.
+                {{ $t('hero.subtitle') }}
             </p>
             <div class="mt-10">
                 <Link :href="route('contact')" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                    Book Appointment
+                    {{ $page.props.settings?.enable_appointments ? $t('hero.bookAppointment') : $t('hero.contactUs') }}
                 </Link>
             </div>
         </div>

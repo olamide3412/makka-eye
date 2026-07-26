@@ -1,5 +1,5 @@
 <script setup>
-import { useForm, usePage, Head } from '@inertiajs/vue3'
+import { useForm, usePage, Head, Link } from '@inertiajs/vue3'
 import TextInput from '@/Components/Forms/TextInput.vue'
 import { useToast } from 'vue-toastification'
 
@@ -36,7 +36,37 @@ const submitAppointment = () => {
 <template>
     <Head title="Book Appointment" />
 
-    <div class="min-h-screen py-12 px-4 bg-gray-50 dark:bg-gray-900 mt-8">
+    <!-- Disabled State -->
+    <div v-if="!$page.props.settings?.enable_appointments" class="min-h-screen py-12 px-4 bg-gray-50 dark:bg-gray-900 mt-8 flex items-center justify-center">
+        <div class="max-w-2xl w-full bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 text-center border border-gray-100 dark:border-gray-700" data-aos="fade-up">
+            <div class="w-20 h-20 bg-amber-50 dark:bg-amber-950/20 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-3" style="font-family: Georgia, serif;">Online Booking Paused</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-6 max-w-md mx-auto">
+                We are currently restructuring our scheduling system. Online appointment requests are temporarily unavailable.
+            </p>
+            <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-5 mb-8 border border-gray-100 dark:border-gray-800 text-left space-y-3">
+                <h4 class="font-bold text-gray-800 dark:text-gray-200 text-sm">How to schedule your visit:</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    Call us directly at: <span class="font-semibold text-gray-900 dark:text-white">{{ $page.props.support?.phone_formatted || '+234 806695 0049' }}</span>
+                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Email us at: <span class="font-semibold text-gray-900 dark:text-white">{{ $page.props.support?.email || 'support@texasloan.ng' }}</span>
+                </p>
+            </div>
+            <Link :href="route('contact')" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+                Go to Contact Page
+            </Link>
+        </div>
+    </div>
+
+    <!-- Active State -->
+    <div v-else class="min-h-screen py-12 px-4 bg-gray-50 dark:bg-gray-900 mt-8">
         <div class="max-w-3xl md:max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-xl shadow-xl overflow-hidden" data-aos="fade-up">
             <div class="bg-primary text-white p-6 md:p-8 text-center" v-show="!$page.props.flash.success_tracking">
                 <h1 class="text-3xl font-bold">Request an Appointment</h1>

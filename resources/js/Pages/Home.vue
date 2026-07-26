@@ -8,6 +8,8 @@ import Layout from '@/Layouts/Layout.vue';
 import { Head } from '@inertiajs/vue3';
 
 defineOptions({ layout: Layout })
+
+const props = defineProps({ testimonials: Array })
 </script>
 
 <template>
@@ -16,7 +18,7 @@ defineOptions({ layout: Layout })
         <HeroSection/>
         <WhyChooseUs/>
         <CoreServices/>
-        <Testimonials/>
+        <Testimonials :items="props.testimonials" />
         <CallToAction/>
     </div>
 </template>

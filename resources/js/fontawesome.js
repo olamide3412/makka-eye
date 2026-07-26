@@ -11,7 +11,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
-  faBitcoin, faEthereum, faFacebook, faInstagram, faTwitter, faXTwitter, faWhatsapp
+  faBitcoin, faEthereum, faFacebook, faInstagram, faTwitter, faXTwitter, faWhatsapp,
+  faTiktok, faYoutube, faLinkedin
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
@@ -20,7 +21,8 @@ library.add(
   faEthereum, faUsd, faFacebook, faInstagram, faTwitter, faXTwitter, faAngleRight, faMapMarkerAlt,
   faEnvelope, faWhatsapp, faGift, faBolt, faCheckCircle, faBookOpen, faFileAlt, faBook, faEdit,
   faComment, faGlobe, faComments, faTruck, faLeaf, faHandHoldingUsd, faTractor, faCow, faSeedling,
-  faShoppingBasket, faCreditCard, faMotorcycle, faCar, faBox, faLaptop, faBatteryFull, faHouse
+  faShoppingBasket, faCreditCard, faMotorcycle, faCar, faBox, faLaptop, faBatteryFull, faHouse,
+  faTiktok, faYoutube, faLinkedin
 )
 
 export { FontAwesomeIcon }

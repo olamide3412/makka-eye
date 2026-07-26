@@ -44,18 +44,22 @@ class HandleInertiaRequests extends Middleware
                 'check' => $this->isAuthenticated(),
                 'type' => $this->getAuthType(),
             ],
-             'flash' => [
-                'success' => fn () => $request->session()->get('success'),
-                'error' => fn () => $request->session()->get('error'),
-                'message' => fn () => $request->session()->get('message'),
-                'success_tracking' => fn () => $request->session()->get('success_tracking'),
+            'flash' => [
+                'success' => fn() => $request->session()->get('success'),
+                'error' => fn() => $request->session()->get('error'),
+                'message' => fn() => $request->session()->get('message'),
+                'success_tracking' => fn() => $request->session()->get('success_tracking'),
             ],
             'support' => [
-                'phone' => '+2348066950049',
-                'phone_whatsapp' => '2348066950049', //'2348151702840',
-                'phone_formatted' => '+234 806695 0049',
-                'email' => 'support@texasloan.ng',
-                'location' => 'Kano State, Nigeria'
+                'phone' => '+2349166661264',
+                'phone_whatsapp' => '2349166661264', //'2348151702840',
+                'phone_formatted' => '+234 916666 1264',
+                'email' => 'makkah.ibadan@albasar.com',
+                'location' => 'Ark07 Elebu Junction, Alao-Akala express Ibadan'
+            ],
+            'settings' => [
+                'enable_appointments' => filter_var(\App\Models\Setting::get('enable_appointments', 'true'), FILTER_VALIDATE_BOOLEAN),
+                'hero_slides' => json_decode(\App\Models\Setting::get('hero_slides', '[]'), true),
             ],
             'csrf_token' => csrf_token(),
             'turnstileSiteKey' => config('services.turnstile.site_key'),
@@ -64,18 +68,20 @@ class HandleInertiaRequests extends Middleware
 
     protected function getAuthUser($guard)
     {
-        return fn () => Auth::guard($guard)->check() ? Auth::guard($guard)->user() : null;
+        return fn() => Auth::guard($guard)->check() ? Auth::guard($guard)->user() : null;
     }
 
     protected function isAuthenticated()
     {
-        return fn () => Auth::guard('web')->check() || Auth::guard('client')->check();
+        return fn() => Auth::guard('web')->check() || Auth::guard('client')->check();
     }
 
     protected function getAuthType()
     {
-        if (Auth::guard('web')->check()) return 'staff';
-        if (Auth::guard('client')->check()) return 'client';
+        if (Auth::guard('web')->check())
+            return 'staff';
+        if (Auth::guard('client')->check())
+            return 'client';
         return null;
     }
 }

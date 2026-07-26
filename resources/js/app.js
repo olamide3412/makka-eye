@@ -12,6 +12,7 @@ import 'aos/dist/aos.css';
 import { createPinia } from 'pinia';
 import { useThemeStore } from './Stores/themeStore';
 import FlashMessages from './Components/FlashMessages.vue';
+import i18n from './i18n.js';
 
 
 AOS.init({
@@ -36,7 +37,8 @@ createInertiaApp({
        app.use(plugin)
           .use(ZiggyVue)
           .use(Toast)
-          .use(pinia);
+          .use(pinia)
+          .use(i18n);
 
         const themeStore = useThemeStore();
         themeStore.loadTheme();
