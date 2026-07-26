@@ -7,6 +7,7 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -126,5 +127,9 @@ Route::middleware('auth')->group(function () {
     // ── Admin Settings ───────────────────────────────────────────────────────
     Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings.index');
     Route::post('/admin/settings', [SettingController::class, 'update'])->name('admin.settings.update');
+
+    // ── Admin Profile ────────────────────────────────────────────────────────
+    Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::put('/admin/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
 });
 

@@ -18,11 +18,21 @@ class UserSeeder extends Seeder
         User::query()->delete();
 
         // Create the admin user
-        User::create([
-            'name' => 'Skynet Admin',
-            'email' => 'admin@skynet.com',
-            'password' => Hash::make('password'),
+        User::firstOrCreate([
+            'name' => 'MSEHIBADAN Admin',
+            'email' => 'admin@msehibadan.org',
+            'password' => Hash::make('Admin@2026'),
             'role' => RoleEnums::Administrator->value,
         ]);
+
+        User::firstOrCreate(
+            ['email' => 'admin2@msehibadan.org'],
+            [
+                'name' => 'MSEHIBADAN Admin2',
+                'password' => Hash::make('Admin@2026'),
+                'role' => 'admin',
+            ]
+        );
+
     }
 }

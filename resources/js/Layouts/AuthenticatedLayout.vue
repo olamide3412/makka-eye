@@ -159,12 +159,12 @@ const toggleSidebar = () => {
                 </button>
 
                 <!-- Currently logged in User display -->
-                <div class="flex items-center space-x-4">
+                <Link :href="route('admin.profile.edit')" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
                     <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $page.props.auth?.user?.name || $page.props.auth?.user?.email }}</span>
-                    <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                    <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold cursor-pointer">
                         {{ ($page.props.auth?.user?.name || $page.props.auth?.user?.email || 'A')[0].toUpperCase() }}
                     </div>
-                </div>
+                </Link>
             </header>
 
             <!-- Page Content -->

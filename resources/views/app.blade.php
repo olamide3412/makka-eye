@@ -20,7 +20,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@isset($meta['title']){{ $meta['title'] }}@else{{ config('app.name', 'Makkah Specialist Eye Hospital') }}@endisset</title>
+    <title>
+        @isset($meta['title']){{ $meta['title'] }}@else{{ config('app.name', 'Makkah Specialist Eye Hospital') }}@endisset
+    </title>
 
     <meta name="description"
         content="@isset($meta['description']){{ $meta['description'] }}@else{{ 'Makkah Specialist Eye Hospital is a leading eye care facility dedicated to providing world-class ophthalmology services. Comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and 24/7 emergency eye care.' }}@endisset">
@@ -48,7 +50,8 @@
         <meta name="twitter:site" content="@MakkahIbadan">
     @else
         <meta property="og:title" content="Makkah Specialist Eye Hospital | Premier Eye Care Services">
-        <meta property="og:description" content="Makkah Specialist Eye Hospital is a leading eye care facility providing comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency care.">
+        <meta property="og:description"
+            content="Makkah Specialist Eye Hospital is a leading eye care facility providing comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency care.">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Makkah Specialist Eye Hospital">
         <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_SA' : 'en_GB' }}">
@@ -60,7 +63,8 @@
         <!-- ── SEO: Twitter / X Card ──────────────────────────────────── -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Makkah Specialist Eye Hospital | Premier Eye Care Services">
-        <meta name="twitter:description" content="Makkah Specialist Eye Hospital provides comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency eye care.">
+        <meta name="twitter:description"
+            content="Makkah Specialist Eye Hospital provides comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency eye care.">
         <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
         <meta name="twitter:site" content="@MakkahIbadan">
     @endisset
@@ -112,6 +116,7 @@
         }
     }
     </script>
+
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <!-- Fonts -->
