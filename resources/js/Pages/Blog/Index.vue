@@ -40,9 +40,9 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         <!-- Hero -->
         <section class="bg-gradient-to-br from-primary/10 to-blue-50 dark:from-gray-900 dark:to-gray-800 py-20 pt-36 md:pt-44">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <span class="inline-block bg-primary/10 text-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">Our Blog</span>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" style="font-family: Georgia, serif;">Eye Health Insights & Hospital News</h1>
-                <p class="text-lg text-gray-500 dark:text-gray-400">Expert articles, patient stories, and updates from Makkah Specialist Eye Hospital.</p>
+                <span class="inline-block bg-primary/10 text-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">{{ $t('nav.blog') }}</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" style="font-family: Georgia, serif;">{{ $t('blog.heading') }}</h1>
+                <p class="text-lg text-gray-500 dark:text-gray-400">{{ $t('blog.headerSubtitle') }}</p>
             </div>
         </section>
 
@@ -52,7 +52,7 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
                 <!-- Search -->
                 <div class="relative w-full md:w-72">
                     <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <input v-model="search" @keyup.enter="doSearch" type="text" placeholder="Search articles..." class="w-full pl-9 pr-4 py-2.5 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary/40 focus:outline-none transition-all" />
+                    <input v-model="search" @keyup.enter="doSearch" type="text" :placeholder="$t('blog.search')" class="w-full pl-9 pr-4 py-2.5 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary/40 focus:outline-none transition-all" />
                 </div>
                 <!-- Categories -->
                 <div class="flex flex-wrap gap-2">
@@ -70,8 +70,8 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
                 <!-- Empty state -->
                 <div v-if="!posts?.data?.length" class="flex flex-col items-center justify-center py-24 gap-4">
                     <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                    <p class="text-xl font-semibold text-gray-500 dark:text-gray-400">No posts found</p>
-                    <p class="text-gray-400">Try adjusting your search or check back later.</p>
+                    <p class="text-xl font-semibold text-gray-500 dark:text-gray-400">{{ $t('blog.noArticles') }}</p>
+                    <p class="text-gray-400">{{ $t('blog.adjustSearch') }}</p>
                 </div>
 
                 <!-- Grid -->
@@ -90,14 +90,14 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
                         <div class="p-6 flex flex-col flex-1">
                             <p class="text-xs text-gray-400 dark:text-gray-500 mb-2 flex items-center gap-2">
                                 <span>{{ formatDate(post.published_at) }}</span>
-                                <span v-if="post.read_time">· {{ post.read_time }} min read</span>
+                                <span v-if="post.read_time">· {{ post.read_time }} {{ $t('blog.readTime') }}</span>
                             </p>
                             <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">{{ post.title }}</h2>
                             <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3 flex-1">{{ post.excerpt }}</p>
                             <div class="mt-4 flex items-center justify-between">
-                                <span class="text-xs text-gray-400">By {{ post.author?.name || 'Admin' }}</span>
+                                <span class="text-xs text-gray-400">{{ $t('blog.by') }} {{ post.author?.name || 'Admin' }}</span>
                                 <span class="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                                    Read more
+                                    {{ $t('blog.readMore') }}
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                                 </span>
                             </div>

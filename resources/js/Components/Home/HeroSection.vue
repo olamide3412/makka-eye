@@ -61,9 +61,8 @@ onUnmounted(() => {
 
         <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 w-full text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight" style="font-family: Georgia, serif;">
-                {{ $t('hero.headline1') }} <br class="hidden sm:block" />
-                <span class="text-primary">{{ $t('hero.headline2') }}</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight" style="font-family: Georgia, serif;">
+                <span class="text-primary drop-shadow-md select-none">{{ $t('hero.headline1') }}</span>
             </h1>
             <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed">
                 {{ $t('hero.subtitle') }}

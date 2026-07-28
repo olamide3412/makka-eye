@@ -67,9 +67,9 @@ const hasVideo = (article) => {
         <!-- Hero -->
         <section class="bg-gradient-to-br from-indigo-50 via-blue-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 pt-36 md:pt-44">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <span class="inline-block bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 text-sm font-semibold px-4 py-1 rounded-full mb-4">Hospital Updates</span>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" style="font-family: Georgia, serif;">News & Media</h1>
-                <p class="text-lg text-gray-500 dark:text-gray-400">The latest news, events, announcements, and media from our hospital.</p>
+                <span class="inline-block bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 text-sm font-semibold px-4 py-1 rounded-full mb-4">{{ $t('news.badge') }}</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" style="font-family: Georgia, serif;">{{ $t('news.title') }}</h1>
+                <p class="text-lg text-gray-500 dark:text-gray-400">{{ $t('news.subtitle') }}</p>
             </div>
         </section>
 
@@ -79,12 +79,12 @@ const hasVideo = (article) => {
                 <div class="flex gap-2 flex-wrap">
                     <button v-for="cat in categories" :key="cat.value" @click="setCategory(cat.value)"
                         :class="['px-4 py-1.5 rounded-full text-sm font-medium transition-all border', activeCategory === cat.value ? 'bg-primary text-white border-primary shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-primary hover:text-primary']">
-                        {{ cat.label }}
+                        {{ $t('news.categories.' + cat.value) }}
                     </button>
                 </div>
                 <div class="relative w-full md:w-64">
                     <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <input v-model="search" @keyup.enter="doSearch" type="text" placeholder="Search news..." class="w-full pl-9 pr-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary/40 focus:outline-none" />
+                    <input v-model="search" @keyup.enter="doSearch" type="text" :placeholder="$t('news.search')" class="w-full pl-9 pr-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary/40 focus:outline-none" />
                 </div>
             </div>
         </section>
@@ -94,7 +94,7 @@ const hasVideo = (article) => {
             <div class="max-w-7xl mx-auto px-4">
                 <div v-if="!articles?.data?.length" class="flex flex-col items-center justify-center py-24 gap-4">
                     <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                    <p class="text-xl font-semibold text-gray-500 dark:text-gray-400">No articles found</p>
+                    <p class="text-xl font-semibold text-gray-500 dark:text-gray-400">{{ $t('news.noArticles') }}</p>
                 </div>
 
                 <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -116,7 +116,7 @@ const hasVideo = (article) => {
                             <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">{{ article.title }}</h2>
                             <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3 flex-1">{{ article.excerpt }}</p>
                             <span class="mt-4 text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all self-end">
-                                Read more
+                                {{ $t('news.readMore') }}
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                             </span>
                         </div>

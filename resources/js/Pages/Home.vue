@@ -1,5 +1,6 @@
 <script setup>
 import HeroSection from '@/Components/Home/HeroSection.vue';
+import MissionSection from '@/Components/Home/MissionSection.vue';
 import CoreServices from '@/Components/Home/CoreServices.vue';
 import WhyChooseUs from '@/Components/Home/WhyChooseUs.vue';
 import CallToAction from '@/Components/Home/CallToAction.vue';
@@ -16,6 +17,7 @@ const props = defineProps({ testimonials: Array })
     <Head title="Home"/>
     <div>
         <HeroSection/>
+        <MissionSection/>
         <WhyChooseUs/>
         <CoreServices/>
         <Testimonials :items="props.testimonials" />

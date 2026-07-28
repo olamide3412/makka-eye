@@ -2,7 +2,6 @@
 import { useForm, usePage } from '@inertiajs/vue3'
 import { ref, onMounted } from 'vue'
 import Logo from '../../../images/logo.png'
-import Footer from '@/Components/Footer.vue';
 import TextInput from '@/Components/Forms/TextInput.vue';
 import { useToast } from 'vue-toastification';
 
@@ -236,7 +235,5 @@ const handleLogin = () => {
             <div class="w-full border-t-2 border-gray-300 "></div>
         </div>
     </div>
-
-    <Footer/>
   </template>
 

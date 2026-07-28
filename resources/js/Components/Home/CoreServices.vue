@@ -19,8 +19,10 @@ const services = [
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-12">
-                <span class="text-6xl font-bold text-gray-200 dark:text-gray-800 block leading-none select-none" style="font-family: Georgia, serif;">{{ $t('services.sectionLabel') }}</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white -mt-8 relative z-10" style="font-family: Georgia, serif;">
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-3">
+                    {{ $t('services.sectionLabel') }}
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white" style="font-family: Georgia, serif;">
                     {{ $t('services.sectionTitle') }}
                 </h2>
             </div>

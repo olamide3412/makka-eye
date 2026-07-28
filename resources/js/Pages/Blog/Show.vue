@@ -20,9 +20,9 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
             <div class="max-w-4xl mx-auto px-4">
                 <!-- Breadcrumb -->
                 <nav class="flex items-center gap-2 text-sm text-gray-400 mb-6">
-                    <Link :href="route('home')" class="hover:text-primary transition-colors">Home</Link>
+                    <Link :href="route('home')" class="hover:text-primary transition-colors">{{ $t('nav.home') }}</Link>
                     <span>/</span>
-                    <Link :href="route('blog.index')" class="hover:text-primary transition-colors">Blog</Link>
+                    <Link :href="route('blog.index')" class="hover:text-primary transition-colors">{{ $t('nav.blog') }}</Link>
                     <span>/</span>
                     <span class="text-gray-600 dark:text-gray-300 truncate max-w-xs">{{ post.title }}</span>
                 </nav>
@@ -62,7 +62,7 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
                 <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
                     <Link :href="route('blog.index')" class="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                        Back to Blog
+                        {{ $t('blog.backToBlog') }}
                     </Link>
                 </div>
             </div>
@@ -71,7 +71,7 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         <!-- Related Posts -->
         <section v-if="related?.length" class="py-16 bg-gray-50 dark:bg-gray-800">
             <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8" style="font-family: Georgia, serif;">Related Articles</h2>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8" style="font-family: Georgia, serif;">{{ $t('blog.relatedArticles') }}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <Link v-for="r in related" :key="r.id" :href="route('blog.show', r.slug)"
                         class="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 dark:border-gray-700">

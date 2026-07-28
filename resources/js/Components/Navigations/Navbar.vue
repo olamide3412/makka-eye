@@ -47,11 +47,11 @@ onUnmounted(() => {
   <nav class="fixed top-[36px] md:top-[40px] left-0 w-full z-50 bg-white dark:bg-gray-900 shadow-sm transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
       <!-- Logo -->
-      <Link href="/" class="flex items-center space-x-3">
-        <img :src="Logo" width="45" height="35" alt="Makkah Specialist Eye Hospital Logo" />
-        <div>
-          <h1 class="text-primary font-bold text-lg leading-tight">MAKKAH SPECIALIST</h1>
-          <span class="text-xs text-gray-500 dark:text-gray-400 tracking-wide">Eye Hospital</span>
+      <Link href="/" class="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
+        <img :src="Logo" class="w-9 h-7 md:w-11 md:h-9 object-contain" alt="Makkah Specialist Eye Hospital Logo" />
+        <div class="flex flex-col justify-center">
+          <h1 class="text-primary font-bold text-xs sm:text-sm md:text-base leading-tight uppercase tracking-wide whitespace-nowrap">MAKKAH SPECIALIST</h1>
+          <span class="text-primary font-bold text-xs sm:text-sm md:text-base leading-tight uppercase tracking-wide whitespace-nowrap">Eye Hospital</span>
         </div>
       </Link>
 
