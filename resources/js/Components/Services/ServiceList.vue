@@ -14,126 +14,16 @@ const selectService = (index) => {
 };
 
 const services = [
-    {
-        title: 'Adult & Paediatric Glaucoma',
-        description: 'Complete glaucoma screening, intraocular pressure monitoring, and advanced surgical/laser therapies to preserve optic nerve health.',
-        features: [
-            'Visual field testing (perimetry)',
-            'Optical Coherence Tomography (OCT) of optic nerve',
-            'Selective Laser Trabeculoplasty (SLT)',
-            'Minimally Invasive Glaucoma Surgery (MIGS)',
-            'Prescription eye drop management and pressure checks',
-        ],
-        iconType: 'glaucoma'
-    },
-    {
-        title: 'Adult & Paediatric Squint',
-        description: 'Specialized diagnosis and treatment of eye misalignment (strabismus) and lazy eye (amblyopia) in both children and adults.',
-        features: [
-            'Comprehensive binocular vision & orthoptic assessments',
-            'Squint correction surgery for adults and children',
-            'Amblyopia (lazy eye) patching & vision therapy',
-            'Prism glasses prescription for double vision correction',
-            'Pediatric and adult ophthalmology consultations',
-        ],
-        iconType: 'squint'
-    },
-    {
-        title: 'Adult & Paediatric Cataracts',
-        description: 'Modern phacoemulsification surgery with premium intraocular lens (IOL) implants to restore sharp, clear vision.',
-        features: [
-            'Painless, sutureless phacoemulsification cataract surgery',
-            'Premium monofocal, multifocal, and toric IOL options',
-            'Detailed pre-surgical biometry and lens calculations',
-            'Same-day outpatient surgical procedures',
-            'Comprehensive post-operative recovery monitoring',
-        ],
-        iconType: 'cataracts'
-    },
-    {
-        title: 'Artificial Eye Creation & Fitting',
-        description: 'Custom-made ocular prostheses (artificial eyes) designed and fitted to match the patient\'s other eye perfectly.',
-        features: [
-            'Custom color matching to the natural iris',
-            'Hand-painted sclera and blood vessel detailing',
-            'Precision fitting for comfort and natural movement',
-            'Patient training for prosthetic insertion and removal',
-            'Regular polishing, cleaning, and maintenance checks',
-        ],
-        iconType: 'prosthetic'
-    },
-    {
-        title: 'Comprehensive Eye Examinations',
-        description: 'Routine and diagnostic examinations checking visual acuity, refractive errors, and overall eye health.',
-        features: [
-            'Refraction testing for prescription glasses & contact lenses',
-            'Slit-lamp bio-microscopy external eye evaluations',
-            'Dilated fundus examination for retina health checks',
-            'Digital retinal photography and imaging',
-            'Early detection of common eye conditions',
-        ],
-        iconType: 'examination'
-    },
-    {
-        title: 'LASIK & Refractive Surgery',
-        description: 'Advanced laser procedures to correct myopia, hyperopia, and astigmatism, helping you live free of glasses.',
-        features: [
-            'Wavefront-guided custom LASIK laser vision correction',
-            'Photorefractive Keratectomy (PRK) alternative option',
-            'Detailed corneal topography and pachymetry screening',
-            'Rapid recovery times with next-day visual improvement',
-            'Post-LASIK enhancement and follow-up checks',
-        ],
-        iconType: 'lasik'
-    },
-    {
-        title: 'Retinal Disorders Treatment',
-        description: 'Medical and surgical treatment for conditions affecting the retina, vitreous, and macula.',
-        features: [
-            'Diabetic retinopathy screening and management',
-            'Intravitreal anti-VEGF injections for macular degeneration',
-            'Retinal tear laser photocoagulation',
-            'Vitreoretinal surgery consultation',
-            'Fluorescein angiography retinal diagnostic imaging',
-        ],
-        iconType: 'retina'
-    },
-    {
-        title: 'Corneal Transplantation',
-        description: 'Surgical replacement of damaged or diseased cornea tissue with healthy donor tissue to restore sight.',
-        features: [
-            'Penetrating Keratoplasty (full-thickness corneal transplant)',
-            'DSEK / DMEK (partial-thickness endothelial transplant)',
-            'Corneal collagen cross-linking (CXL) for keratoconus',
-            'Corneal topography and cell density analysis',
-            'Corneal ulcer management and surgical grafts',
-        ],
-        iconType: 'cornea'
-    },
-    {
-        title: 'Diabetic Eye Care',
-        description: 'Specialized screenings and preventative treatments to manage diabetic eye diseases and protect vision.',
-        features: [
-            'Regular dilated examinations for early retinopathy detection',
-            'Macular edema diagnosis and laser photocoagulation',
-            'Coordination with your primary care and endocrinology teams',
-            'Visual rehabilitation and support for low vision',
-            'Preventative lifestyle advice for blood sugar-related eye health',
-        ],
-        iconType: 'diabetic'
-    },
-    {
-        title: 'Emergency Eye Care',
-        description: 'Immediate diagnostic and treatment services for urgent eye conditions, trauma, and sudden vision loss.',
-        features: [
-            '24/7 emergency response for sudden eye pain or vision changes',
-            'Safe removal of corneal and conjunctival foreign bodies',
-            'Treatment for chemical splashes, burns, and trauma',
-            'Acute red eye, conjunctivitis, and infection management',
-            'Retinal detachment emergency assessments',
-        ],
-        iconType: 'emergency'
-    }
+    { key: 'glaucoma', iconType: 'glaucoma' },
+    { key: 'squint', iconType: 'squint' },
+    { key: 'cataracts', iconType: 'cataracts' },
+    { key: 'prosthetic', iconType: 'prosthetic' },
+    { key: 'examination', iconType: 'examination' },
+    { key: 'lasik', iconType: 'lasik' },
+    { key: 'retina', iconType: 'retina' },
+    { key: 'cornea', iconType: 'cornea' },
+    { key: 'diabetic', iconType: 'diabetic' },
+    { key: 'emergency', iconType: 'emergency' }
 ];
 </script>
 
@@ -159,7 +49,7 @@ const services = [
                     <!-- Right: Service Title -->
                     <div class="flex-1 min-w-0">
                         <h3 class="text-base font-bold text-gray-900 dark:text-white leading-tight group-hover:text-primary transition-colors">
-                            {{ service.title }}
+                            {{ $t('serviceList.list.' + service.key + '.title') }}
                         </h3>
                     </div>
                 </div>
@@ -172,42 +62,42 @@ const services = [
                         <div class="lg:grid lg:grid-cols-3 lg:gap-12 items-start">
                             <!-- Title & Description -->
                             <div class="lg:col-span-1">
-                                <span class="text-xs font-bold text-primary tracking-wider uppercase">Service Details</span>
+                                <span class="text-xs font-bold text-primary tracking-wider uppercase">{{ $t('serviceList.title') }}</span>
                                 <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white mt-2 mb-4" style="font-family: Georgia, serif;">
-                                    {{ services[activeService].title }}
+                                    {{ $t('serviceList.list.' + services[activeService].key + '.title') }}
                                 </h2>
                                 <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                                    {{ services[activeService].description }}
+                                    {{ $t('serviceList.list.' + services[activeService].key + '.description') }}
                                 </p>
                                 <Link 
                                     v-if="$page.props.settings?.enable_appointments"
                                     :href="route('book-appointment')" 
                                     class="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white font-bold px-8 py-3 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
                                 >
-                                    Book Appointment
+                                    {{ $t('hero.bookAppointment') }}
                                 </Link>
                                 <Link 
                                     v-else
                                     :href="route('contact')" 
                                     class="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white font-bold px-8 py-3 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
                                 >
-                                    Contact Us
+                                    {{ $t('hero.contactUs') }}
                                 </Link>
                             </div>
 
                             <!-- Features List -->
                             <div class="mt-8 lg:mt-0 lg:col-span-2">
                                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">
-                                    What this service includes:
+                                    {{ $t('serviceList.includes') }}
                                 </h3>
                                 <ul class="space-y-4">
-                                    <li v-for="feature in services[activeService].features" :key="feature" class="flex items-start">
+                                    <li v-for="n in 5" :key="n" class="flex items-start">
                                         <div class="flex-shrink-0 mt-1">
                                             <svg class="h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <span class="ml-3 text-base text-gray-700 dark:text-gray-300">{{ feature }}</span>
+                                        <span class="ml-3 text-base text-gray-700 dark:text-gray-300">{{ $t('serviceList.list.' + services[activeService].key + '.f' + n) }}</span>
                                     </li>
                                 </ul>
                             </div>
