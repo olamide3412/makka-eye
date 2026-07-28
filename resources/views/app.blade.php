@@ -27,7 +27,7 @@
     <meta name="description"
         content="@isset($meta['description']){{ $meta['description'] }}@else{{ 'Makkah Specialist Eye Hospital is a leading eye care facility dedicated to providing world-class ophthalmology services. Comprehensive eye exams, cataract surgery, LASIK, glaucoma treatment, and 24/7 emergency eye care.' }}@endisset">
     <meta name="keywords"
-        content="Makkah Eye Hospital, ophthalmology, eye care, cataract surgery, LASIK, glaucoma treatment, retinal disorders, pediatric ophthalmology, corneal transplantation, diabetic eye care, emergency eye care, Makkah Saudi Arabia, Ibadan, Nigeria">
+        content="Makkah Eye Hospital, Makkah Eye Hospital Ibadan, ophthalmology, eye care, cataract surgery, LASIK, glaucoma treatment, retinal disorders, pediatric ophthalmology, corneal transplantation, diabetic eye care, emergency eye care, Makkah Saudi Arabia, Ibadan, Nigeria">
     <meta name="robots" content="index, follow">
 
     <!-- ── SEO: Open Graph (Facebook / LinkedIn) ──────────────────────── -->
