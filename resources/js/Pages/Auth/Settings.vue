@@ -13,7 +13,14 @@ const form = useForm({
         id: slide.id ?? `slide-${Date.now()}-${idx}-${Math.random()}`,
         type: slide.type,
         value: slide.value
-    }))
+    })),
+    about_mission: props.settings?.about_mission ?? '',
+    about_vision: props.settings?.about_vision ?? '',
+    about_founder_name: props.settings?.about_founder_name ?? '',
+    about_founder_title: props.settings?.about_founder_title ?? '',
+    about_founder_bio: props.settings?.about_founder_bio ?? '',
+    about_founder_image: props.settings?.about_founder_image ?? '',
+    news_layout_style: props.settings?.news_layout_style ?? 'hero_split'
 })
 
 const addSlide = () => {
@@ -49,10 +56,10 @@ const saveSettings = () => {
 
         <div class="mb-6">
             <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">System Settings</h1>
-            <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">Configure global hospital website options and behaviors.</p>
+            <p class="text-sm text-gray-500 mt-0.5 dark:text-gray-400">Configure global hospital website options, hero banners, and About Us page content.</p>
         </div>
 
-        <div class="max-w-3xl">
+        <div class="max-w-4xl">
             <form @submit.prevent="saveSettings" class="space-y-6">
                 <!-- Appointment Settings Section -->
                 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
@@ -89,6 +96,198 @@ const saveSettings = () => {
                                     :class="form.enable_appointments ? 'translate-x-5' : 'translate-x-0'"
                                 />
                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Us Page Management Section -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-slate-900/50">
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            About Us Page Content (Mission, Vision & Founder)
+                        </h3>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Customize the Mission, Vision, and Founder showcase sections on the public About Us page. HTML formatting tags are supported.
+                        </p>
+
+                        <!-- Mission Statement -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                Hospital Mission Statement
+                            </label>
+                            <textarea 
+                                v-model="form.about_mission" 
+                                rows="3"
+                                placeholder="Enter mission statement (HTML formatting supported)..."
+                                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-primary focus:outline-none font-mono"
+                            ></textarea>
+                            <p class="text-xs text-gray-400 mt-1">HTML tags like &lt;p&gt;, &lt;strong&gt;, &lt;em&gt; are supported.</p>
+                        </div>
+
+                        <!-- Vision Statement -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                Hospital Vision Statement
+                            </label>
+                            <textarea 
+                                v-model="form.about_vision" 
+                                rows="3"
+                                placeholder="Enter vision statement (HTML formatting supported)..."
+                                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-primary focus:outline-none font-mono"
+                            ></textarea>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6 space-y-6">
+                            <h4 class="font-extrabold text-slate-900 dark:text-white text-base font-['Outfit',sans-serif]">
+                                Founder & Leadership Showcase
+                            </h4>
+
+                            <!-- Founder Image Upload -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                                    Founder Photo / Portrait
+                                </label>
+                                <ImageUpload v-model="form.about_founder_image" label="Upload Founder Photo" />
+                                <p class="text-xs text-gray-400 mt-1">Upload a high quality portrait of the founder (JPG/PNG).</p>
+                            </div>
+
+                            <!-- Founder Name & Title -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                        Founder Name
+                                    </label>
+                                    <input 
+                                        v-model="form.about_founder_name"
+                                        type="text"
+                                        placeholder="e.g. His Highness Prince Abdul-Aziz bin Ahmed Al-Saud"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-primary focus:outline-none font-semibold"
+                                    />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                        Founder Title / Role
+                                    </label>
+                                    <input 
+                                        v-model="form.about_founder_title"
+                                        type="text"
+                                        placeholder="e.g. Founder & Chairman, Al-Basar International Foundation"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-primary focus:outline-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Founder Bio / Message -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Founder Biography / Executive Message
+                                </label>
+                                <textarea 
+                                    v-model="form.about_founder_bio" 
+                                    rows="5"
+                                    placeholder="Enter founder message or biography (HTML formatting supported)..."
+                                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-primary focus:outline-none font-mono"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Page Layout Style Section -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-slate-900/50">
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                            </svg>
+                            News Page Layout Style
+                        </h3>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Select the display style for the public News & Media page.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Style 1: Featured Split Hero (King Khaled Style) -->
+                            <div 
+                                @click="form.news_layout_style = 'hero_split'"
+                                :class="[
+                                    'p-5 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 relative',
+                                    form.news_layout_style === 'hero_split'
+                                        ? 'border-primary bg-sky-50/50 dark:bg-slate-900/80 ring-2 ring-primary/20'
+                                        : 'border-gray-200 dark:border-slate-700 hover:border-gray-300'
+                                ]"
+                            >
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-extrabold uppercase tracking-wider text-primary">Style 1</span>
+                                        <span v-if="form.news_layout_style === 'hero_split'" class="w-3 h-3 rounded-full bg-primary"></span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-base font-['Outfit',sans-serif]">
+                                        Featured Split Hero
+                                    </h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                        Large featured main post on the left with stacked dark blue news list on the right (King Khaled Eye Hospital Style).
+                                    </p>
+                                </div>
+                                <span class="text-[11px] font-bold text-primary block mt-2">Recommended ★</span>
+                            </div>
+
+                            <!-- Style 2: Executive Magazine Grid -->
+                            <div 
+                                @click="form.news_layout_style = 'magazine_grid'"
+                                :class="[
+                                    'p-5 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 relative',
+                                    form.news_layout_style === 'magazine_grid'
+                                        ? 'border-primary bg-sky-50/50 dark:bg-slate-900/80 ring-2 ring-primary/20'
+                                        : 'border-gray-200 dark:border-slate-700 hover:border-gray-300'
+                                ]"
+                            >
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Style 2</span>
+                                        <span v-if="form.news_layout_style === 'magazine_grid'" class="w-3 h-3 rounded-full bg-primary"></span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-base font-['Outfit',sans-serif]">
+                                        Magazine Grid
+                                    </h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                        Full-width top hero banner with 3-column asymmetric cards and category badges.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Style 3: Editorial Horizontal List -->
+                            <div 
+                                @click="form.news_layout_style = 'editorial_list'"
+                                :class="[
+                                    'p-5 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 relative',
+                                    form.news_layout_style === 'editorial_list'
+                                        ? 'border-primary bg-sky-50/50 dark:bg-slate-900/80 ring-2 ring-primary/20'
+                                        : 'border-gray-200 dark:border-slate-700 hover:border-gray-300'
+                                ]"
+                            >
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Style 3</span>
+                                        <span v-if="form.news_layout_style === 'editorial_list'" class="w-3 h-3 rounded-full bg-primary"></span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-base font-['Outfit',sans-serif]">
+                                        Editorial Timeline List
+                                    </h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                        Clean horizontal editorial rows with left thumbnail images and reading time indicators.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -222,7 +421,7 @@ const saveSettings = () => {
                                     </div>
                                 </div>
 
-                                <!-- Image Preview Pane (if URL/value is present and type is link) -->
+                                <!-- Image Preview Pane -->
                                 <div 
                                     v-if="slide.type === 'link' && slide.value" 
                                     class="w-full md:w-32 h-24 rounded-xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 flex-shrink-0"

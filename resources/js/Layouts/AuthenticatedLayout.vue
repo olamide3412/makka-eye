@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Link, usePage } from '@inertiajs/vue3'
 
 const isSidebarOpen = ref(true)
@@ -7,6 +7,18 @@ const isSidebarOpen = ref(true)
 const toggleSidebar = () => {
     isSidebarOpen.value = !isSidebarOpen.value
 }
+
+const currentTheme = ref('light');
+
+const toggleTheme = () => {
+  currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme.value);
+  localStorage.setItem('theme', currentTheme.value);
+};
+
+onMounted(() => {
+  currentTheme.value = document.documentElement.getAttribute('data-theme') || 'light';
+});
 </script>
 
 <template>
@@ -108,6 +120,21 @@ const toggleSidebar = () => {
                         </Link>
                     </li>
 
+                    <!-- Partners Link -->
+                    <li>
+                        <Link 
+                            :href="route('admin.partners.index')" 
+                            class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
+                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/partners'), 'hover:bg-gray-100 dark:hover:bg-slate-700': !$page.url.startsWith('/admin/partners')}"
+                            title="Partners & Affiliates"
+                        >
+                            <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            <span class="ml-3 font-medium transition-opacity duration-300" v-show="isSidebarOpen">Partners</span>
+                        </Link>
+                    </li>
+
                     <!-- Settings Link -->
                     <li>
                         <Link 
@@ -148,23 +175,44 @@ const toggleSidebar = () => {
         <div class="flex-1 flex flex-col overflow-hidden">
             
             <!-- Topbar Content Header -->
-            <header class="h-16 bg-white dark:bg-slate-800 shadow-sm flex items-center px-4 justify-between border-b border-gray-100 dark:border-gray-700">
-                <button 
-                    @click="toggleSidebar" 
-                    class="p-2 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700 focus:outline-none focus:ring transition-colors"
-                >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-                    </svg>
-                </button>
+            <header class="h-16 bg-white dark:bg-slate-800 shadow-sm flex items-center px-4 md:px-6 justify-between border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center space-x-3">
+                    <button 
+                        @click="toggleSidebar" 
+                        class="p-2 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700 focus:outline-none focus:ring transition-colors"
+                    >
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                        </svg>
+                    </button>
+                    <Link href="/" class="hidden sm:inline-flex items-center text-xs font-bold text-slate-500 hover:text-primary transition-colors gap-1">
+                        <span>← Back to Website</span>
+                    </Link>
+                </div>
 
-                <!-- Currently logged in User display -->
-                <Link :href="route('admin.profile.edit')" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $page.props.auth?.user?.name || $page.props.auth?.user?.email }}</span>
-                    <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold cursor-pointer">
-                        {{ ($page.props.auth?.user?.name || $page.props.auth?.user?.email || 'A')[0].toUpperCase() }}
-                    </div>
-                </Link>
+                <!-- Right Controls: Dark Mode Toggle + Currently logged in User display -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- Dark Mode Toggle Button -->
+                    <button 
+                        @click="toggleTheme" 
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" 
+                        aria-label="Toggle Theme"
+                    >
+                        <svg v-if="currentTheme === 'dark'" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+
+                    <Link :href="route('admin.profile.edit')" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                        <span class="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200 hidden xs:inline">{{ $page.props.auth?.user?.name || $page.props.auth?.user?.email }}</span>
+                        <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold cursor-pointer text-xs">
+                            {{ ($page.props.auth?.user?.name || $page.props.auth?.user?.email || 'A')[0].toUpperCase() }}
+                        </div>
+                    </Link>
+                </div>
             </header>
 
             <!-- Page Content -->

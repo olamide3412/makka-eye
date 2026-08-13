@@ -29,6 +29,7 @@ import { Link } from '@inertiajs/vue3'
             <li><Link :href="route('home')" class="text-blue-100 hover:text-white transition-colors">{{ $t('footer.links.home') }}</Link></li>
             <li><Link :href="route('about')" class="text-blue-100 hover:text-white transition-colors">{{ $t('footer.links.about') }}</Link></li>
             <li><Link :href="route('services')" class="text-blue-100 hover:text-white transition-colors">{{ $t('footer.links.services') }}</Link></li>
+            <li><Link :href="route('blog.index')" class="text-blue-100 hover:text-white transition-colors">{{ $t('nav.blog') }}</Link></li>
             <li><Link :href="route('faq')" class="text-blue-100 hover:text-white transition-colors">{{ $t('footer.links.faq') }}</Link></li>
             <li><Link :href="route('contact')" class="text-blue-100 hover:text-white transition-colors">{{ $t('footer.links.contact') }}</Link></li>
           </ul>

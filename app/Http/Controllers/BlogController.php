@@ -30,13 +30,35 @@ class BlogController extends Controller
             $query->where('category', $request->category);
         }
 
+        if ($request->filled('date')) {
+            $query->whereDate('published_at', $request->date);
+        }
+
+        // Sort
+        if ($request->sort === 'oldest') {
+            $query->oldest('published_at');
+        } else {
+            $query->latest('published_at');
+        }
+
+        // ?view=list → full editorial list (from "More →" button)
+        if ($request->view === 'list') {
+            $layoutStyle = 'editorial_list';
+            $perPage     = 12;
+        } else {
+            $layoutStyle = 'hero_split';   // Blog always uses hero_split as default
+            $perPage     = 4;              // 1 featured + 3 side panel
+        }
+
         return Inertia::render('Blog/Index', [
-            'posts'    => $query->paginate(9),
-            'filters'  => $request->only(['search', 'category']),
+            'posts'       => $query->paginate($perPage),
+            'filters'     => $request->only(['search', 'category', 'sort', 'date', 'view']),
+            'layoutStyle' => $layoutStyle,
         ])->withViewData([
             'meta' => [
                 'title' => 'Eye Care Blog & Articles | Makkah Specialist Eye Hospital',
                 'description' => 'Read our latest blog posts and articles on eye health, preventative care, and advanced ophthalmic treatments from our specialist team.'
+
             ]
         ]);
     }

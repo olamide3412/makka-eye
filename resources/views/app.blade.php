@@ -4,15 +4,19 @@
 <head>
     <script>
         (function () {
-            const params = new URLSearchParams(window.location.search);
-            const themeParam = params.get('theme');
-            if (themeParam === 'dark' || themeParam === 'light') {
-                localStorage.setItem('theme', themeParam);
-            }
-            var theme = localStorage.getItem('theme');
-            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            // Read saved theme from localStorage (key: 'theme')
+            var saved = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Determine which theme to apply
+            var isDark = saved === 'dark' || (!saved && systemDark);
+
+            // Apply Tailwind dark class + data-theme attribute
+            if (isDark) {
+                document.documentElement.classList.add('dark');
                 document.documentElement.setAttribute('data-theme', 'dark');
             } else {
+                document.documentElement.classList.remove('dark');
                 document.documentElement.setAttribute('data-theme', 'light');
             }
         })();
@@ -120,6 +124,9 @@
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 

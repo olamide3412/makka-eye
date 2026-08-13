@@ -30,9 +30,31 @@ class NewsController extends Controller
             });
         }
 
+        if ($request->filled('date')) {
+            $query->whereDate('published_at', $request->date);
+        }
+
+        // Sort
+        if ($request->sort === 'oldest') {
+            $query->oldest('published_at');
+        } else {
+            $query->latest('published_at');
+        }
+
+        // If ?view=list is passed (e.g. from "More →" button), always show full list
+        if ($request->view === 'list') {
+            $layoutStyle = 'editorial_list';
+            $perPage     = 12;
+        } else {
+            $layoutStyle = \App\Models\Setting::get('news_layout_style', 'hero_split');
+            // Hero split only shows 4 articles (1 featured + 3 side), so limit to 4
+            $perPage     = ($layoutStyle === 'hero_split') ? 4 : 12;
+        }
+
         return Inertia::render('News/Index', [
-            'articles' => $query->paginate(9),
-            'filters'  => $request->only(['search', 'category']),
+            'articles'    => $query->paginate($perPage),
+            'filters'     => $request->only(['search', 'category', 'sort', 'date', 'view']),
+            'layoutStyle' => $layoutStyle,
         ])->withViewData([
             'meta' => [
                 'title' => 'News, Events & Announcements | Makkah Specialist Eye Hospital',
@@ -40,6 +62,7 @@ class NewsController extends Controller
             ]
         ]);
     }
+
 
     /**
      * Public single news article.

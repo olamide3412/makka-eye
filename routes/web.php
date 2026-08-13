@@ -12,10 +12,22 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // Public Pages
-// Public Pages
 Route::get('/', function () {
     $testimonials = \App\Models\Testimony::approved()->take(8)->get(['name', 'occupation', 'rating', 'message']);
-    return Inertia::render('Home', ['testimonials' => $testimonials])->withViewData([
+    $partners = \App\Models\Partner::active()->get(['id', 'name', 'logo_url', 'website_url', 'description']);
+
+    // Media Center: top 4 articles per category for homepage tabs (no pagination needed)
+    $mediaCenterArticles = [
+        'news'  => \App\Models\News::published()->where('category', 'news')->latest('published_at')->take(4)->get(['id','title','slug','excerpt','cover_image','media_gallery','published_at','category']),
+        'event' => \App\Models\News::published()->where('category', 'event')->latest('published_at')->take(4)->get(['id','title','slug','excerpt','cover_image','media_gallery','published_at','category']),
+        'media' => \App\Models\News::published()->where('category', 'media')->latest('published_at')->take(4)->get(['id','title','slug','excerpt','cover_image','media_gallery','published_at','category']),
+    ];
+
+    return Inertia::render('Home', [
+        'testimonials'        => $testimonials,
+        'partners'            => $partners,
+        'mediaCenterArticles' => $mediaCenterArticles,
+    ])->withViewData([
         'meta' => [
             'title' => 'Makkah Specialist Eye Hospital | Premier Eye Care Services',
             'description' => 'Makkah Specialist Eye Hospital is a leading eye care facility providing comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency care.'
@@ -23,8 +35,16 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+
 Route::get('/about-us', function () {
-    return Inertia::render('About')->withViewData([
+    return Inertia::render('About', [
+        'about_mission'       => \App\Models\Setting::get('about_mission', '<p>To eradicate preventable blindness and provide accessible, world-class ophthalmic care across Africa and Asia through clinical excellence, advanced diagnostics, and compassionate service.</p>'),
+        'about_vision'        => \App\Models\Setting::get('about_vision', '<p>To create a world where quality eye care is accessible to every individual, ensuring a future free of preventable visual impairment and blindness.</p>'),
+        'about_founder_name'  => \App\Models\Setting::get('about_founder_name', 'His Highness Prince Abdul-Aziz bin Ahmed Al-Saud'),
+        'about_founder_title' => \App\Models\Setting::get('about_founder_title', 'Founder & Chairman, Al-Basar International Foundation'),
+        'about_founder_bio'   => \App\Models\Setting::get('about_founder_bio', '<p>Founded in 1989, Al-Basar International Foundation has established specialized eye hospitals and mobile eye clinics across Africa and Asia, treating millions of patients and preventing avoidable blindness.</p>'),
+        'about_founder_image' => \App\Models\Setting::get('about_founder_image', ''),
+    ])->withViewData([
         'meta' => [
             'title' => 'About Us | Makkah Specialist Eye Hospital',
             'description' => 'Learn more about Makkah Specialist Eye Hospital, our team of dedicated professionals, state-of-the-art facilities, and mission to deliver exceptional eye care.'
@@ -41,6 +61,30 @@ Route::get('/services', function () {
     ]);
 })->name('services');
 
+Route::get('/services/{slug}', function ($slug) {
+    $serviceNames = [
+        'glaucoma' => 'Adult & Paediatric Glaucoma',
+        'squint' => 'Adult & Paediatric Squint',
+        'cataracts' => 'Adult & Paediatric Cataracts',
+        'prosthetic' => 'Artificial Eye Creation & Fitting',
+        'examination' => 'Comprehensive Eye Examinations',
+        'lasik' => 'LASIK & Refractive Surgery',
+        'retina' => 'Retinal Disorders Treatment',
+        'cornea' => 'Corneal Transplantation',
+        'diabetic' => 'Diabetic Eye Care',
+        'emergency' => 'Emergency Eye Care',
+    ];
+
+    $serviceName = $serviceNames[$slug] ?? 'Eye Care Service';
+
+    return Inertia::render('Services/Show', ['slug' => $slug])->withViewData([
+        'meta' => [
+            'title' => $serviceName . ' | Makkah Specialist Eye Hospital',
+            'description' => 'Learn more about ' . $serviceName . ' at Makkah Specialist Eye Hospital. Dedicated specialists, state-of-the-art technology, and world-class patient care.'
+        ]
+    ]);
+})->name('services.show');
+
 Route::get('/contact', function () {
     return Inertia::render('Contact')->withViewData([
         'meta' => [
@@ -49,6 +93,34 @@ Route::get('/contact', function () {
         ]
     ]);
 })->name('contact');
+
+// Public Department Routes
+Route::get('/departments', function () {
+    return Inertia::render('Departments/Index')->withViewData([
+        'meta' => [
+            'title' => 'Our Departments | Makkah Specialist Eye Hospital',
+            'description' => 'Explore the specialized medical departments at Makkah Specialist Eye Hospital including Diagnostics, Pharmacy, Optical Shop, and Optical Workshop.'
+        ]
+    ]);
+})->name('departments.index');
+
+Route::get('/departments/{slug}', function ($slug) {
+    $departments = [
+        'diagnostic' => 'Diagnostic Department',
+        'pharmacy' => 'Pharmacy Department',
+        'optical-shop' => 'Optical Shop',
+        'optical-workshop' => 'Optical Workshop',
+    ];
+
+    $title = $departments[$slug] ?? 'Department';
+
+    return Inertia::render('Departments/Show', ['slug' => $slug])->withViewData([
+        'meta' => [
+            'title' => $title . ' | Makkah Specialist Eye Hospital',
+            'description' => 'Learn more about the ' . $title . ' at Makkah Specialist Eye Hospital. State-of-the-art facilities and dedicated healthcare specialists.'
+        ]
+    ]);
+})->name('departments.show');
 
 Route::get('/faq', function () {
     return Inertia::render('FAQ')->withViewData([
@@ -123,6 +195,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
     Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    // ── Admin Partners ───────────────────────────────────────────────────────
+    Route::get('/admin/partners', [\App\Http\Controllers\PartnerController::class, 'index'])->name('admin.partners.index');
+    Route::post('/admin/partners', [\App\Http\Controllers\PartnerController::class, 'store'])->name('admin.partners.store');
+    Route::put('/admin/partners/{partner}', [\App\Http\Controllers\PartnerController::class, 'update'])->name('admin.partners.update');
+    Route::delete('/admin/partners/{partner}', [\App\Http\Controllers\PartnerController::class, 'destroy'])->name('admin.partners.destroy');
 
     // ── Admin Settings ───────────────────────────────────────────────────────
     Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings.index');

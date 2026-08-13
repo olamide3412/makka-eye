@@ -19,10 +19,10 @@ const props = defineProps({
     <Link
       :href="href"
       :class="[
-        'h-full px-3 xl:px-4 py-5 flex items-center justify-center border-b-2 transition-all duration-200 text-[13px] xl:text-sm font-semibold tracking-wide gap-1.5 focus:outline-none',
+        'h-full px-2 xl:px-3.5 2xl:px-4 py-5 flex items-center justify-center border-b-2 transition-all duration-200 text-xs xl:text-sm 2xl:text-[15px] font-bold tracking-tight whitespace-nowrap gap-1 focus:outline-none',
         active 
-          ? 'border-primary text-primary' 
-          : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-primary hover:border-gray-200 dark:hover:border-slate-800'
+          ? 'border-primary text-primary font-extrabold' 
+          : 'border-transparent text-slate-800 dark:text-slate-100 hover:text-primary hover:border-primary/30'
       ]"
       @click="onClick"
     >
