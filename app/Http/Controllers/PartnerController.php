@@ -37,6 +37,14 @@ class PartnerController extends Controller
     }
 
     /**
+     * Show form for creating a new partner.
+     */
+    public function create()
+    {
+        return Inertia::render('Auth/Partners/Create');
+    }
+
+    /**
      * Store a newly created partner.
      */
     public function store(Request $request)
@@ -52,7 +60,17 @@ class PartnerController extends Controller
 
         Partner::create($validated);
 
-        return redirect()->back()->with('message', 'Partner added successfully.');
+        return redirect()->route('admin.partners.index')->with('message', 'Partner added successfully.');
+    }
+
+    /**
+     * Show form for editing an existing partner.
+     */
+    public function edit(Partner $partner)
+    {
+        return Inertia::render('Auth/Partners/Edit', [
+            'partner' => $partner,
+        ]);
     }
 
     /**
@@ -71,7 +89,7 @@ class PartnerController extends Controller
 
         $partner->update($validated);
 
-        return redirect()->back()->with('message', 'Partner updated successfully.');
+        return redirect()->route('admin.partners.index')->with('message', 'Partner updated successfully.');
     }
 
     /**

@@ -1,31 +1,28 @@
 <script setup>
-
 import { usePage } from '@inertiajs/vue3';
 import { generateWhatappLink } from '../Utils/whatsappLinkGen';
 import { computed } from 'vue';
 
-const support = usePage().props.support;
+const page = usePage();
 
-const tradeNowLink = computed(() => {
-    return generateWhatappLink(support.phone_whatsapp, 'Hi, I want to trade, what are your current rates?');
-})
+const whatsappLink = computed(() => {
+    const phone = page.props.support?.phone_whatsapp || '2349166661264';
+    const cleanPhone = String(phone).replace(/[^0-9]/g, '');
+    return generateWhatappLink(cleanPhone, 'Hello, I’d like to make an enquiry about your eye care services.');
+});
 </script>
 
 <template>
     <a
-      :href="tradeNowLink"
+      :href="whatsappLink"
       target="_blank"
       rel="noopener noreferrer"
-      class="fixed right-6 bottom-6 z-50 flex items-center justify-center space-x-2 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 group"
-      data-aos="fade-up"
-      data-aos-delay="300"
+      class="fixed right-6 bottom-6 z-50 flex items-center justify-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 group"
       aria-label="Chat on WhatsApp"
     >
-      <!-- WhatsApp Icon -->
       <font-awesome-icon :icon="['fab', 'whatsapp']" class="text-2xl" />
-      <!-- Text (Show on hover) -->
-      <span class="opacity-0 w-0 overflow-hidden group-hover:opacity-100 group-hover:w-auto transition-all duration-300 whitespace-nowrap">
+      <span class="opacity-0 w-0 overflow-hidden group-hover:opacity-100 group-hover:w-auto transition-all duration-300 whitespace-nowrap font-bold text-sm">
         Chat with Us
       </span>
     </a>
-  </template>
+</template>

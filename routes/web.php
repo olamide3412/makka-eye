@@ -198,7 +198,9 @@ Route::middleware('auth')->group(function () {
 
     // ── Admin Partners ───────────────────────────────────────────────────────
     Route::get('/admin/partners', [\App\Http\Controllers\PartnerController::class, 'index'])->name('admin.partners.index');
+    Route::get('/admin/partners/create', [\App\Http\Controllers\PartnerController::class, 'create'])->name('admin.partners.create');
     Route::post('/admin/partners', [\App\Http\Controllers\PartnerController::class, 'store'])->name('admin.partners.store');
+    Route::get('/admin/partners/{partner}/edit', [\App\Http\Controllers\PartnerController::class, 'edit'])->name('admin.partners.edit');
     Route::put('/admin/partners/{partner}', [\App\Http\Controllers\PartnerController::class, 'update'])->name('admin.partners.update');
     Route::delete('/admin/partners/{partner}', [\App\Http\Controllers\PartnerController::class, 'destroy'])->name('admin.partners.destroy');
 

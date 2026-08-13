@@ -1,8 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import { Head, useForm, router } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import ImageUpload from '@/Components/ImageUpload.vue';
 import Pagination from '@/Components/Pagination.vue';
 
 defineOptions({ layout: AuthenticatedLayout });
@@ -12,57 +11,6 @@ const props = defineProps({
     filters: Object,
     counts: Object,
 });
-
-const isModalOpen = ref(false);
-const isEditing = ref(false);
-const editingId = ref(null);
-
-const form = useForm({
-    name: '',
-    logo_url: '',
-    website_url: '',
-    description: '',
-    status: 'active',
-    sort_order: 0,
-});
-
-const openCreateModal = () => {
-    isEditing.value = false;
-    editingId.value = null;
-    form.reset();
-    form.clearErrors();
-    isModalOpen.value = true;
-};
-
-const openEditModal = (partner) => {
-    isEditing.value = true;
-    editingId.value = partner.id;
-    form.clearErrors();
-    form.name = partner.name;
-    form.logo_url = partner.logo_url || '';
-    form.website_url = partner.website_url || '';
-    form.description = partner.description || '';
-    form.status = partner.status;
-    form.sort_order = partner.sort_order || 0;
-    isModalOpen.value = true;
-};
-
-const closeModal = () => {
-    isModalOpen.value = false;
-    form.reset();
-};
-
-const submitForm = () => {
-    if (isEditing.value) {
-        form.put(route('admin.partners.update', editingId.value), {
-            onSuccess: () => closeModal(),
-        });
-    } else {
-        form.post(route('admin.partners.store'), {
-            onSuccess: () => closeModal(),
-        });
-    }
-};
 
 const deletePartner = (partner) => {
     if (confirm(`Are you sure you want to delete "${partner.name}"?`)) {
@@ -96,13 +44,13 @@ const applyFilters = () => {
                     Add, edit, or remove partner organizations displayed on the public homepage.
                 </p>
             </div>
-            <button 
-                @click="openCreateModal"
+            <Link 
+                :href="route('admin.partners.create')"
                 class="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white font-extrabold text-sm px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow"
             >
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                 Add New Partner
-            </button>
+            </Link>
         </div>
 
         <!-- Filter Stats Bar -->
@@ -210,12 +158,12 @@ const applyFilters = () => {
                                 {{ partner.sort_order }}
                             </td>
                             <td class="px-6 py-4 text-right space-x-2">
-                                <button 
-                                    @click="openEditModal(partner)" 
-                                    class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-colors"
+                                <Link 
+                                    :href="route('admin.partners.edit', partner.id)" 
+                                    class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-colors inline-block"
                                 >
                                     Edit
-                                </button>
+                                </Link>
                                 <button 
                                     @click="deletePartner(partner)" 
                                     class="px-3 py-1.5 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white rounded-lg text-xs font-bold transition-colors"
@@ -238,118 +186,6 @@ const applyFilters = () => {
                 <Pagination :paginator="partners" />
             </div>
         </div>
-
-        <!-- Add/Edit Partner Modal -->
-        <transition name="fade">
-            <div v-if="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
-                <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-gray-100 dark:border-slate-700 space-y-6">
-                    <div class="flex items-center justify-between border-b border-gray-100 dark:border-slate-700 pb-4">
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white font-['Outfit',sans-serif]">
-                            {{ isEditing ? 'Edit Partner' : 'Add New Partner' }}
-                        </h3>
-                        <button @click="closeModal" class="text-gray-400 hover:text-slate-600 dark:hover:text-slate-200">
-                            ✕
-                        </button>
-                    </div>
-
-                    <form @submit.prevent="submitForm" class="space-y-4">
-                        <!-- Partner Name -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
-                                Partner Organization Name *
-                            </label>
-                            <input 
-                                v-model="form.name"
-                                type="text"
-                                required
-                                placeholder="e.g. Al-Basar International Foundation"
-                                class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-2.5 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
-                            />
-                            <span v-if="form.errors.name" class="text-xs text-red-500 mt-1 block">{{ form.errors.name }}</span>
-                        </div>
-
-                        <!-- Logo Upload -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
-                                Partner Logo
-                            </label>
-                            <ImageUpload v-model="form.logo_url" />
-                            <p class="text-xs text-gray-400 mt-1">Upload a clean PNG/JPG logo or paste image URL.</p>
-                            <span v-if="form.errors.logo_url" class="text-xs text-red-500 mt-1 block">{{ form.errors.logo_url }}</span>
-                        </div>
-
-                        <!-- Website URL -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
-                                Website Link (Optional)
-                            </label>
-                            <input 
-                                v-model="form.website_url"
-                                type="url"
-                                placeholder="https://example.org"
-                                class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-2.5 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
-                            />
-                        </div>
-
-                        <!-- Description -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
-                                Short Description (Optional)
-                            </label>
-                            <textarea 
-                                v-model="form.description"
-                                rows="3"
-                                placeholder="Brief overview of partnership or health mission..."
-                                class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-2.5 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
-                            ></textarea>
-                        </div>
-
-                        <!-- Status & Sort Order -->
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
-                                    Status
-                                </label>
-                                <select 
-                                    v-model="form.status"
-                                    class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-2.5 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold"
-                                >
-                                    <option value="active">Active (Visible on Homepage)</option>
-                                    <option value="inactive">Inactive (Hidden)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
-                                    Sort Order
-                                </label>
-                                <input 
-                                    v-model.number="form.sort_order"
-                                    type="number"
-                                    class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-2.5 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="pt-4 flex justify-end space-x-3 border-t border-gray-100 dark:border-slate-700">
-                            <button 
-                                type="button" 
-                                @click="closeModal"
-                                class="px-5 py-2.5 rounded-xl border border-gray-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100"
-                            >
-                                Cancel
-                            </button>
-                            <button 
-                                type="submit"
-                                :disabled="form.processing"
-                                class="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-extrabold text-sm shadow-md hover:shadow-lg disabled:opacity-50"
-                            >
-                                {{ form.processing ? 'Saving...' : (isEditing ? 'Update Partner' : 'Save Partner') }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </transition>
 
     </div>
 </template>
