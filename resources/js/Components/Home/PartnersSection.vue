@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
     partners: {
@@ -8,34 +8,40 @@ const props = defineProps({
     }
 });
 
+const expandedPartners = ref({});
+
+const toggleExpand = (id) => {
+    expandedPartners.value[id] = !expandedPartners.value[id];
+};
+
 const defaultPartners = [
     {
         id: 1,
         name: 'Al-Basar International Foundation',
         logo_url: '/images/logo.png',
         website_url: 'https://albasar.org',
-        description: 'Leading non-governmental organization dedicated to preventing blindness across Africa and Asia.'
+        description: 'Leading non-governmental organization dedicated to preventing blindness across Africa and Asia through specialized eye hospitals and mobile medical campaigns.'
     },
     {
         id: 2,
         name: 'Al-Noor Eye Foundation',
         logo_url: '',
         website_url: 'https://alnoorfoundation.org',
-        description: 'Global charitable foundation providing specialized eye care infrastructure and medical outreach.'
+        description: 'Global charitable foundation providing specialized eye care infrastructure, surgical equipment, and medical outreach programs.'
     },
     {
         id: 3,
         name: 'Standard Chartered - Seeing is Believing',
         logo_url: '',
         website_url: 'https://www.sc.com',
-        description: 'International initiative combating avoidable blindness through funding and medical equipment.'
+        description: 'International initiative combating avoidable blindness through funding, capacity building, and medical equipment donation.'
     },
     {
         id: 4,
         name: 'Oyo State Ministry of Health',
         logo_url: '',
         website_url: 'https://oyostate.gov.ng',
-        description: 'State healthcare governing body partnering for community eye screening programs.'
+        description: 'State healthcare governing body partnering for community eye screening programs, public health campaigns, and medical assistance.'
     }
 ];
 
@@ -62,39 +68,55 @@ const displayPartners = computed(() => {
             </div>
 
             <!-- Partners Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 <div 
                     v-for="partner in displayPartners" 
                     :key="partner.id"
-                    class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-gray-100 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                    class="bg-white dark:bg-slate-800 p-6 sm:p-7 rounded-3xl border border-gray-100 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
                 >
                     <div>
-                        <!-- Logo Container -->
-                        <div class="w-full h-24 rounded-2xl bg-slate-50 dark:bg-slate-900/80 flex items-center justify-center p-4 border border-gray-100/80 dark:border-slate-700/50 mb-5 group-hover:bg-sky-50/50 dark:group-hover:bg-slate-800 transition-colors">
+                        <!-- Enlarged Logo Container -->
+                        <div class="w-full h-36 sm:h-40 rounded-2xl bg-slate-50 dark:bg-slate-900/80 flex items-center justify-center p-3 sm:p-4 border border-gray-100/80 dark:border-slate-700/50 mb-5 group-hover:bg-sky-50/50 dark:group-hover:bg-slate-800 transition-colors">
                             <img 
                                 v-if="partner.logo_url" 
                                 :src="partner.logo_url" 
                                 :alt="partner.name" 
-                                class="max-h-16 max-w-full object-contain transition-transform group-hover:scale-105" 
+                                class="max-h-28 sm:max-h-32 w-full object-contain transition-transform duration-300 group-hover:scale-105" 
                             />
-                            <div v-else class="text-center">
-                                <span class="text-lg font-black text-primary tracking-tight font-['Outfit',sans-serif]">
+                            <div v-else class="text-center p-3">
+                                <span class="text-xl font-black text-primary tracking-tight font-['Outfit',sans-serif] block leading-tight">
                                     {{ partner.name }}
                                 </span>
                             </div>
                         </div>
 
-                        <!-- Name & Description -->
-                        <h3 class="text-base font-bold text-slate-900 dark:text-white font-['Outfit',sans-serif] group-hover:text-primary transition-colors leading-snug">
+                        <!-- Name & Expandable Description -->
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-['Outfit',sans-serif] group-hover:text-primary transition-colors leading-snug">
                             {{ partner.name }}
                         </h3>
-                        <p v-if="partner.description" class="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed">
-                            {{ partner.description }}
-                        </p>
+
+                        <div v-if="partner.description" class="mt-3">
+                            <p 
+                                :class="[
+                                    'text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed transition-all duration-300',
+                                    expandedPartners[partner.id] ? '' : 'line-clamp-4'
+                                ]"
+                            >
+                                {{ partner.description }}
+                            </p>
+                            <button 
+                                v-if="partner.description && partner.description.length > 110"
+                                @click="toggleExpand(partner.id)"
+                                type="button"
+                                class="mt-2 text-xs font-extrabold text-primary hover:text-primary-dark hover:underline focus:outline-none inline-flex items-center gap-1"
+                            >
+                                <span>{{ expandedPartners[partner.id] ? 'Show Less ▲' : 'Show More ▼' }}</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- External Link -->
-                    <div class="mt-6 pt-4 border-t border-gray-50 dark:border-slate-700/60 flex items-center justify-between">
+                    <div class="mt-6 pt-4 border-t border-gray-100 dark:border-slate-700/60 flex items-center justify-between">
                         <a 
                             v-if="partner.website_url"
                             :href="partner.website_url"
