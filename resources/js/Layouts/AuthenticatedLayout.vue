@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { Link, usePage } from '@inertiajs/vue3'
+import FlashMessages from '@/Components/FlashMessages.vue'
 
 const isSidebarOpen = ref(true)
 
@@ -23,6 +24,7 @@ onMounted(() => {
 
 <template>
     <div class="flex h-screen bg-gray-100 dark:bg-slate-900 font-sans">
+        <FlashMessages />
         
         <!-- Sidebar -->
         <aside 

@@ -39,6 +39,17 @@ const submit = () => {
             </div>
         </div>
 
+        <!-- Global Error Banner -->
+        <div v-if="form.hasErrors" class="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800 p-4 rounded-2xl text-red-700 dark:text-red-300 text-sm font-semibold flex items-center gap-3">
+            <svg class="w-6 h-6 shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div>
+                <p class="font-bold">Please correct the errors highlighted below:</p>
+                <ul class="list-disc list-inside text-xs mt-1 space-y-0.5 font-normal">
+                    <li v-for="(err, key) in form.errors" :key="key">{{ err }}</li>
+                </ul>
+            </div>
+        </div>
+
         <!-- Form Card -->
         <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-6 sm:p-8">
             <form @submit.prevent="submit" class="space-y-6">
@@ -54,8 +65,9 @@ const submit = () => {
                         required
                         placeholder="e.g. Al-Basar International Foundation"
                         class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50"
+                        :class="{ 'border-red-500': form.errors.name }"
                     />
-                    <span v-if="form.errors.name" class="text-xs text-red-500 mt-1 block">{{ form.errors.name }}</span>
+                    <span v-if="form.errors.name" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.name }}</span>
                 </div>
 
                 <!-- Logo Upload -->
@@ -65,7 +77,7 @@ const submit = () => {
                     </label>
                     <ImageUpload v-model="form.logo_url" />
                     <p class="text-xs text-gray-400 mt-1">Upload a clean PNG/JPG logo or paste image URL.</p>
-                    <span v-if="form.errors.logo_url" class="text-xs text-red-500 mt-1 block">{{ form.errors.logo_url }}</span>
+                    <span v-if="form.errors.logo_url" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.logo_url }}</span>
                 </div>
 
                 <!-- Website URL -->
@@ -75,10 +87,12 @@ const submit = () => {
                     </label>
                     <input 
                         v-model="form.website_url"
-                        type="url"
-                        placeholder="https://example.org"
+                        type="text"
+                        placeholder="https://example.org or www.example.org"
                         class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50"
+                        :class="{ 'border-red-500': form.errors.website_url }"
                     />
+                    <span v-if="form.errors.website_url" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.website_url }}</span>
                 </div>
 
                 <!-- Description -->
@@ -91,7 +105,9 @@ const submit = () => {
                         rows="4"
                         placeholder="Brief overview of partnership or health mission..."
                         class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50"
+                        :class="{ 'border-red-500': form.errors.description }"
                     ></textarea>
+                    <span v-if="form.errors.description" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.description }}</span>
                 </div>
 
                 <!-- Status & Sort Order -->
@@ -103,10 +119,12 @@ const submit = () => {
                         <select 
                             v-model="form.status"
                             class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold"
+                            :class="{ 'border-red-500': form.errors.status }"
                         >
                             <option value="active">Active (Visible on Homepage)</option>
                             <option value="inactive">Inactive (Hidden)</option>
                         </select>
+                        <span v-if="form.errors.status" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.status }}</span>
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
@@ -116,7 +134,9 @@ const submit = () => {
                             v-model.number="form.sort_order"
                             type="number"
                             class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+                            :class="{ 'border-red-500': form.errors.sort_order }"
                         />
+                        <span v-if="form.errors.sort_order" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.sort_order }}</span>
                     </div>
                 </div>
 
@@ -131,9 +151,10 @@ const submit = () => {
                     <button 
                         type="submit"
                         :disabled="form.processing"
-                        class="px-8 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-extrabold text-sm shadow-md hover:shadow-lg disabled:opacity-50 transition-all"
+                        class="px-8 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-extrabold text-sm shadow-md hover:shadow-lg disabled:opacity-50 transition-all flex items-center gap-2"
                     >
-                        {{ form.processing ? 'Saving...' : 'Save Partner' }}
+                        <svg v-if="form.processing" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        <span>{{ form.processing ? 'Saving...' : 'Save Partner' }}</span>
                     </button>
                 </div>
 

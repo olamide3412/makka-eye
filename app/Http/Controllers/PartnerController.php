@@ -27,10 +27,10 @@ class PartnerController extends Controller
 
         return Inertia::render('Auth/Partners/Index', [
             'partners' => $partners,
-            'filters'  => $request->only(['search', 'status']),
-            'counts'   => [
-                'all'      => Partner::count(),
-                'active'   => Partner::where('status', 'active')->count(),
+            'filters' => $request->only(['search', 'status']),
+            'counts' => [
+                'all' => Partner::count(),
+                'active' => Partner::where('status', 'active')->count(),
                 'inactive' => Partner::where('status', 'inactive')->count(),
             ],
         ]);
@@ -51,16 +51,20 @@ class PartnerController extends Controller
     {
         $validated = $request->validate([
             'name'        => 'required|string|max:150',
-            'logo_url'    => 'nullable|string|max:500',
-            'website_url' => 'nullable|url|max:500',
-            'description' => 'nullable|string|max:500',
+            'logo_url'    => 'nullable|string',
+            'website_url' => 'nullable|string|max:500',
+            'description' => 'nullable|string|max:2000',
             'status'      => 'required|in:active,inactive',
             'sort_order'  => 'nullable|integer',
         ]);
 
+        if (!empty($validated['website_url']) && !preg_match('/^https?:\/\//i', $validated['website_url'])) {
+            $validated['website_url'] = 'https://' . $validated['website_url'];
+        }
+
         Partner::create($validated);
 
-        return redirect()->route('admin.partners.index')->with('message', 'Partner added successfully.');
+        return redirect()->route('admin.partners.index')->with('success', 'Partner organization added successfully!');
     }
 
     /**
@@ -80,16 +84,20 @@ class PartnerController extends Controller
     {
         $validated = $request->validate([
             'name'        => 'required|string|max:150',
-            'logo_url'    => 'nullable|string|max:500',
-            'website_url' => 'nullable|url|max:500',
-            'description' => 'nullable|string|max:500',
+            'logo_url'    => 'nullable|string',
+            'website_url' => 'nullable|string|max:500',
+            'description' => 'nullable|string|max:2000',
             'status'      => 'required|in:active,inactive',
             'sort_order'  => 'nullable|integer',
         ]);
 
+        if (!empty($validated['website_url']) && !preg_match('/^https?:\/\//i', $validated['website_url'])) {
+            $validated['website_url'] = 'https://' . $validated['website_url'];
+        }
+
         $partner->update($validated);
 
-        return redirect()->route('admin.partners.index')->with('message', 'Partner updated successfully.');
+        return redirect()->route('admin.partners.index')->with('success', 'Partner organization updated successfully!');
     }
 
     /**
