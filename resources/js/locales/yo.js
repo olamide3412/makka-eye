@@ -22,7 +22,7 @@ export default {
         language: 'Èdè',
     },
     hero: {
-        headline1: 'Ìran Wa',
+        headline1: '',
         headline2: '',
         subtitle: 'Láti pèsè ayé kan níbi tí gbogbo ènìyàn ti ní àǹfààní sí ìtọ́jú ojú tó dára, tó sì ń ṣamọ̀nà sí ọjọ́ iwájú tí a ti mú fọ́jú tí a lè dènà kúrò pátápátá, tí gbogbo ènìyàn yóò sì lè gbádùn ẹ̀bùn ìríran láìsí ìdènà tàbí ààlà kankan.',
         bookAppointment: 'Ṣèlérí Pàdé',
@@ -65,9 +65,9 @@ export default {
                 title: 'Iṣẹ́ Abẹ Cataracts',
                 description: 'Àwọn ìmọ̀-ẹ̀rọ phacoemulsification tó ti ilọ siwájú àti gbigbe lens intraocular láti mú ìwo tó yè àti àlàáfíà padà.',
             },
-            lasik: {
-                title: 'LASIK & Ìtúnṣe Ojú',
-                description: 'Ìtúnṣe ìwo pẹ̀lú laser pẹ̀lú àwọn ìmọ̀-ẹ̀rọ laser tuntun. Gba ọ̀fẹ́ kúrò ní àgbéko̩ àti àwọn lens pẹ̀lú àwọn ìlànà LASIK wa.',
+            retina: {
+                title: 'Ìtọ́jú Retina',
+                description: 'Ìtọ́jú ìṣègùn àti iṣẹ́ abẹ fún àwọn àìsàn tó kan retina, vitreous, àti macula pẹ̀lú àwọn ìmọ̀-ẹ̀rọ àyẹ̀wò tó gbajúmọ̀.',
             },
             glaucoma: {
                 title: 'Ìtọ́jú Glaucoma',
@@ -367,8 +367,18 @@ export default {
         generalTitle: 'Ìbéèrè Gbogbogbò',
     },
     serviceList: {
-        title: 'Kúlẹ̀kúlẹ̀ Iṣẹ́',
-        includes: 'Ohun tí iṣẹ́ yìí ní nínú:',
+        title: 'Àwọn Kúlẹ̀kúlẹ̀ Iṣẹ́',
+        includes: 'Kí ni iṣẹ́ yìí ní nínú:',
+        retinaNotice: {
+            badge: 'Pẹ̀lú Dókítà Tó Ń Ṣe Ìbẹ̀wò',
+            title: 'Iṣẹ́ Àkànṣe Dókítà Tó Ń Ṣe Ìbẹ̀wò (Based on Visiting Doctor)',
+            desc: 'Àyẹ̀wò retina, ìtọ́jú laser, àti iṣẹ́ abẹ vitreoretinal jẹ́ èyí tí àwọn dókítà àkànṣe tó ń ṣe ìbẹ̀wò ń pèsè ní àwọn ọjọ́ pàtó tí a yàn. Jọ̀wọ́ ṣètò ìpàdé tẹ́lẹ̀.',
+        },
+        corneaNotice: {
+            badge: 'Wà Ní Olú-Ilé-Iṣẹ́ Nìkan',
+            title: 'Ìtọ́jú Pàtàkì: Wà Ní Olú-Ilé-Iṣẹ́ Nìkan (Only Available in Head Office)',
+            desc: 'Iṣẹ́ abẹ gbigbe cornea àti àwọn ìlànà transplant pàtàkì wà ní olú-ilé-iwòsàn wa nìkan ní Ibadan.',
+        },
         list: {
             glaucoma: {
                 title: 'Glaucoma Àgbà & Ọmọdé',

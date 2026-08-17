@@ -45,7 +45,7 @@ const getUrlForPage = (page) => {
     <Link
       v-if="paginator.current_page > 1"
       :href="getUrlForPage(paginator.current_page - 1)"
-      class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-900"
+      class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300"
     >
        &lt;&lt;
     </Link>
@@ -53,7 +53,7 @@ const getUrlForPage = (page) => {
     <div v-for="(page, i) in paginationLinks" :key="i" class=" hidden md:inline">
       <span
         v-if="page === '...'"
-        class="px-3 py-1 rounded bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-default"
+        class="px-3 py-1 rounded bg-gray-100 text-gray-400 cursor-default"
       >...</span>
 
       <Link
@@ -61,7 +61,7 @@ const getUrlForPage = (page) => {
         :href="getUrlForPage(page)"
         :class="[
           'px-3 py-1 rounded',
-          page === paginator.current_page ? 'bg-secondary-500 text-white ' : 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-900',
+          page === paginator.current_page ? 'bg-secondary-500 text-white ' : 'bg-gray-200 hover:bg-gray-300',
         ]"
       >
         {{ page }}
@@ -71,7 +71,7 @@ const getUrlForPage = (page) => {
     <Link
       v-if="paginator.current_page < paginator.last_page"
       :href="getUrlForPage(paginator.current_page + 1)"
-      class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300  dark:bg-gray-800 dark:hover:bg-gray-900"
+      class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300"
     >
         &gt;&gt;
     </Link>

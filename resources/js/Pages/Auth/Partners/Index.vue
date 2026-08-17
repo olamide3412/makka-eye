@@ -35,12 +35,12 @@ const applyFilters = () => {
     <div class="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 font-sans">
         
         <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
             <div>
-                <h1 class="text-2xl font-bold text-slate-900 dark:text-white font-['Outfit',sans-serif]">
+                <h1 class="text-2xl font-bold text-slate-900 font-['Outfit',sans-serif]">
                     Strategic Partners & Healthcare Affiliates
                 </h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p class="text-sm text-gray-500 mt-1">
                     Add, edit, or remove partner organizations displayed on the public homepage.
                 </p>
             </div>
@@ -60,7 +60,7 @@ const applyFilters = () => {
                     @click="filterStatus = ''; applyFilters()"
                     :class="[
                         'px-4 py-2 rounded-xl transition-colors',
-                        filterStatus === '' ? 'bg-primary text-white' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
+                        filterStatus === '' ? 'bg-primary text-white' : 'bg-white text-slate-700 hover:bg-slate-100'
                     ]"
                 >
                     All Partners ({{ counts?.all || 0 }})
@@ -69,7 +69,7 @@ const applyFilters = () => {
                     @click="filterStatus = 'active'; applyFilters()"
                     :class="[
                         'px-4 py-2 rounded-xl transition-colors',
-                        filterStatus === 'active' ? 'bg-emerald-600 text-white' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
+                        filterStatus === 'active' ? 'bg-emerald-600 text-white' : 'bg-white text-slate-700 hover:bg-slate-100'
                     ]"
                 >
                     Active ({{ counts?.active || 0 }})
@@ -78,7 +78,7 @@ const applyFilters = () => {
                     @click="filterStatus = 'inactive'; applyFilters()"
                     :class="[
                         'px-4 py-2 rounded-xl transition-colors',
-                        filterStatus === 'inactive' ? 'bg-slate-600 text-white' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
+                        filterStatus === 'inactive' ? 'bg-slate-600 text-white' : 'bg-white text-slate-700 hover:bg-slate-100'
                     ]"
                 >
                     Inactive ({{ counts?.inactive || 0 }})
@@ -92,16 +92,16 @@ const applyFilters = () => {
                     @input="applyFilters"
                     type="text"
                     placeholder="Search partners..."
-                    class="w-full rounded-xl border border-gray-200 dark:border-slate-700 px-4 py-2 text-sm bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                    class="w-full rounded-xl border border-gray-200 px-4 py-2 text-sm bg-white text-slate-900"
                 />
             </div>
         </div>
 
         <!-- Partners Table -->
-        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-slate-700 dark:text-slate-200">
-                    <thead class="bg-slate-50 dark:bg-slate-900/50 text-xs uppercase text-slate-500 font-extrabold border-b border-gray-100 dark:border-slate-700">
+                <table class="w-full text-left text-sm text-slate-700">
+                    <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-extrabold border-b border-gray-100">
                         <tr>
                             <th class="px-6 py-4">Logo & Partner Name</th>
                             <th class="px-6 py-4">Website</th>
@@ -110,21 +110,21 @@ const applyFilters = () => {
                             <th class="px-6 py-4 text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-slate-700/60 font-medium">
-                        <tr v-for="partner in partners.data" :key="partner.id" class="hover:bg-slate-50/50 dark:hover:bg-slate-900/30 transition-colors">
+                    <tbody class="divide-y divide-gray-100 font-medium">
+                        <tr v-for="partner in partners.data" :key="partner.id" class="hover:bg-slate-50/50 transition-colors">
                             <td class="px-6 py-4">
                                 <div class="flex items-center space-x-4">
-                                    <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center shrink-0 overflow-hidden border border-gray-200 dark:border-slate-600 p-1">
+                                    <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 overflow-hidden border border-gray-200 p-1">
                                         <img v-if="partner.logo_url" :src="partner.logo_url" :alt="partner.name" class="w-full h-full object-contain" />
                                         <span v-else class="text-base font-extrabold text-slate-400">
                                             {{ partner.name.charAt(0) }}
                                         </span>
                                     </div>
                                     <div>
-                                        <h3 class="font-bold text-slate-900 dark:text-white text-base">
+                                        <h3 class="font-bold text-slate-900 text-base">
                                             {{ partner.name }}
                                         </h3>
-                                        <p v-if="partner.description" class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 max-w-sm mt-0.5">
+                                        <p v-if="partner.description" class="text-xs text-gray-500 line-clamp-1 max-w-sm mt-0.5">
                                             {{ partner.description }}
                                         </p>
                                     </div>
@@ -147,26 +147,26 @@ const applyFilters = () => {
                                     :class="[
                                         'px-2.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider',
                                         partner.status === 'active' 
-                                            ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300' 
-                                            : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
+                                            ? 'bg-emerald-100 text-emerald-800' 
+                                            : 'bg-slate-100 text-slate-600'
                                     ]"
                                 >
                                     {{ partner.status }}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 text-xs font-bold text-slate-600 dark:text-slate-400">
+                            <td class="px-6 py-4 text-xs font-bold text-slate-600">
                                 {{ partner.sort_order }}
                             </td>
                             <td class="px-6 py-4 text-right space-x-2">
                                 <Link 
                                     :href="route('admin.partners.edit', partner.id)" 
-                                    class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-colors inline-block"
+                                    class="px-3 py-1.5 bg-slate-100 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-colors inline-block"
                                 >
                                     Edit
                                 </Link>
                                 <button 
                                     @click="deletePartner(partner)" 
-                                    class="px-3 py-1.5 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white rounded-lg text-xs font-bold transition-colors"
+                                    class="px-3 py-1.5 bg-red-50 text-red-600 hover:bg-red-600 hover:text-white rounded-lg text-xs font-bold transition-colors"
                                 >
                                     Delete
                                 </button>
@@ -182,7 +182,7 @@ const applyFilters = () => {
             </div>
 
             <!-- Pagination -->
-            <div v-if="partners && partners.last_page > 1" class="p-4 border-t border-gray-100 dark:border-slate-700">
+            <div v-if="partners && partners.last_page > 1" class="p-4 border-t border-gray-100">
                 <Pagination :paginator="partners" />
             </div>
         </div>

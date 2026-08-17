@@ -75,12 +75,12 @@ const removeMedia = (index) => {
 
 <template>
     <div class="space-y-4">
-        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ label }}</label>
+        <label class="block text-sm font-semibold text-gray-700">{{ label }}</label>
         
         <!-- Upload Trigger Area -->
         <div 
             @click="triggerSelect" 
-            class="border-2 border-dashed border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary rounded-2xl p-6 text-center cursor-pointer transition-colors bg-gray-50 dark:bg-gray-900/50 group"
+            class="border-2 border-dashed border-gray-200 hover:border-primary rounded-2xl p-6 text-center cursor-pointer transition-colors bg-gray-50 group"
         >
             <input 
                 ref="fileInput" 
@@ -92,23 +92,23 @@ const removeMedia = (index) => {
             />
             
             <div class="flex flex-col items-center justify-center gap-2">
-                <div class="w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
                     <svg class="w-6 h-6 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
-                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Add Photos or Videos</span>
+                <span class="text-sm font-semibold text-gray-700">Add Photos or Videos</span>
                 <span class="text-xs text-gray-400">Drag & drop or click to choose files (Max 50MB per video)</span>
             </div>
         </div>
 
         <!-- Upload Progress -->
-        <div v-if="uploading" class="space-y-1 bg-gray-100 dark:bg-slate-900/30 p-4 rounded-xl">
+        <div v-if="uploading" class="space-y-1 bg-gray-100 p-4 rounded-xl">
             <div class="flex items-center justify-between text-xs text-gray-500">
                 <span>Uploading media files...</span>
                 <span>{{ uploadProgress }}%</span>
             </div>
-            <div class="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
                 <div class="h-full bg-primary transition-all duration-300" :style="{ width: uploadProgress + '%' }"></div>
             </div>
         </div>
@@ -118,7 +118,7 @@ const removeMedia = (index) => {
             <div 
                 v-for="(item, index) in modelValue" 
                 :key="index" 
-                class="relative aspect-video rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-gray-100 dark:border-gray-700 group shadow-sm"
+                class="relative aspect-video rounded-xl overflow-hidden bg-slate-100 border border-gray-100 group shadow-sm"
             >
                 <!-- Render Image -->
                 <img 

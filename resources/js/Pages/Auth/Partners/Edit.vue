@@ -29,22 +29,22 @@ const submit = () => {
     <div class="py-8 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 font-sans">
         
         <!-- Header -->
-        <div class="flex items-center justify-between bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
             <div>
                 <Link :href="route('admin.partners.index')" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1 mb-2">
                     ← Back to Partners
                 </Link>
-                <h1 class="text-2xl font-bold text-slate-900 dark:text-white font-['Outfit',sans-serif]">
+                <h1 class="text-2xl font-bold text-slate-900 font-['Outfit',sans-serif]">
                     Edit Partner: {{ partner.name }}
                 </h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p class="text-sm text-gray-500 mt-1">
                     Update details for this partner organization.
                 </p>
             </div>
         </div>
 
         <!-- Global Error Banner -->
-        <div v-if="form.hasErrors" class="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800 p-4 rounded-2xl text-red-700 dark:text-red-300 text-sm font-semibold flex items-center gap-3">
+        <div v-if="form.hasErrors" class="bg-red-50 border border-red-200 p-4 rounded-2xl text-red-700 text-sm font-semibold flex items-center gap-3">
             <svg class="w-6 h-6 shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <div>
                 <p class="font-bold">Please correct the errors highlighted below:</p>
@@ -55,12 +55,12 @@ const submit = () => {
         </div>
 
         <!-- Form Card -->
-        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-6 sm:p-8">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
             <form @submit.prevent="submit" class="space-y-6">
                 
                 <!-- Partner Name -->
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Partner Organization Name *
                     </label>
                     <input 
@@ -68,7 +68,7 @@ const submit = () => {
                         type="text"
                         required
                         placeholder="e.g. Al-Basar International Foundation"
-                        class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50"
+                        class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm bg-white text-slate-900 focus:ring-2 focus:ring-primary/50"
                         :class="{ 'border-red-500': form.errors.name }"
                     />
                     <span v-if="form.errors.name" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.name }}</span>
@@ -76,7 +76,7 @@ const submit = () => {
 
                 <!-- Logo Upload -->
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Partner Logo
                     </label>
                     <ImageUpload v-model="form.logo_url" />
@@ -86,14 +86,14 @@ const submit = () => {
 
                 <!-- Website URL -->
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Website Link (Optional)
                     </label>
                     <input 
                         v-model="form.website_url"
                         type="text"
                         placeholder="https://example.org or www.example.org"
-                        class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50"
+                        class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm bg-white text-slate-900 focus:ring-2 focus:ring-primary/50"
                         :class="{ 'border-red-500': form.errors.website_url }"
                     />
                     <span v-if="form.errors.website_url" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.website_url }}</span>
@@ -101,14 +101,14 @@ const submit = () => {
 
                 <!-- Description -->
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Short Description (Optional)
                     </label>
                     <textarea 
                         v-model="form.description"
                         rows="4"
                         placeholder="Brief overview of partnership or health mission..."
-                        class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50"
+                        class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm bg-white text-slate-900 focus:ring-2 focus:ring-primary/50"
                         :class="{ 'border-red-500': form.errors.description }"
                     ></textarea>
                     <span v-if="form.errors.description" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.description }}</span>
@@ -117,12 +117,12 @@ const submit = () => {
                 <!-- Status & Sort Order -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                             Status
                         </label>
                         <select 
                             v-model="form.status"
-                            class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold"
+                            class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm bg-white text-slate-900 font-bold"
                             :class="{ 'border-red-500': form.errors.status }"
                         >
                             <option value="active">Active (Visible on Homepage)</option>
@@ -131,13 +131,13 @@ const submit = () => {
                         <span v-if="form.errors.status" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.status }}</span>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                             Sort Order
                         </label>
                         <input 
                             v-model.number="form.sort_order"
                             type="number"
-                            class="w-full rounded-xl border border-gray-300 dark:border-slate-700 px-4 py-3 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+                            class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm bg-white text-slate-900"
                             :class="{ 'border-red-500': form.errors.sort_order }"
                         />
                         <span v-if="form.errors.sort_order" class="text-xs text-red-500 font-bold mt-1 block">{{ form.errors.sort_order }}</span>
@@ -145,10 +145,10 @@ const submit = () => {
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="pt-6 flex items-center justify-end space-x-3 border-t border-gray-100 dark:border-slate-700">
+                <div class="pt-6 flex items-center justify-end space-x-3 border-t border-gray-100">
                     <Link 
                         :href="route('admin.partners.index')"
-                        class="px-6 py-3 rounded-xl border border-gray-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                        class="px-6 py-3 rounded-xl border border-gray-300 text-slate-700 font-bold text-sm hover:bg-slate-100 transition-colors"
                     >
                         Cancel
                     </Link>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { Link, usePage } from '@inertiajs/vue3'
 import FlashMessages from '@/Components/FlashMessages.vue'
 
@@ -8,38 +8,26 @@ const isSidebarOpen = ref(true)
 const toggleSidebar = () => {
     isSidebarOpen.value = !isSidebarOpen.value
 }
-
-const currentTheme = ref('light');
-
-const toggleTheme = () => {
-  currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme.value);
-  localStorage.setItem('theme', currentTheme.value);
-};
-
-onMounted(() => {
-  currentTheme.value = document.documentElement.getAttribute('data-theme') || 'light';
-});
 </script>
 
 <template>
-    <div class="flex h-screen bg-gray-100 dark:bg-slate-900 font-sans">
+    <div class="flex h-screen bg-gray-100 font-sans">
         <FlashMessages />
         
         <!-- Sidebar -->
         <aside 
             :class="[
-                'bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 shadow-xl transition-all duration-300 ease-in-out z-20 flex flex-col',
+                'bg-white text-gray-800 shadow-xl transition-all duration-300 ease-in-out z-20 flex flex-col',
                 isSidebarOpen ? 'w-64' : 'w-20'
             ]"
         >
             <!-- Sidebar Header -->
-            <div class="flex items-center justify-between h-16 border-b border-gray-100 dark:border-gray-700 px-4">
+            <div class="flex items-center justify-between h-16 border-b border-gray-100 px-4">
                 <div class="flex items-center" v-if="isSidebarOpen">
-                    <span class="text-lg font-bold text-primary dark:text-gray-100 truncate">Administration</span>
+                    <span class="text-lg font-bold text-primary truncate">Administration</span>
                 </div>
                 <div v-else class="mx-auto">
-                    <span class="text-xl font-bold text-primary dark:text-white">A</span>
+                    <span class="text-xl font-bold text-primary">A</span>
                 </div>
             </div>
 
@@ -52,7 +40,7 @@ onMounted(() => {
                         <Link 
                             :href="route('dashboard')" 
                             class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
-                            :class="{'bg-primary text-white': $page.url === '/dashboard', 'hover:bg-gray-100 dark:hover:bg-slate-700': $page.url !== '/dashboard'}"
+                            :class="{'bg-primary text-white': $page.url === '/dashboard', 'hover:bg-gray-100': $page.url !== '/dashboard'}"
                             title="Dashboard"
                         >
                             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +55,7 @@ onMounted(() => {
                         <Link 
                             :href="route('appointments.index')" 
                             class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
-                            :class="{'bg-primary text-white': $page.url.startsWith('/appointments'), 'hover:bg-gray-100 dark:hover:bg-slate-700': !$page.url.startsWith('/appointments')}"
+                            :class="{'bg-primary text-white': $page.url.startsWith('/appointments'), 'hover:bg-gray-100': !$page.url.startsWith('/appointments')}"
                             title="Appointments"
                         >
                             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +70,7 @@ onMounted(() => {
                         <Link 
                             :href="route('admin.blog.index')" 
                             class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
-                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/blog'), 'hover:bg-gray-100 dark:hover:bg-slate-700': !$page.url.startsWith('/admin/blog')}"
+                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/blog'), 'hover:bg-gray-100': !$page.url.startsWith('/admin/blog')}"
                             title="Blog"
                         >
                             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,7 +85,7 @@ onMounted(() => {
                         <Link 
                             :href="route('admin.testimonials.index')" 
                             class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
-                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/testimonials'), 'hover:bg-gray-100 dark:hover:bg-slate-700': !$page.url.startsWith('/admin/testimonials')}"
+                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/testimonials'), 'hover:bg-gray-100': !$page.url.startsWith('/admin/testimonials')}"
                             title="Testimonials"
                         >
                             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,7 +100,7 @@ onMounted(() => {
                         <Link 
                             :href="route('admin.news.index')" 
                             class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
-                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/news'), 'hover:bg-gray-100 dark:hover:bg-slate-700': !$page.url.startsWith('/admin/news')}"
+                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/news'), 'hover:bg-gray-100': !$page.url.startsWith('/admin/news')}"
                             title="News & Media"
                         >
                             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,7 +115,7 @@ onMounted(() => {
                         <Link 
                             :href="route('admin.partners.index')" 
                             class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
-                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/partners'), 'hover:bg-gray-100 dark:hover:bg-slate-700': !$page.url.startsWith('/admin/partners')}"
+                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/partners'), 'hover:bg-gray-100': !$page.url.startsWith('/admin/partners')}"
                             title="Partners & Affiliates"
                         >
                             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,7 +130,7 @@ onMounted(() => {
                         <Link 
                             :href="route('admin.settings.index')" 
                             class="flex items-center px-4 py-3 mx-2 rounded-lg transition-colors"
-                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/settings'), 'hover:bg-gray-100 dark:hover:bg-slate-700': !$page.url.startsWith('/admin/settings')}"
+                            :class="{'bg-primary text-white': $page.url.startsWith('/admin/settings'), 'hover:bg-gray-100': !$page.url.startsWith('/admin/settings')}"
                             title="Settings"
                         >
                             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,12 +145,12 @@ onMounted(() => {
             </div>
 
             <!-- Profile & Logout (Bottom pinned) -->
-            <div class="border-t border-gray-100 dark:border-gray-700 p-4">
+            <div class="border-t border-gray-100 p-4">
                 <Link 
                     :href="route('logout')" 
                     method="post" 
                     as="button"
-                    class="flex items-center w-full px-2 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                    class="flex items-center w-full px-2 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                     title="Logout"
                 >
                     <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,11 +165,11 @@ onMounted(() => {
         <div class="flex-1 flex flex-col overflow-hidden">
             
             <!-- Topbar Content Header -->
-            <header class="h-16 bg-white dark:bg-slate-800 shadow-sm flex items-center px-4 md:px-6 justify-between border-b border-gray-100 dark:border-gray-700">
+            <header class="h-16 bg-white shadow-sm flex items-center px-4 md:px-6 justify-between border-b border-gray-100">
                 <div class="flex items-center space-x-3">
                     <button 
                         @click="toggleSidebar" 
-                        class="p-2 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700 focus:outline-none focus:ring transition-colors"
+                        class="p-2 rounded-md text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring transition-colors"
                     >
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
@@ -192,24 +180,10 @@ onMounted(() => {
                     </Link>
                 </div>
 
-                <!-- Right Controls: Dark Mode Toggle + Currently logged in User display -->
+                <!-- Right Controls: Currently logged in User display -->
                 <div class="flex items-center space-x-3 sm:space-x-4">
-                    <!-- Dark Mode Toggle Button -->
-                    <button 
-                        @click="toggleTheme" 
-                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" 
-                        aria-label="Toggle Theme"
-                    >
-                        <svg v-if="currentTheme === 'dark'" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                        <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                        </svg>
-                    </button>
-
                     <Link :href="route('admin.profile.edit')" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                        <span class="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200 hidden xs:inline">{{ $page.props.auth?.user?.name || $page.props.auth?.user?.email }}</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-700 hidden xs:inline">{{ $page.props.auth?.user?.name || $page.props.auth?.user?.email }}</span>
                         <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold cursor-pointer text-xs">
                             {{ ($page.props.auth?.user?.name || $page.props.auth?.user?.email || 'A')[0].toUpperCase() }}
                         </div>
@@ -218,7 +192,7 @@ onMounted(() => {
             </header>
 
             <!-- Page Content -->
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-slate-900 p-4 md:p-6">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-4 md:p-6">
                 <slot />
             </main>
         </div>

@@ -22,7 +22,7 @@ export default {
         language: 'Language',
     },
     hero: {
-        headline1: 'Our Vision',
+        headline1: '',
         headline2: '',
         subtitle: 'To create a world where every individual has access to quality eye care, leading to a future where preventable blindness is eradicated and everyone can enjoy the gift of sight without barriers or limitations.',
         bookAppointment: 'Book Appointment',
@@ -65,9 +65,9 @@ export default {
                 title: 'Cataract Surgery',
                 description: 'State-of-the-art phacoemulsification and advanced intraocular lens implantation to restore clear, vibrant vision. Our surgeons have performed thousands of successful procedures.',
             },
-            lasik: {
-                title: 'LASIK & Refractive',
-                description: 'Advanced laser vision correction using the latest excimer laser technology. Achieve freedom from glasses and contact lenses with our precise, bladeless LASIK procedures.',
+            retina: {
+                title: 'Retinal Disorders',
+                description: 'Advanced medical and surgical care for conditions affecting the retina, vitreous, and macula, including diabetic retinopathy and retinal tears.',
             },
             glaucoma: {
                 title: 'Glaucoma Treatment',
@@ -369,6 +369,16 @@ export default {
     serviceList: {
         title: 'Service Details',
         includes: 'What this service includes:',
+        retinaNotice: {
+            badge: 'Based on Visiting Doctor',
+            title: 'Visiting Specialist Service (Based on Visiting Doctor)',
+            desc: 'Retinal diagnostic imaging, laser therapies, and vitreoretinal surgical treatments are provided by our visiting ophthalmology specialists. Appointments and procedures are scheduled according to visiting doctor clinic dates.',
+        },
+        corneaNotice: {
+            badge: 'Only Available in Head Office',
+            title: 'Specialized Treatment: Only Available in Head Office',
+            desc: 'Corneal transplantation surgery, tissue grafting, and advanced corneal procedures are exclusively available and performed at our main Head Office hospital facility in Ibadan.',
+        },
         list: {
             glaucoma: {
                 title: 'Adult & Paediatric Glaucoma',

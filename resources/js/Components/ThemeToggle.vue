@@ -17,7 +17,7 @@ const toggle = () => {
         @click="toggle"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
         class="relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
-        :class="isDark ? 'bg-primary' : 'bg-gray-200 dark:bg-slate-600'"
+        :class="isDark ? 'bg-primary' : 'bg-gray-200'"
     >
         <!-- Track icons -->
         <span class="absolute inset-y-0 left-1 flex items-center text-[11px]">☀️</span>

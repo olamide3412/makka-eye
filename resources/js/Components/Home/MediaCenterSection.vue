@@ -48,31 +48,31 @@ const formatTimestamp = (d) => {
 </script>
 
 <template>
-    <section class="py-14 md:py-20 bg-white dark:bg-slate-900">
+    <section class="py-14 md:py-20 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- ── Section Header: Title left · Tabs right ─── -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8" data-aos="fade-up" data-aos-duration="800">
 
                 <!-- Title -->
-                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight font-['Outfit',sans-serif]">
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-['Outfit',sans-serif]">
                     Media Center
                 </h2>
 
                 <!-- Category Tabs -->
                 <div class="flex items-center gap-2 flex-wrap">
                     <button
-                        v-for="tab in tabs"
+                        v-for="(tab, idx) in tabs"
                         :key="tab.value"
                         @click="activeTab = tab.value"
                         :class="[
-                            'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all whitespace-nowrap',
+                            'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 whitespace-nowrap transform hover:-translate-y-0.5 active:translate-y-0',
                             activeTab === tab.value
-                                ? 'bg-primary text-white shadow-md'
-                                : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:border-primary hover:text-primary'
+                                ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
+                                : 'bg-white text-slate-700 border border-gray-200 hover:border-primary hover:text-primary hover:shadow-md'
                         ]"
                     >
-                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="tab.icon"/>
                         </svg>
                         {{ tab.label }}
@@ -85,7 +85,8 @@ const formatTimestamp = (d) => {
             <!-- Empty state for this category -->
             <div
                 v-if="!currentArticles.length"
-                class="flex items-center justify-center h-64 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-dashed border-gray-200 dark:border-slate-700 text-slate-400 text-sm font-medium"
+                data-aos="fade-up"
+                class="flex items-center justify-center h-64 rounded-2xl bg-slate-50 border border-dashed border-gray-200 text-slate-400 text-sm font-medium"
             >
                 No {{ tabs.find(t => t.value === activeTab)?.label }} articles published yet.
             </div>
@@ -93,66 +94,69 @@ const formatTimestamp = (d) => {
             <!-- Hero split (matches screenshot exactly) -->
             <div
                 v-else
-                class="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="150"
+                class="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
                 style="min-height: 430px;"
             >
                 <!-- LEFT: Large featured card (~58%) -->
                 <Link
                     :href="route('news.show', featuredArticle.slug)"
-                    class="group relative lg:col-span-7 flex flex-col justify-end bg-slate-900 min-h-[360px] lg:min-h-0"
+                    class="group relative lg:col-span-7 flex flex-col justify-end bg-slate-900 min-h-[360px] lg:min-h-0 overflow-hidden"
                 >
                     <!-- Cover image -->
                     <img
                         v-if="getCoverImage(featuredArticle)"
                         :src="getCoverImage(featuredArticle)"
                         :alt="featuredArticle.title"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                     />
                     <!-- Fallback gradient -->
                     <div v-else class="absolute inset-0 bg-gradient-to-br from-primary/80 to-blue-900"></div>
                     <!-- Dark gradient overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent group-hover:opacity-90 transition-opacity duration-300"></div>
                     <!-- Title at bottom -->
-                    <div class="relative z-10 p-6 sm:p-8 md:p-10 text-white text-center">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug font-['Outfit',sans-serif] drop-shadow-lg">
+                    <div class="relative z-10 p-6 sm:p-8 md:p-10 text-white text-center transform group-hover:-translate-y-1 transition-transform duration-300">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug font-['Outfit',sans-serif] drop-shadow-lg group-hover:text-sky-200 transition-colors">
                             {{ featuredArticle.title }}
                         </h3>
                     </div>
                 </Link>
 
                 <!-- RIGHT: White/navy side panel (~42%) -->
-                <div class="lg:col-span-5 bg-white dark:bg-[#152d52] border-l border-gray-100 dark:border-transparent flex flex-col">
+                <div class="lg:col-span-5 bg-white border-l border-gray-100 flex flex-col">
 
                     <!-- Side article list -->
-                    <div class="flex-1 flex flex-col divide-y divide-gray-100 dark:divide-white/10">
+                    <div class="flex-1 flex flex-col divide-y divide-gray-100">
                         <div
-                            v-for="item in sideArticles"
+                            v-for="(item, idx) in sideArticles"
                             :key="item.id"
-                            class="px-5 py-5 flex flex-col gap-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                            class="px-6 py-5 flex flex-col gap-3 hover:bg-sky-50/50 transition-all duration-300 group/item cursor-pointer"
                         >
-                            <!-- Timestamp (above thumbnail row, like screenshot) -->
-                            <span class="text-[11px] font-medium text-primary dark:text-sky-300/90 tracking-wide block">
+                            <!-- Timestamp -->
+                            <span class="text-[11px] font-semibold text-primary tracking-wide block">
                                 {{ formatTimestamp(item.published_at) }}
                             </span>
 
                             <!-- Thumbnail + Title + Excerpt -->
-                            <Link :href="route('news.show', item.slug)" class="group/item flex items-start gap-4">
-                                <div class="w-[90px] h-[68px] rounded-lg bg-slate-100 dark:bg-slate-900 overflow-hidden shrink-0 border border-gray-200 dark:border-white/10">
+                            <Link :href="route('news.show', item.slug)" class="flex items-start gap-4">
+                                <div class="w-[90px] h-[68px] rounded-xl bg-slate-100 overflow-hidden shrink-0 border border-gray-200 shadow-sm group-hover/item:border-primary/40 transition-colors">
                                     <img
                                         v-if="getCoverImage(item)"
                                         :src="getCoverImage(item)"
                                         :alt="item.title"
-                                        class="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-300"
+                                        class="w-full h-full object-cover group-hover/item:scale-115 transition-transform duration-500 ease-out"
                                     />
-                                    <div v-else class="w-full h-full flex items-center justify-center text-[10px] font-bold text-primary dark:text-sky-300 uppercase">
+                                    <div v-else class="w-full h-full flex items-center justify-center text-[10px] font-bold text-primary uppercase">
                                         {{ activeTab }}
                                     </div>
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <h4 class="text-sm font-extrabold text-slate-900 dark:text-white leading-snug line-clamp-2 group-hover/item:text-primary dark:group-hover/item:text-sky-300 transition-colors font-['Outfit',sans-serif]">
+                                    <h4 class="text-sm font-extrabold text-slate-900 leading-snug line-clamp-2 group-hover/item:text-primary transition-colors font-['Outfit',sans-serif]">
                                         {{ item.title }}
                                     </h4>
-                                    <p class="mt-1 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300/80 line-clamp-2">
+                                    <p class="mt-1 text-[11px] leading-relaxed text-slate-600 line-clamp-2">
                                         {{ item.excerpt }}
                                     </p>
                                 </div>
@@ -161,13 +165,13 @@ const formatTimestamp = (d) => {
                     </div>
 
                     <!-- More → navigates to full news list page -->
-                    <div class="flex justify-end px-5 py-4 border-t border-gray-100 dark:border-white/10">
+                    <div class="flex justify-end px-6 py-4 border-t border-gray-100 bg-slate-50/50">
                         <Link
                             :href="route('news.index', { view: 'list', category: activeTab })"
-                            class="inline-flex items-center gap-2 bg-primary/10 dark:bg-white/10 hover:bg-primary dark:hover:bg-white/20 text-primary dark:text-white hover:text-white border border-primary/30 dark:border-white/20 font-bold px-5 py-2 rounded-full text-xs transition-all"
+                            class="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 font-bold px-5 py-2 rounded-full text-xs transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
                         >
                             <span>More</span>
-                            <span>→</span>
+                            <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
                         </Link>
                     </div>
 

@@ -40,54 +40,54 @@ const updateStatus = (appointment, status) => {
         <!-- Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
             <div>
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Patient Appointments</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-1">Review and manage booking statuses below.</p>
+                <h2 class="text-2xl font-bold text-gray-900">Patient Appointments</h2>
+                <p class="text-gray-600 mt-1">Review and manage booking statuses below.</p>
             </div>
             <div class="w-full md:w-64">
                 <input 
                     type="text" 
                     v-model="search" 
                     placeholder="Search name or tracking id..."
-                    class="w-full px-4 py-2 bg-white dark:bg-slate-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary text-gray-900 dark:text-white text-sm"
+                    class="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary text-gray-900 text-sm"
                 />
             </div>
         </div>
 
         <!-- Desktop View Table -->
-        <div class="bg-white dark:bg-slate-800 shadow rounded-lg overflow-hidden hidden md:block">
-            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead class="bg-gray-50 dark:bg-slate-900">
+        <div class="bg-white shadow rounded-lg overflow-hidden hidden md:block">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Patient Info</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Service</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Schedule</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient Info</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Schedule</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700">
-                    <tr v-for="appointment in appointments" :key="appointment.id" class="hover:bg-gray-50 dark:hover:bg-slate-700/50">
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr v-for="appointment in appointments" :key="appointment.id" class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div>
-                                    <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                    <div class="text-sm font-medium text-gray-900">
                                         {{ appointment.first_name }} {{ appointment.last_name }}
                                     </div>
-                                    <div class="text-sm text-gray-500 dark:text-gray-400">{{ appointment.email }}</div>
-                                    <div class="text-sm text-gray-500 dark:text-gray-400">{{ appointment.phone }}</div>
-                                    <div class="text-xs font-mono bg-gray-100 dark:bg-gray-700 inline-block px-1 mt-1 rounded">{{ appointment.tracking_number }}</div>
+                                    <div class="text-sm text-gray-500">{{ appointment.email }}</div>
+                                    <div class="text-sm text-gray-500">{{ appointment.phone }}</div>
+                                    <div class="text-xs font-mono bg-gray-100 inline-block px-1 mt-1 rounded">{{ appointment.tracking_number }}</div>
                                 </div>
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <div class="text-sm text-gray-900 dark:text-white">{{ appointment.service_needed }}</div>
-                            <div v-if="appointment.is_existing_patient" class="text-xs text-indigo-600 dark:text-indigo-400">
+                            <div class="text-sm text-gray-900">{{ appointment.service_needed }}</div>
+                            <div v-if="appointment.is_existing_patient" class="text-xs text-indigo-600">
                                 Existing Patient <span v-if="appointment.file_number">(#{{ appointment.file_number }})</span>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900 dark:text-white">{{ formatDate(appointment.appointment_date) }}</div>
-                            <div class="text-xs font-medium text-gray-500 dark:text-gray-400">{{ appointment.appointment_time }}</div>
+                            <div class="text-sm text-gray-900">{{ formatDate(appointment.appointment_date) }}</div>
+                            <div class="text-xs font-medium text-gray-500">{{ appointment.appointment_time }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
@@ -101,11 +101,11 @@ const updateStatus = (appointment, status) => {
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-center gap-2">
-                            <Link :href="route('appointments.show', appointment.id)" class="inline-flex items-center px-3 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/40 dark:text-indigo-300 dark:hover:bg-indigo-900/60 transition-colors rounded-md font-semibold text-xs border border-indigo-200 dark:border-indigo-800">
+                            <Link :href="route('appointments.show', appointment.id)" class="inline-flex items-center px-3 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors rounded-md font-semibold text-xs border border-indigo-200">
                                 View
                             </Link>
                             <select @change="updateStatus(appointment, $event.target.value)" :value="appointment.status"
-                                    class="text-sm border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:border-primary focus:ring-primary inline-block py-1">
+                                    class="text-sm border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:border-primary focus:ring-primary inline-block py-1">
                                 <option value="pending">Pending</option>
                                 <option value="confirmed">Confirm</option>
                                 <option value="completed">Complete</option>
@@ -115,7 +115,7 @@ const updateStatus = (appointment, status) => {
                     </tr>
                     
                     <tr v-if="appointments.length === 0">
-                        <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                        <td colspan="5" class="px-6 py-12 text-center text-gray-500">
                             No appointments found.
                         </td>
                     </tr>
@@ -125,7 +125,7 @@ const updateStatus = (appointment, status) => {
         
         <!-- Mobile View Cards -->
         <div class="md:hidden space-y-4">
-            <div v-for="appointment in appointments" :key="appointment.id" class="bg-white dark:bg-slate-800 shadow rounded-lg p-4 border-l-4"
+            <div v-for="appointment in appointments" :key="appointment.id" class="bg-white shadow rounded-lg p-4 border-l-4"
                  :class="{
                      'border-yellow-400': appointment.status === 'pending',
                      'border-green-400': appointment.status === 'confirmed',
@@ -134,23 +134,23 @@ const updateStatus = (appointment, status) => {
                  }">
                 <div class="flex justify-between items-start mb-2">
                     <div>
-                        <div class="font-bold text-gray-900 dark:text-white">{{ appointment.first_name }} {{ appointment.last_name }}</div>
+                        <div class="font-bold text-gray-900">{{ appointment.first_name }} {{ appointment.last_name }}</div>
                         <div class="text-xs text-gray-500">{{ appointment.phone }}</div>
                     </div>
-                    <span class="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 uppercase font-semibold tracking-wider">
+                    <span class="text-xs px-2 py-1 rounded bg-gray-100 text-gray-800 uppercase font-semibold tracking-wider">
                         {{ appointment.status }}
                     </span>
                 </div>
-                <div class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                <div class="text-sm text-gray-700 mb-3">
                     <strong>Service:</strong> {{ appointment.service_needed }}<br/>
                     <strong>Date & Time:</strong> {{ formatDate(appointment.appointment_date) }} at {{ appointment.appointment_time }}
                 </div>
-                <div class="pt-2 border-t border-gray-200 dark:border-gray-700 flex items-center gap-2 mt-3">
-                     <Link :href="route('appointments.show', appointment.id)" class="flex-1 text-center py-2 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/40 dark:text-indigo-300 transition-colors rounded-md font-semibold text-xs border border-indigo-200 dark:border-indigo-800">
+                <div class="pt-2 border-t border-gray-200 flex items-center gap-2 mt-3">
+                     <Link :href="route('appointments.show', appointment.id)" class="flex-1 text-center py-2 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors rounded-md font-semibold text-xs border border-indigo-200">
                         View Full Details
                      </Link>
                      <select @change="updateStatus(appointment, $event.target.value)" :value="appointment.status"
-                            class="flex-1 text-sm border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-gray-100 rounded-md py-1.5 focus:ring-primary">
+                            class="flex-1 text-sm border-gray-300 bg-white text-gray-900 rounded-md py-1.5 focus:ring-primary">
                         <option value="pending">Mark Pending</option>
                         <option value="confirmed">Mark Confirmed</option>
                         <option value="completed">Mark Completed</option>

@@ -2,7 +2,9 @@
 import Layout from '@/Layouts/Layout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import CallToAction from '@/Components/Home/CallToAction.vue';
+import PageHeroBanner from '@/Components/Common/PageHeroBanner.vue';
 import AboutHospitalImg from '../../images/about_hospital.jpg';
+import { StatCard, TeamCard } from '@/Components/Cards';
 
 defineOptions({ layout: Layout });
 
@@ -37,60 +39,62 @@ const props = defineProps({
 <template>
     <Head title="About Us | Makkah Specialist Eye Hospital" />
 
-    <div class="bg-slate-50 dark:bg-slate-900 transition-colors duration-300 min-h-screen">
+    <div class="bg-slate-50 transition-colors duration-300 min-h-screen">
         
-        <!-- Hero Section -->
-        <div class="bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 py-16 md:py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl">
-                    <span class="inline-block px-3.5 py-1.5 bg-sky-50 dark:bg-sky-950/60 text-primary font-extrabold text-xs rounded-full uppercase tracking-wider mb-4 border border-sky-100 dark:border-sky-900/50">
-                        {{ $t('aboutPage.heroTag') }}
-                    </span>
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight font-['Outfit',sans-serif]">
-                        {{ $t('aboutPage.heroTitle') }}
-                    </h1>
-                    <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-['Plus_Jakarta_Sans',sans-serif]">
-                        {{ $t('aboutPage.subtitle') }}
-                    </p>
-                </div>
-            </div>
-        </div>
+        <!-- Page Hero Banner (Moorfields Style) -->
+        <PageHeroBanner 
+            :title="$t('aboutPage.heroTitle')"
+            :breadcrumbs="[
+                { label: $t('nav.home') || 'Home', href: route('home') },
+                { label: $t('aboutPage.heroTitle') || 'About Us' }
+            ]"
+        />
 
         <!-- Mission & Vision Cards Section -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative z-10">
+            <!-- Subtitle Intro -->
+            <div class="max-w-3xl mb-10" data-aos="fade-up" data-aos-duration="800">
+                <span class="inline-block px-3.5 py-1.5 bg-sky-50 text-primary font-extrabold text-xs rounded-full uppercase tracking-wider mb-3 border border-sky-100 shadow-xs">
+                    {{ $t('aboutPage.heroTag') }}
+                </span>
+                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-['Plus_Jakarta_Sans',sans-serif] font-medium">
+                    {{ $t('aboutPage.subtitle') }}
+                </p>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
                 <!-- Our Mission Card -->
-                <div class="bg-white dark:bg-slate-800 p-8 sm:p-10 rounded-3xl border border-gray-100 dark:border-slate-700 shadow-xl transition-transform hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-slate-700 text-primary flex items-center justify-center mb-6">
+                <div class="bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xl transition-transform hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-50 text-primary flex items-center justify-center mb-6">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
                     <span class="text-xs font-extrabold text-primary uppercase tracking-widest">{{ $t('aboutPage.corePurpose') }}</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1 mb-4 font-['Outfit',sans-serif]">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1 mb-4 font-['Outfit',sans-serif]">
                         {{ $t('about.mission') }}
                     </h2>
                     <div 
-                        class="prose prose-slate dark:prose-invert text-base leading-relaxed text-slate-600 dark:text-slate-300 font-['Plus_Jakarta_Sans',sans-serif]" 
+                        class="prose prose-slate text-base leading-relaxed text-slate-600 font-['Plus_Jakarta_Sans',sans-serif]" 
                         v-html="props.about_mission"
                     ></div>
                 </div>
 
                 <!-- Our Vision Card -->
-                <div class="bg-white dark:bg-slate-800 p-8 sm:p-10 rounded-3xl border border-gray-100 dark:border-slate-700 shadow-xl transition-transform hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-6">
+                <div class="bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xl transition-transform hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                     </div>
-                    <span class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">{{ $t('aboutPage.globalGoal') }}</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1 mb-4 font-['Outfit',sans-serif]">
+                    <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest">{{ $t('aboutPage.globalGoal') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1 mb-4 font-['Outfit',sans-serif]">
                         {{ $t('about.vision') }}
                     </h2>
                     <div 
-                        class="prose prose-slate dark:prose-invert text-base leading-relaxed text-slate-600 dark:text-slate-300 font-['Plus_Jakarta_Sans',sans-serif]" 
+                        class="prose prose-slate text-base leading-relaxed text-slate-600 font-['Plus_Jakarta_Sans',sans-serif]" 
                         v-html="props.about_vision"
                     ></div>
                 </div>
@@ -98,14 +102,65 @@ const props = defineProps({
             </div>
         </div>
 
+        <!-- Key Heritage & Impact Metrics (Pattern 1 Stat Cards) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="text-center max-w-2xl mx-auto mb-10" data-aos="fade-up">
+                <span class="text-xs font-extrabold text-primary uppercase tracking-widest bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-100">
+                    Heritage & Global Impact
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight font-['Outfit',sans-serif]">
+                    Leading Eye Care Across Continents
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <StatCard
+                    value="35+"
+                    label="Years of Heritage"
+                    description="Established in 1989 by Al-Basar International Foundation."
+                    color-a="#06465C"
+                    color-b="#0A96EB"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                />
+                <StatCard
+                    value="16+"
+                    label="Specialized Hospitals"
+                    description="Modern ophthalmic hospitals and training centers worldwide."
+                    color-a="#0A96EB"
+                    color-b="#06465C"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                />
+                <StatCard
+                    value="1M+"
+                    label="Surgeries Completed"
+                    description="Sight-restoring surgeries and treatments performed."
+                    color-a="#007377"
+                    color-b="#0A96EB"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                />
+                <StatCard
+                    value="100%"
+                    label="Commitment to Care"
+                    description="Dedicated to eradicating preventable blindness for all."
+                    color-a="#1e293b"
+                    color-b="#06465C"
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                />
+            </div>
+        </div>
+
         <!-- Founder Showcase Section -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-            <div class="bg-white dark:bg-slate-800 rounded-3xl border border-gray-100 dark:border-slate-700 p-8 sm:p-12 md:p-16 shadow-lg overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="bg-white rounded-3xl border border-gray-100 p-8 sm:p-12 md:p-16 shadow-lg overflow-hidden" data-aos="fade-up">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                     
                     <!-- Founder Portrait Column -->
                     <div class="lg:col-span-5 flex justify-center">
-                        <div class="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-700 bg-slate-100 dark:bg-slate-900">
+                        <div class="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
                             <img 
                                 v-if="props.about_founder_image" 
                                 :src="props.about_founder_image" 
@@ -125,23 +180,23 @@ const props = defineProps({
 
                     <!-- Founder Details & Bio Column -->
                     <div class="lg:col-span-7 space-y-6">
-                        <span class="inline-block px-3.5 py-1 bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 font-extrabold text-xs rounded-full uppercase tracking-wider border border-amber-200/60 dark:border-amber-900/50">
+                        <span class="inline-block px-3.5 py-1 bg-amber-50 text-amber-700 font-extrabold text-xs rounded-full uppercase tracking-wider border border-amber-200/60">
                             {{ $t('aboutPage.founderTag') }}
                         </span>
                         
                         <div>
-                            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight font-['Outfit',sans-serif] leading-snug">
+                            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-['Outfit',sans-serif] leading-snug">
                                 {{ props.about_founder_name }}
                             </h2>
-                            <p class="text-base font-bold text-primary dark:text-sky-400 mt-1">
+                            <p class="text-base font-bold text-primary mt-1">
                                 {{ props.about_founder_title }}
                             </p>
                         </div>
 
                         <!-- Bio / Quote Container -->
-                        <div class="relative bg-slate-50 dark:bg-slate-900/60 p-6 sm:p-8 rounded-2xl border-l-4 border-primary dark:border-sky-500">
+                        <div class="relative bg-slate-50 p-6 sm:p-8 rounded-2xl border-l-4 border-primary">
                             <div 
-                                class="prose prose-slate dark:prose-invert text-base leading-relaxed text-slate-700 dark:text-slate-300 font-['Plus_Jakarta_Sans',sans-serif]" 
+                                class="prose prose-slate text-base leading-relaxed text-slate-700 font-['Plus_Jakarta_Sans',sans-serif]" 
                                 v-html="props.about_founder_bio"
                             ></div>
                         </div>
@@ -160,12 +215,60 @@ const props = defineProps({
             </div>
         </div>
 
+        <!-- Clinical Specialists Section (Pattern 2 Team Cards) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+                <span class="text-xs font-extrabold text-primary uppercase tracking-widest bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-100">
+                    Clinical Leadership
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight font-['Outfit',sans-serif]">
+                    World-Class Ophthalmologists & Surgeons
+                </h2>
+                <p class="mt-3 text-slate-600 text-sm sm:text-base">
+                    Our team of internationally trained consultants and ophthalmology specialists provide expert diagnostics and surgical care.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <TeamCard
+                    name="Dr. Senior Consultant"
+                    title="Vitreoretinal & Cataract Specialist"
+                    specialty="Retina & Cataract"
+                    qualifications="MBBS, FWACS, FICO, FRCOphth"
+                    bio="Leading complex vitreoretinal surgeries, macular degeneration management, and micro-incision cataract procedures."
+                    :appointment-url="route('contact')"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                />
+                <TeamCard
+                    name="Dr. Pediatric Ophthalmologist"
+                    title="Pediatric Ophthalmology & Strabismus"
+                    specialty="Pediatrics & Squint"
+                    qualifications="MBBS, FMCOph, Fellowship Pediatric Ophthalmology"
+                    bio="Specializing in pediatric eye diseases, childhood squint corrections, amblyopia management, and visual development."
+                    :appointment-url="route('contact')"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                />
+                <TeamCard
+                    name="Dr. Glaucoma & Cornea Specialist"
+                    title="Glaucoma & Anterior Segment Consultant"
+                    specialty="Glaucoma & Cornea"
+                    qualifications="MBBS, FWACS, Fellowship Glaucoma Surgery"
+                    bio="Expertise in advanced glaucoma laser therapies, trabeculectomy, corneal collagen cross-linking, and refractive evaluations."
+                    :appointment-url="route('contact')"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                />
+            </div>
+        </div>
+
         <!-- Hospital Info & visiting Hours -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 
                 <!-- Hospital Image Card -->
-                <div class="relative rounded-3xl overflow-hidden shadow-xl h-96 border border-gray-100 dark:border-slate-700">
+                <div class="relative rounded-3xl overflow-hidden shadow-xl h-96 border border-gray-100">
                     <img :src="AboutHospitalImg" alt="Makkah Specialist Eye Hospital Facility" class="w-full h-full object-cover" />
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                     <div class="absolute bottom-6 left-6 right-6 text-white">
@@ -176,19 +279,19 @@ const props = defineProps({
 
                 <!-- Visiting Hours & Patient Information -->
                 <div class="space-y-6">
-                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white font-['Outfit',sans-serif]">
+                    <h2 class="text-3xl font-extrabold text-slate-900 font-['Outfit',sans-serif]">
                         {{ $t('aboutPage.visitingTitle') }}
                     </h2>
-                    <div class="text-slate-600 dark:text-slate-300 space-y-4 font-['Plus_Jakarta_Sans',sans-serif]">
-                        <p class="text-base bg-white dark:bg-slate-800 p-4 rounded-2xl border border-gray-100 dark:border-slate-700">
-                            <strong class="text-slate-900 dark:text-white">{{ $t('aboutPage.visitingHours') }}:</strong> <br>
+                    <div class="text-slate-600 space-y-4 font-['Plus_Jakarta_Sans',sans-serif]">
+                        <p class="text-base bg-white p-4 rounded-2xl border border-gray-100">
+                            <strong class="text-slate-900">{{ $t('aboutPage.visitingHours') }}:</strong> <br>
                             • {{ $t('aboutPage.monFri') }}<br>
                             • {{ $t('aboutPage.sat') }}<br>
                             • {{ $t('aboutPage.sun') }}<br>
                             • <span class="text-primary font-bold">{{ $t('aboutPage.emergency') }}</span>
                         </p>
-                        <p class="text-sm bg-white dark:bg-slate-800 p-4 rounded-2xl border border-gray-100 dark:border-slate-700">
-                            <strong class="text-slate-900 dark:text-white">{{ $t('aboutPage.insuranceTitle') }}:</strong> {{ $t('aboutPage.insuranceDesc') }}
+                        <p class="text-sm bg-white p-4 rounded-2xl border border-gray-100">
+                            <strong class="text-slate-900">{{ $t('aboutPage.insuranceTitle') }}:</strong> {{ $t('aboutPage.insuranceDesc') }}
                         </p>
                     </div>
                 </div>

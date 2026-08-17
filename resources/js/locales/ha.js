@@ -22,7 +22,7 @@ export default {
         language: 'Yare',
     },
     hero: {
-        headline1: 'Ganin Mu',
+        headline1: '',
         headline2: '',
         subtitle: 'Don samar da duniyar da kowane mutum ke da damar samun ingantaccen kulawar ido, wanda zai kai ga makomar da za a kawar da makanta da za a iya rigakafinta, kuma kowa zai iya amfana da kyautar gani ba tare da wani shinge ko iyaka ba.',
         bookAppointment: 'Yi Alƙawali',
@@ -65,13 +65,13 @@ export default {
                 title: 'Tiyatar Cataract',
                 description: 'Phacoemulsification na zamani da dasa lens ido don maido da gani mai haske da ƙarfi. Likitanmu sun yi dububuwan aikin nasara.',
             },
-            lasik: {
-                title: 'LASIK & Gyara Gani',
-                description: "Gyara gani da laser ta amfani da fasahar laser ta zamani. Sami 'yancin kai daga tabarau da lenses tare da hanyoyin LASIK na mu masu daidaito.",
+            retina: {
+                title: 'Maganin Cututtukan Retina',
+                description: 'Maganin asibiti da tiyata don cututtukan da suka shafi retina, vitreous, da macula tare da na\'urorin bincike na zamani.',
             },
             glaucoma: {
                 title: 'Maganin Glaucoma',
-                description: 'Gano da sauri da kuma cikakkiyar gudanarwa ta glaucoma ta hanyar hoton ci gaba, maganin magani, maganin laser, da zaɓuɓɓukan tiyata marasa ma\'ana.',
+                description: 'Gano cutar tun da wuri da kuma cikakken kula da cutar glaucoma ta hanyar na\'urori na zamani, magunguna, da tiyatar laser.',
             },
             pediatric: {
                 title: 'Kulawa da Ido na Yara',
@@ -367,8 +367,18 @@ export default {
         generalTitle: 'Tambayoyi na Gaba ɗaya',
     },
     serviceList: {
-        title: 'Cikakken Bayanin Ayyuka',
-        includes: 'Abin da wannan sabis ɗin ya haɗa da:',
+        title: 'Cikakkun Bayanin Sabis',
+        includes: 'Abin da wannan sabis ya ƙunsa:',
+        retinaNotice: {
+            badge: 'Bisa Ziyarar Likita',
+            title: 'Sabis na Musamman (Bisa Ziyarar Likita)',
+            desc: 'Binciken retina, maganin laser, da tiyatar vitreoretinal ana samun su ne ta hanyar ƙwararrun likitocinmu masu ziyara. Ana tsara ganawa da aiki ne bisa ranakun ziyarar likita.',
+        },
+        corneaNotice: {
+            badge: 'A Babban Ofis Kawai',
+            title: 'Maganin Musamman: A Babban Ofis Kawai (Only in Head Office)',
+            desc: 'Tiyatar dashen cornea da manyan ayyukan dashe ana yin su ne kawai a babban asibitinmu na ofishin Hedikwata a Ibadan.',
+        },
         list: {
             glaucoma: {
                 title: 'Maganin Glaucoma na Manya da Yara',

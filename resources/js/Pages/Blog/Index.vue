@@ -82,7 +82,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
 </script>
 
 <template>
-    <div class="bg-white dark:bg-slate-900 min-h-screen">
+    <div class="bg-white min-h-screen">
         <Head title="Blog | Makkah Specialist Eye Hospital">
             <meta name="description" content="Read expert articles, eye health tips, and hospital updates from Makkah Specialist Eye Hospital." />
         </Head>
@@ -115,7 +115,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
         <!-- ═══════════════════════════════════════════════════════════════ -->
         <!--  FILTER BAR — Search | Sort | Date | Categories                  -->
         <!-- ═══════════════════════════════════════════════════════════════ -->
-        <div class="sticky top-14 md:top-[100px] z-30 bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 shadow-sm">
+        <div class="sticky top-14 md:top-[100px] z-30 bg-white border-b border-gray-100 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center gap-3">
 
                 <!-- Search -->
@@ -125,7 +125,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
                         @keyup.enter="doSearch"
                         type="text"
                         placeholder="Search"
-                        class="w-full pl-4 pr-10 py-2.5 rounded-md border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none"
+                        class="w-full pl-4 pr-10 py-2.5 rounded-md border border-gray-200 bg-white text-sm text-slate-900 focus:ring-2 focus:ring-primary focus:outline-none"
                     />
                     <button @click="doSearch" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,7 +136,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
 
                 <!-- Sort -->
                 <div class="relative">
-                    <select v-model="sortBy" @change="doSearch" class="pl-4 pr-8 py-2.5 rounded-md border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-primary focus:outline-none appearance-none">
+                    <select v-model="sortBy" @change="doSearch" class="pl-4 pr-8 py-2.5 rounded-md border border-gray-200 bg-white text-sm text-slate-700 focus:ring-2 focus:ring-primary focus:outline-none appearance-none">
                         <option value="newest">Sort: Newest</option>
                         <option value="oldest">Sort: Oldest</option>
                     </select>
@@ -147,7 +147,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
 
                 <!-- Date -->
                 <div class="relative">
-                    <input v-model="dateFilter" @change="doSearch" type="date" class="pl-4 pr-10 py-2.5 rounded-md border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-primary focus:outline-none" />
+                    <input v-model="dateFilter" @change="doSearch" type="date" class="pl-4 pr-10 py-2.5 rounded-md border border-gray-200 bg-white text-sm text-slate-700 focus:ring-2 focus:ring-primary focus:outline-none" />
                     <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
@@ -165,7 +165,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
                             'px-3 py-1.5 rounded-full text-xs font-bold transition-all border',
                             activeCategory === cat
                                 ? 'bg-primary text-white border-primary shadow'
-                                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-gray-200 dark:border-slate-700 hover:border-primary hover:text-primary'
+                                : 'bg-white text-slate-600 border-gray-200 hover:border-primary hover:text-primary'
                         ]"
                     >{{ cat }}</button>
                 </div>
@@ -180,10 +180,10 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
 
             <!-- Empty state -->
             <div v-if="!posts?.data?.length" class="flex flex-col items-center justify-center py-24 gap-4 text-center">
-                <svg class="w-16 h-16 text-gray-300 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
                 </svg>
-                <p class="text-xl font-semibold text-slate-500 dark:text-slate-400">{{ $t('blog.noArticles') }}</p>
+                <p class="text-xl font-semibold text-slate-500">{{ $t('blog.noArticles') }}</p>
                 <p class="text-xs text-gray-400">{{ $t('blog.adjustSearch') }}</p>
             </div>
 
@@ -221,40 +221,40 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
                         </Link>
 
                         <!-- Right: white/dark panel -->
-                        <div class="lg:col-span-5 bg-white dark:bg-[#152d52] border-l border-gray-100 dark:border-transparent flex flex-col">
-                            <div class="flex-1 flex flex-col divide-y divide-gray-100 dark:divide-white/10">
+                        <div class="lg:col-span-5 bg-white border-l border-gray-100 flex flex-col">
+                            <div class="flex-1 flex flex-col divide-y divide-gray-100">
                                 <div
                                     v-for="post in sidePosts"
                                     :key="post.id"
-                                    class="px-5 py-5 flex flex-col gap-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                                    class="px-5 py-5 flex flex-col gap-3 hover:bg-gray-50 transition-colors"
                                 >
                                     <!-- Timestamp -->
-                                    <span class="text-[11px] font-medium text-primary dark:text-sky-300/90 tracking-wide block">
+                                    <span class="text-[11px] font-medium text-primary tracking-wide block">
                                         {{ formatFullTimestamp(post.published_at) }}
                                     </span>
 
                                     <Link :href="route('blog.show', post.slug)" class="group/item flex items-start gap-4">
                                         <!-- Thumbnail -->
-                                        <div class="w-[90px] h-[68px] rounded-lg bg-slate-100 dark:bg-slate-900 overflow-hidden shrink-0 border border-gray-200 dark:border-white/10">
+                                        <div class="w-[90px] h-[68px] rounded-lg bg-slate-100 overflow-hidden shrink-0 border border-gray-200">
                                             <img v-if="getCoverImage(post)" :src="getCoverImage(post)" :alt="post.title" class="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-300" />
-                                            <div v-else class="w-full h-full flex items-center justify-center text-[10px] font-bold text-primary dark:text-sky-300">BLOG</div>
+                                            <div v-else class="w-full h-full flex items-center justify-center text-[10px] font-bold text-primary">BLOG</div>
                                         </div>
                                         <!-- Text -->
                                         <div class="flex-1 min-w-0">
-                                            <h3 class="text-sm font-extrabold text-slate-900 dark:text-white leading-snug line-clamp-2 group-hover/item:text-primary dark:group-hover/item:text-sky-300 transition-colors font-['Outfit',sans-serif]">
+                                            <h3 class="text-sm font-extrabold text-slate-900 leading-snug line-clamp-2 group-hover/item:text-primary transition-colors font-['Outfit',sans-serif]">
                                                 {{ post.title }}
                                             </h3>
-                                            <p class="mt-1 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300/80 line-clamp-2">{{ post.excerpt }}</p>
+                                            <p class="mt-1 text-[11px] leading-relaxed text-slate-600 line-clamp-2">{{ post.excerpt }}</p>
                                         </div>
                                     </Link>
                                 </div>
                             </div>
 
                             <!-- More → button -->
-                            <div class="flex justify-end px-5 py-4 border-t border-gray-100 dark:border-white/10">
+                            <div class="flex justify-end px-5 py-4 border-t border-gray-100">
                                 <Link
                                     :href="route('blog.index', { view: 'list' })"
-                                    class="inline-flex items-center gap-2 bg-primary/10 dark:bg-white/10 hover:bg-primary dark:hover:bg-white/20 text-primary dark:text-white hover:text-white border border-primary/30 dark:border-white/20 font-bold px-5 py-2 rounded-full text-xs transition-all"
+                                    class="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 font-bold px-5 py-2 rounded-full text-xs transition-all"
                                 >
                                     <span>More</span><span>→</span>
                                 </Link>
@@ -268,14 +268,14 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
                 <!-- ════════════════════════════════════════════════════ -->
                 <!--  EDITORIAL LIST (view=list / full blog list)          -->
                 <!-- ════════════════════════════════════════════════════ -->
-                <div v-else class="space-y-0 divide-y divide-gray-100 dark:divide-slate-800">
+                <div v-else class="space-y-0 divide-y divide-gray-100">
                     <div
                         v-for="post in (posts.data || [])"
                         :key="post.id"
-                        class="group py-6 flex flex-col sm:flex-row gap-5 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors px-1"
+                        class="group py-6 flex flex-col sm:flex-row gap-5 hover:bg-gray-50 transition-colors px-1"
                     >
                         <!-- Thumbnail -->
-                        <div class="w-full sm:w-[240px] h-[160px] rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-900 shrink-0">
+                        <div class="w-full sm:w-[240px] h-[160px] rounded-xl overflow-hidden bg-slate-100 shrink-0">
                             <img
                                 v-if="getCoverImage(post)"
                                 :src="getCoverImage(post)"
@@ -283,7 +283,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                             <div v-else class="w-full h-full flex items-center justify-center">
-                                <svg class="w-12 h-12 text-slate-300 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                 </svg>
@@ -295,17 +295,17 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
                             <div class="space-y-2">
                                 <span v-if="post.category" class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-0.5 rounded-full">{{ post.category }}</span>
                                 <Link :href="route('blog.show', post.slug)">
-                                    <h2 class="text-lg font-extrabold text-[#1a3a6b] dark:text-sky-300 leading-snug hover:underline font-['Outfit',sans-serif] line-clamp-2">
+                                    <h2 class="text-lg font-extrabold text-[#1a3a6b] leading-snug hover:underline font-['Outfit',sans-serif] line-clamp-2">
                                         {{ post.title }}
                                     </h2>
                                 </Link>
-                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">{{ post.excerpt }}</p>
+                                <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">{{ post.excerpt }}</p>
                                 <p v-if="post.author" class="text-xs text-slate-400">{{ $t('blog.by') }} {{ post.author?.name || 'Admin' }}</p>
                             </div>
 
                             <!-- Time + Actions -->
                             <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-                                <span class="text-xs text-slate-500 dark:text-slate-400">
+                                <span class="text-xs text-slate-500">
                                     <span class="font-semibold">Time :</span> {{ formatFullTimestamp(post.published_at) }}
                                 </span>
                                 <div class="flex items-center gap-3">
@@ -345,7 +345,7 @@ const sidePosts    = computed(() => props.posts?.data?.slice(1, 4) || []);
                                 'px-4 py-2 rounded-xl text-xs font-extrabold transition-all border',
                                 link.active
                                     ? 'bg-primary text-white border-primary shadow-md'
-                                    : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-gray-200 dark:border-slate-700 hover:border-primary hover:text-primary'
+                                    : 'bg-white text-slate-700 border-gray-200 hover:border-primary hover:text-primary'
                             ]"
                             v-html="link.label"
                         />

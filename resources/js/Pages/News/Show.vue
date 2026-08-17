@@ -23,21 +23,21 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         </Head>
 
         <!-- Hero -->
-        <section class="pt-32 md:pt-44 pb-8 bg-white dark:bg-gray-900">
+        <section class="pt-32 md:pt-44 pb-8 bg-white">
             <div class="max-w-4xl mx-auto px-4">
                 <nav class="flex items-center gap-2 text-sm text-gray-400 mb-6">
                     <Link :href="route('home')" class="hover:text-primary transition-colors">{{ $t('nav.home') }}</Link>
                     <span>/</span>
                     <Link :href="route('news.index')" class="hover:text-primary transition-colors">{{ $t('news.title') }}</Link>
                     <span>/</span>
-                    <span class="text-gray-600 dark:text-gray-300 truncate max-w-xs">{{ article.title }}</span>
+                    <span class="text-gray-600 truncate max-w-xs">{{ article.title }}</span>
                 </nav>
 
                 <span :class="['inline-block text-sm font-bold px-4 py-1 rounded-full mb-4 capitalize', categoryColors[article.category] || 'bg-gray-100 text-gray-600']">{{ article.category }}</span>
 
-                <h1 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-snug" style="font-family: Georgia, serif;">{{ article.title }}</h1>
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-snug" style="font-family: Georgia, serif;">{{ article.title }}</h1>
 
-                <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
+                <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-100">
                     <div class="flex items-center gap-2">
                         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
                             {{ (article.author?.name || 'A')[0].toUpperCase() }}
@@ -56,15 +56,15 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         </div>
 
         <!-- Body -->
-        <section class="py-12 bg-white dark:bg-gray-900">
+        <section class="py-12 bg-white">
             <div class="max-w-4xl mx-auto px-4">
-                <div class="prose prose-lg dark:prose-invert prose-primary max-w-none text-gray-800 dark:text-gray-200" v-html="article.body"></div>
+                <div class="prose prose-lg prose-primary max-w-none text-gray-800" v-html="article.body"></div>
 
                 <!-- Media Gallery -->
-                <div v-if="article.media_gallery && article.media_gallery.length > 0" class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6" style="font-family: Georgia, serif;">{{ $t('news.mediaGallery') }}</h3>
+                <div v-if="article.media_gallery && article.media_gallery.length > 0" class="mt-12 pt-8 border-t border-gray-100">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6" style="font-family: Georgia, serif;">{{ $t('news.mediaGallery') }}</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div v-for="(media, idx) in article.media_gallery" :key="idx" class="rounded-2xl overflow-hidden shadow-md bg-slate-50 dark:bg-slate-800 border border-gray-100 dark:border-gray-700">
+                        <div v-for="(media, idx) in article.media_gallery" :key="idx" class="rounded-2xl overflow-hidden shadow-md bg-slate-50 border border-gray-100">
                             <!-- Image item -->
                             <a v-if="media.type === 'image'" :href="media.url" target="_blank" class="block aspect-video overflow-hidden group">
                                 <img :src="media.url" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Gallery Photo" />
@@ -77,7 +77,7 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
                     </div>
                 </div>
 
-                <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+                <div class="mt-12 pt-8 border-t border-gray-100">
                     <Link :href="route('news.index')" class="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         {{ $t('news.backToNews') }}
@@ -87,18 +87,18 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         </section>
 
         <!-- Related -->
-        <section v-if="related?.length" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <section v-if="related?.length" class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">{{ $t('news.relatedArticles') }}</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-8">{{ $t('news.relatedArticles') }}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <Link v-for="r in related" :key="r.id" :href="route('news.show', r.slug)"
-                        class="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 dark:border-gray-700">
-                        <div class="h-36 overflow-hidden bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-700">
+                        class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100">
+                        <div class="h-36 overflow-hidden bg-gradient-to-br from-indigo-50 to-blue-50">
                             <img v-if="r.cover_image" :src="r.cover_image" :alt="r.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                         </div>
                         <div class="p-4">
                             <span :class="['text-xs font-bold px-2 py-0.5 rounded-full capitalize', categoryColors[r.category] || 'bg-gray-100 text-gray-600']">{{ r.category }}</span>
-                            <h3 class="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-primary transition-colors line-clamp-2 mt-2">{{ r.title }}</h3>
+                            <h3 class="font-semibold text-gray-900 text-sm group-hover:text-primary transition-colors line-clamp-2 mt-2">{{ r.title }}</h3>
                         </div>
                     </Link>
                 </div>

@@ -1,6 +1,6 @@
 <script setup>
 
-const liClasses = 'block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-100 dark:hover:bg-gray-700';
+const liClasses = 'block px-4 py-2 text-gray-700 hover:bg-gray-100';
 
 </script>
 <template>
@@ -10,7 +10,7 @@ const liClasses = 'block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gra
             Menu
         </button>
         <!-- Dropdown menu (hidden by default, shown on hover) -->
-        <ul class="absolute bg-white dark:bg-gray-900 left-0 mt-0 w-48  rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
+        <ul class="absolute bg-white left-0 mt-0 w-48  rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
             <li>
                 <Link :href="route('client.dashboard')" :class="liClasses">
                     Dashboard
@@ -33,7 +33,7 @@ const liClasses = 'block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gra
             </li>
             <li>
                 <Link :href="route('logout')" as="button" method="post"
-                    class="block px-4 py-2 text-red-500 hover:bg-gray-100 w-full text-left dark:hover:bg-gray-700">
+                    class="block px-4 py-2 text-red-500 hover:bg-gray-100 w-full text-left">
                     Logout
                 </Link>
             </li>

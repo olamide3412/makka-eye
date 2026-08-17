@@ -29,7 +29,7 @@ const faqs = {
     },
     {
       q: "Which specialized treatments do you offer?",
-      a: "We specialize in Cataract Surgery (Phacoemulsification), LASIK & Refractive Laser surgery, Glaucoma Management, Pediatric Eye Care, and Ocular Diagnostics."
+      a: "We specialize in Cataract Surgery (Phacoemulsification), Retinal & Vitreous Management, Glaucoma Treatment, Pediatric Eye Care, and Comprehensive Ocular Diagnostics."
     },
     {
       q: "Do you accept national and private health insurance?",
@@ -51,7 +51,7 @@ const faqs = {
     },
     {
       q: "Àwọn ìtọ́jú pàtàkì wo ni ẹ pèsè?",
-      a: "A ṣe àkànṣe ní Ìtọ́jú Cataract, Ìtọ́jú LASIK & Laser, Ìtọ́jú Glaucoma, Ìtọ́jú Ojú Àwọn Ọmọdé, àti Àwọn Àyẹ̀wò Ojú."
+      a: "A ṣe àkànṣe ní Ìtọ́jú Cataract, Ìtọ́jú Retina, Ìtọ́jú Glaucoma, Ìtọ́jú Ojú Àwọn Ọmọdé, àti Àwọn Àyẹ̀wò Ojú."
     },
     {
       q: "Ṣé ẹ gba àwọn ètò ìbáradára (HMO) ti orílẹ̀-èdè tàbí ti ara ẹni?",
@@ -73,7 +73,7 @@ const faqs = {
     },
     {
       q: "Wadanne ayyuka na musamman kuke bayarwa?",
-      a: "Muna ba da sabis na musamman don tiyatar Cataract, tiyatar Laser ta LASIK, maganin Glaucoma, kulawar ido na yara, da gwaje-gwajen ido."
+      a: "Muna ba da sabis na musamman don tiyatar Cataract, maganin Retina, maganin Glaucoma, kulawar ido na yara, da gwaje-gwajen ido."
     },
     {
       q: "Kuna karɓar inshorar lafiya ta ƙasa ko ta kuɗi?",
@@ -134,11 +134,11 @@ const filteredFaqs = computed(() => {
     <Breadcrumb title="Frequently Asked Questions" name="FAQ" />
 
     <!-- FAQ Body -->
-    <div class="py-12 md:py-20 bg-gray-50/50 dark:bg-slate-900/40 transition-colors duration-300">
+    <div class="py-12 md:py-20 bg-gray-50/50 transition-colors duration-300">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Search Input -->
-        <div class="mb-10 max-w-lg mx-auto relative group">
+        <div class="mb-10 max-w-lg mx-auto relative group" data-aos="fade-up" data-aos-duration="800">
           <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -148,7 +148,7 @@ const filteredFaqs = computed(() => {
             type="text" 
             v-model="searchQuery" 
             placeholder="Search questions..." 
-            class="w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/45 transition-all shadow-sm font-medium"
+            class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/45 hover:border-primary/30 transition-all shadow-sm font-medium"
           />
         </div>
 
@@ -157,16 +157,25 @@ const filteredFaqs = computed(() => {
           <div 
             v-for="(item, idx) in filteredFaqs" 
             :key="idx" 
-            class="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-gray-700/60 shadow-sm overflow-hidden transition-all duration-300"
+            data-aos="fade-up"
+            :data-aos-delay="idx * 80"
+            data-aos-duration="800"
+            :class="[
+              'bg-white rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5',
+              openIndex === idx ? 'border-primary/40 shadow-md ring-1 ring-primary/15' : 'border-gray-100/90 hover:border-primary/25'
+            ]"
           >
             <!-- Question Trigger -->
             <button 
               @click="toggleAccordion(idx)"
-              class="w-full px-6 py-4 flex items-center justify-between text-left font-bold text-gray-800 dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors"
+              class="w-full px-6 py-4.5 flex items-center justify-between text-left font-bold text-gray-800 hover:text-primary transition-colors cursor-pointer"
             >
-              <span class="pr-4 leading-snug">{{ item.q }}</span>
-              <span class="flex-shrink-0 text-primary transition-transform duration-300" :class="{ 'rotate-180': openIndex === idx }">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span class="pr-4 leading-snug font-['Outfit',sans-serif] text-base sm:text-lg">{{ item.q }}</span>
+              <span 
+                class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+                :class="openIndex === idx ? 'bg-primary text-white rotate-180 shadow-xs' : 'bg-sky-50 text-primary'"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
                 </svg>
               </span>
@@ -182,7 +191,7 @@ const filteredFaqs = computed(() => {
               leave-to-class="max-h-0 opacity-0"
             >
               <div v-show="openIndex === idx" class="overflow-hidden">
-                <div class="px-6 pb-5 pt-1 text-sm sm:text-base text-gray-500 dark:text-gray-400 leading-relaxed border-t border-gray-50 dark:border-gray-700/40">
+                <div class="px-6 pb-5 pt-2 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-gray-100/80 bg-slate-50/40">
                   {{ item.a }}
                 </div>
               </div>
@@ -192,11 +201,11 @@ const filteredFaqs = computed(() => {
 
         <!-- No Results Empty State -->
         <div v-else class="text-center py-12">
-          <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <h3 class="text-lg font-bold text-gray-700 dark:text-gray-300">No matching questions found</h3>
-          <p class="text-sm text-gray-400 dark:text-gray-500 mt-1">Try searching for other keywords.</p>
+          <h3 class="text-lg font-bold text-gray-700">No matching questions found</h3>
+          <p class="text-sm text-gray-400 mt-1">Try searching for other keywords.</p>
         </div>
 
       </div>

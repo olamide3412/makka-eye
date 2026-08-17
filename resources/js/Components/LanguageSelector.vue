@@ -40,14 +40,14 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside));
                     :class="[
                         'transition-all duration-200 px-1 py-0.5 rounded leading-none',
                         locale === lang.code
-                            ? 'text-primary dark:text-sky-400 font-bold underline underline-offset-4'
-                            : 'text-gray-700 dark:text-gray-300 hover:text-primary'
+                            ? 'text-primary font-bold underline underline-offset-4'
+                            : 'text-gray-700 hover:text-primary'
                     ]"
                     :lang="lang.code"
                 >
                     {{ lang.label }}
                 </button>
-                <span v-if="idx < languages.length - 1" class="text-gray-300 dark:text-gray-700 text-xs select-none">|</span>
+                <span v-if="idx < languages.length - 1" class="text-gray-300 text-xs select-none">|</span>
             </template>
         </div>
     </div>

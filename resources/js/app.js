@@ -10,7 +10,6 @@ import { formatDate } from './Utils/dateFormat';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { createPinia } from 'pinia';
-import { useThemeStore } from './Stores/themeStore';
 import FlashMessages from './Components/FlashMessages.vue';
 import i18n from './i18n.js';
 
@@ -39,9 +38,6 @@ createInertiaApp({
           .use(Toast)
           .use(pinia)
           .use(i18n);
-
-        const themeStore = useThemeStore();
-        themeStore.loadTheme();
 
         app.config.globalProperties.$formatDate = formatDate;
 

@@ -16,7 +16,7 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         </Head>
 
         <!-- Article Hero -->
-        <section class="pt-32 md:pt-44 pb-0 bg-white dark:bg-gray-900">
+        <section class="pt-32 md:pt-44 pb-0 bg-white">
             <div class="max-w-4xl mx-auto px-4">
                 <!-- Breadcrumb -->
                 <nav class="flex items-center gap-2 text-sm text-gray-400 mb-6">
@@ -24,17 +24,17 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
                     <span>/</span>
                     <Link :href="route('blog.index')" class="hover:text-primary transition-colors">{{ $t('nav.blog') }}</Link>
                     <span>/</span>
-                    <span class="text-gray-600 dark:text-gray-300 truncate max-w-xs">{{ post.title }}</span>
+                    <span class="text-gray-600 truncate max-w-xs">{{ post.title }}</span>
                 </nav>
 
                 <!-- Category Badge -->
                 <span v-if="post.category" class="inline-block bg-primary/10 text-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">{{ post.category }}</span>
 
                 <!-- Title -->
-                <h1 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-snug" style="font-family: Georgia, serif;">{{ post.title }}</h1>
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-snug" style="font-family: Georgia, serif;">{{ post.title }}</h1>
 
                 <!-- Meta -->
-                <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
+                <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-100">
                     <div class="flex items-center gap-2">
                         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
                             {{ (post.author?.name || 'A')[0].toUpperCase() }}
@@ -54,12 +54,12 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         </div>
 
         <!-- Article Body -->
-        <section class="py-12 bg-white dark:bg-gray-900">
+        <section class="py-12 bg-white">
             <div class="max-w-4xl mx-auto px-4">
-                <div class="prose prose-lg dark:prose-invert prose-primary max-w-none text-gray-800 dark:text-gray-200" v-html="post.body"></div>
+                <div class="prose prose-lg prose-primary max-w-none text-gray-800" v-html="post.body"></div>
 
                 <!-- Back Link -->
-                <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+                <div class="mt-12 pt-8 border-t border-gray-100">
                     <Link :href="route('blog.index')" class="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         {{ $t('blog.backToBlog') }}
@@ -69,18 +69,18 @@ const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'nu
         </section>
 
         <!-- Related Posts -->
-        <section v-if="related?.length" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <section v-if="related?.length" class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8" style="font-family: Georgia, serif;">{{ $t('blog.relatedArticles') }}</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-8" style="font-family: Georgia, serif;">{{ $t('blog.relatedArticles') }}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <Link v-for="r in related" :key="r.id" :href="route('blog.show', r.slug)"
-                        class="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 dark:border-gray-700">
-                        <div class="h-36 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-50 dark:from-gray-700">
+                        class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100">
+                        <div class="h-36 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-50">
                             <img v-if="r.cover_image" :src="r.cover_image" :alt="r.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                         </div>
                         <div class="p-4">
                             <p class="text-xs text-gray-400 mb-1">{{ formatDate(r.published_at) }}</p>
-                            <h3 class="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-primary transition-colors line-clamp-2">{{ r.title }}</h3>
+                            <h3 class="font-semibold text-gray-900 text-sm group-hover:text-primary transition-colors line-clamp-2">{{ r.title }}</h3>
                         </div>
                     </Link>
                 </div>

@@ -53,8 +53,6 @@ onUnmounted(() => {
                         alt="Hospital Facility" 
                         class="w-full h-full object-cover"
                     />
-                    <!-- Dark overlay for dramatic effect like reference -->
-                    <div class="absolute inset-0 bg-black/60"></div>
                 </div>
             </transition-group>
         </div>
@@ -64,14 +62,6 @@ onUnmounted(() => {
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight" style="font-family: Georgia, serif;">
                 <span class="text-primary drop-shadow-md select-none">{{ $t('hero.headline1') }}</span>
             </h1>
-            <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed">
-                {{ $t('hero.subtitle') }}
-            </p>
-            <div class="mt-10">
-                <Link :href="route('contact')" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                    {{ $page.props.settings?.enable_appointments ? $t('hero.bookAppointment') : $t('hero.contactUs') }}
-                </Link>
-            </div>
         </div>
 
         <!-- Slider Indicators -->

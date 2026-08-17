@@ -1,28 +1,33 @@
 <script setup>
 import Layout from '@/Layouts/Layout.vue';
 import { Head } from '@inertiajs/vue3';
+import PageHeroBanner from '@/Components/Common/PageHeroBanner.vue';
 import ServiceList from '@/Components/Services/ServiceList.vue';
 import CallToAction from '@/Components/Home/CallToAction.vue';
 
-defineOptions({ layout: Layout })
+defineOptions({ layout: Layout });
 </script>
 
 <template>
-    <Head :title="$t('services.sectionLabel')" />
+    <Head :title="$t('services.sectionLabel') + ' | Makkah Specialist Eye Hospital'" />
 
-    <div class="bg-white dark:bg-gray-900 pt-16 md:pt-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-left max-w-4xl">
-                <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl tracking-tight leading-none" style="font-family: Georgia, serif;">
-                    {{ $t('services.sectionLabel') }}
-                </h1>
-                <p class="mt-4 text-lg text-gray-500 dark:text-gray-300 leading-relaxed">
-                    {{ $t('services.pageDescription') }}
-                </p>
-            </div>
+    <div class="bg-slate-50 min-h-screen">
+        <!-- Page Hero Banner (Moorfields Style) -->
+        <PageHeroBanner 
+            :title="$t('services.sectionLabel') || 'Clinical Services'"
+            :breadcrumbs="[
+                { label: $t('nav.home') || 'Home', href: route('home') },
+                { label: $t('services.sectionLabel') || 'Services' }
+            ]"
+        />
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-2">
+            <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl" data-aos="fade-up" data-aos-duration="800">
+                {{ $t('services.pageDescription') }}
+            </p>
         </div>
-    </div>
 
-    <ServiceList />
-    <CallToAction />
+        <ServiceList />
+        <CallToAction />
+    </div>
 </template>

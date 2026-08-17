@@ -41,7 +41,7 @@
           <h3 class="text-xl font-semibold mb-2 text-green-600">
             Flexible Payments
           </h3>
-          <p class="text-black dark:text-white">
+          <p class="text-black">
             Pay upfront or choose our credit plan and spread your payments
             easily.
           </p>
@@ -75,7 +75,7 @@
           <h3 class="text-xl font-semibold mb-2 text-green-600">
             Fair Pricing
           </h3>
-          <p class="text-black dark:text-white">
+          <p class="text-black">
             Enjoy competitive prices while maintaining high product standards.
           </p>
         </div>

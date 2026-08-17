@@ -81,7 +81,7 @@ const scrollRight = () => {
         <!-- Left Arrow -->
         <button
           @click="scrollLeft"
-          class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-2 rounded-full shadow hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
         >
           ◀
         </button>
@@ -94,7 +94,7 @@ const scrollRight = () => {
           <div
             v-for="(product, index) in products"
             :key="index"
-            class="min-w-[280px] bg-gray-100 dark:bg-gray-900 p-6 rounded-lg shadow transition-transform duration-500 hover:scale-105 hover:shadow-xl whitespace-normal break-words"
+            class="min-w-[280px] bg-gray-100 p-6 rounded-lg shadow transition-transform duration-500 hover:scale-105 hover:shadow-xl whitespace-normal break-words"
             data-aos="zoom-in"
             :data-aos-delay="300 + index * 100"
           >
@@ -102,7 +102,7 @@ const scrollRight = () => {
               <font-awesome-icon :icon="[product.icon.type, product.icon.name]" />
             </div>
             <h3 class="text-xl font-semibold mb-2">{{ product.title }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="text-gray-600 mb-4">
               {{ product.description }}
             </p>
             <a
@@ -117,7 +117,7 @@ const scrollRight = () => {
         <!-- Right Arrow -->
         <button
           @click="scrollRight"
-          class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-2 rounded-full shadow hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
         >
           ▶
         </button>

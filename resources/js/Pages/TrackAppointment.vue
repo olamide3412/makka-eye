@@ -29,17 +29,20 @@ const formatDate = (dateString) => {
 <template>
     <Head title="Track Appointment" />
 
-    <div class="min-h-screen py-16 px-4 bg-gray-50 dark:bg-gray-900 mt-8">
-        <div class="max-w-xl mx-auto" data-aos="fade-up">
+    <div class="min-h-screen py-16 px-4 bg-slate-50/70 mt-8">
+        <div class="max-w-xl mx-auto" data-aos="fade-up" data-aos-duration="800">
             
             <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Track Your Appointment</h1>
-                <p class="text-gray-600 dark:text-gray-400 mt-2">Enter your tracking number below to check the status of your booking.</p>
+                <div class="inline-flex items-center space-x-2 bg-sky-50 text-primary font-extrabold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-3 border border-sky-100 shadow-xs">
+                    <span>{{ $t('hero.trackAppointment') || 'Appointment Status' }}</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-black text-slate-900 font-['Outfit',sans-serif]">Track Your Appointment</h1>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">Enter your tracking number below to check the status of your booking.</p>
             </div>
 
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 md:p-8">
+            <div class="bg-white rounded-3xl shadow-lg p-6 sm:p-10 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                 <form @submit.prevent="track">
-                    <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex flex-col sm:flex-row gap-3">
                         <div class="flex-1">
                             <TextInput 
                                 name="tracking_number" 
@@ -51,7 +54,7 @@ const formatDate = (dateString) => {
                         </div>
                         <button 
                             type="submit" 
-                            class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-md shadow transition-colors"
+                            class="bg-primary hover:bg-[#0880cc] text-white font-extrabold py-3 px-8 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                             :disabled="form.processing"
                         >
                             <span v-if="form.processing">Searching...</span>
@@ -61,44 +64,44 @@ const formatDate = (dateString) => {
                 </form>
 
                 <!-- Error Message -->
-                <div v-if="flash?.error" class="mt-4 p-4 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-lg text-sm font-medium text-center">
+                <div v-if="flash?.error" class="mt-4 p-4 bg-red-50 text-red-700 rounded-2xl text-sm font-medium text-center border border-red-100">
                     {{ flash.error }}
                 </div>
 
                 <!-- Results Area -->
-                <div v-if="searched && appointment" class="mt-8 border-t border-gray-100 dark:border-gray-700 pt-6 animate-fade-in-up">
+                <div v-if="searched && appointment" class="mt-8 border-t border-gray-100 pt-6 animate-fade-in-up">
                     <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Appointment Details</h3>
-                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                        <h3 class="text-lg font-black text-slate-900 font-['Outfit',sans-serif]">Appointment Details</h3>
+                        <span class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider shadow-xs"
                               :class="{
-                                  'bg-yellow-100 text-yellow-800': appointment.status === 'pending',
-                                  'bg-green-100 text-green-800': appointment.status === 'confirmed',
-                                  'bg-blue-100 text-blue-800': appointment.status === 'completed',
-                                  'bg-red-100 text-red-800': appointment.status === 'cancelled'
+                                  'bg-amber-100 text-amber-800 border border-amber-200': appointment.status === 'pending',
+                                  'bg-emerald-100 text-emerald-800 border border-emerald-200': appointment.status === 'confirmed',
+                                  'bg-sky-100 text-sky-800 border border-sky-200': appointment.status === 'completed',
+                                  'bg-red-100 text-red-800 border border-red-200': appointment.status === 'cancelled'
                               }">
                             {{ appointment.status }}
                         </span>
                     </div>
 
-                    <div class="space-y-4 text-sm">
-                        <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-lg">
-                            <p class="text-gray-500 dark:text-gray-400">Patient Name</p>
-                            <p class="font-medium text-gray-900 dark:text-gray-100">{{ appointment.first_name }} {{ appointment.last_name }}</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-gray-100/80 hover:bg-sky-50/30 transition-colors">
+                            <p class="text-xs text-slate-500 font-medium">Patient Name</p>
+                            <p class="font-bold text-slate-900 text-base mt-0.5">{{ appointment.first_name }} {{ appointment.last_name }}</p>
                         </div>
 
-                        <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-lg">
-                            <p class="text-gray-500 dark:text-gray-400">Scheduled Service</p>
-                            <p class="font-medium text-gray-900 dark:text-gray-100">{{ appointment.service_needed }}</p>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-gray-100/80 hover:bg-sky-50/30 transition-colors">
+                            <p class="text-xs text-slate-500 font-medium">Scheduled Service</p>
+                            <p class="font-bold text-slate-900 text-base mt-0.5">{{ appointment.service_needed }}</p>
                         </div>
 
-                        <div class="flex gap-4">
-                            <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-lg flex-1">
-                                <p class="text-gray-500 dark:text-gray-400">Date</p>
-                                <p class="font-medium text-gray-900 dark:text-gray-100">{{ formatDate(appointment.appointment_date) }}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-gray-100/80 hover:bg-sky-50/30 transition-colors">
+                                <p class="text-xs text-slate-500 font-medium">Date</p>
+                                <p class="font-bold text-slate-900 mt-0.5">{{ formatDate(appointment.appointment_date) }}</p>
                             </div>
-                            <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-lg flex-1">
-                                <p class="text-gray-500 dark:text-gray-400">Time</p>
-                                <p class="font-medium text-gray-900 dark:text-gray-100">{{ appointment.appointment_time }}</p>
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-gray-100/80 hover:bg-sky-50/30 transition-colors">
+                                <p class="text-xs text-slate-500 font-medium">Time</p>
+                                <p class="font-bold text-slate-900 mt-0.5">{{ appointment.appointment_time }}</p>
                             </div>
                         </div>
                     </div>

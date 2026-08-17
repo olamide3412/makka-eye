@@ -8,13 +8,13 @@ import ProductImage from '../../images/tricycle.jpg'; // Replace with an actual 
 
       <!-- Text Column -->
       <div class="w-full md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
-        <h5 class="text-sm uppercase text-gray-500 dark:text-gray-300 mb-2">
+        <h5 class="text-sm uppercase text-gray-500 mb-2">
           Why Choose Makkah Specialist Eye Hospital
         </h5>
         <h2 class="text-3xl md:text-4xl font-bold mb-4">
           Quality Care & Advanced Technology You Can Rely On
         </h2>
-        <p class="text-gray-700 dark:text-gray-200">
+        <p class="text-gray-700">
           At <strong>Makkah Specialist Eye Hospital</strong>, we provide a wide range of
           comprehensive eye care services equipped with state-of-the-art facilities.
         </p>

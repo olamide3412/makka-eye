@@ -23,14 +23,18 @@ Route::get('/', function () {
         'media' => \App\Models\News::published()->where('category', 'media')->latest('published_at')->take(4)->get(['id','title','slug','excerpt','cover_image','media_gallery','published_at','category']),
     ];
 
+    // Latest Eye Care Blog Articles
+    $blogPosts = \App\Models\BlogPost::published()->latest('published_at')->take(3)->get(['id','title','slug','excerpt','cover_image','published_at','category','read_time']);
+
     return Inertia::render('Home', [
         'testimonials'        => $testimonials,
         'partners'            => $partners,
         'mediaCenterArticles' => $mediaCenterArticles,
+        'blogPosts'           => $blogPosts,
     ])->withViewData([
         'meta' => [
             'title' => 'Makkah Specialist Eye Hospital | Premier Eye Care Services',
-            'description' => 'Makkah Specialist Eye Hospital is a leading eye care facility providing comprehensive eye exams, cataract surgery, LASIK, and 24/7 emergency care.'
+            'description' => 'Makkah Specialist Eye Hospital is a leading eye care facility providing comprehensive eye exams, cataract surgery, glaucoma management, and 24/7 emergency care.'
         ]
     ]);
 })->name('home');
@@ -56,7 +60,7 @@ Route::get('/services', function () {
     return Inertia::render('Services')->withViewData([
         'meta' => [
             'title' => 'Our Services | Makkah Specialist Eye Hospital',
-            'description' => 'Explore our wide range of eye care services, including cataract surgery, glaucoma management, LASIK, and pediatric ophthalmology.'
+            'description' => 'Explore our wide range of eye care services, including cataract surgery, glaucoma management, retinal care, and pediatric ophthalmology.'
         ]
     ]);
 })->name('services');
@@ -68,7 +72,6 @@ Route::get('/services/{slug}', function ($slug) {
         'cataracts' => 'Adult & Paediatric Cataracts',
         'prosthetic' => 'Artificial Eye Creation & Fitting',
         'examination' => 'Comprehensive Eye Examinations',
-        'lasik' => 'LASIK & Refractive Surgery',
         'retina' => 'Retinal Disorders Treatment',
         'cornea' => 'Corneal Transplantation',
         'diabetic' => 'Diabetic Eye Care',

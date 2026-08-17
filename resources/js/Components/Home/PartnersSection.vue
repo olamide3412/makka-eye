@@ -51,18 +51,18 @@ const displayPartners = computed(() => {
 </script>
 
 <template>
-    <section class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/60 border-t border-gray-100 dark:border-slate-800 transition-colors duration-300">
+    <section class="py-16 md:py-24 bg-slate-50 border-t border-gray-100 transition-colors duration-300 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="text-xs font-extrabold text-primary uppercase tracking-widest bg-sky-50 dark:bg-sky-950/40 px-3.5 py-1.5 rounded-full border border-sky-100 dark:border-sky-900/50">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up" data-aos-duration="800">
+                <span class="text-xs font-extrabold text-primary uppercase tracking-widest bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-100 shadow-sm">
                     Global Health Alliances
                 </span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 tracking-tight font-['Outfit',sans-serif]">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mt-3 tracking-tight font-['Outfit',sans-serif]">
                     Strategic Partners & Healthcare Affiliates
                 </h2>
-                <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
                     Collaborating with premier international foundations and global health organizations to deliver world-class eye care and prevent avoidable blindness.
                 </p>
             </div>
@@ -70,35 +70,38 @@ const displayPartners = computed(() => {
             <!-- Partners Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 <div 
-                    v-for="partner in displayPartners" 
+                    v-for="(partner, index) in displayPartners" 
                     :key="partner.id"
-                    class="bg-white dark:bg-slate-800 p-6 sm:p-7 rounded-3xl border border-gray-100 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                    data-aos="fade-up"
+                    :data-aos-delay="index * 100 + 100"
+                    data-aos-duration="800"
+                    class="bg-white p-6 sm:p-7 rounded-3xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
                 >
                     <div>
                         <!-- Enlarged Logo Container -->
-                        <div class="w-full h-36 sm:h-40 rounded-2xl bg-slate-50 dark:bg-slate-900/80 flex items-center justify-center p-3 sm:p-4 border border-gray-100/80 dark:border-slate-700/50 mb-5 group-hover:bg-sky-50/50 dark:group-hover:bg-slate-800 transition-colors">
+                        <div class="w-full h-36 sm:h-40 rounded-2xl bg-slate-50 flex items-center justify-center p-3 sm:p-4 border border-gray-100/80 mb-5 group-hover:bg-sky-50/60 transition-colors duration-300 overflow-hidden">
                             <img 
                                 v-if="partner.logo_url" 
                                 :src="partner.logo_url" 
                                 :alt="partner.name" 
-                                class="max-h-28 sm:max-h-32 w-full object-contain transition-transform duration-300 group-hover:scale-105" 
+                                class="max-h-28 sm:max-h-32 w-full object-contain transition-transform duration-500 group-hover:scale-110" 
                             />
                             <div v-else class="text-center p-3">
-                                <span class="text-xl font-black text-primary tracking-tight font-['Outfit',sans-serif] block leading-tight">
+                                <span class="text-xl font-black text-primary tracking-tight font-['Outfit',sans-serif] block leading-tight group-hover:scale-105 transition-transform">
                                     {{ partner.name }}
                                 </span>
                             </div>
                         </div>
 
                         <!-- Name & Expandable Description -->
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-['Outfit',sans-serif] group-hover:text-primary transition-colors leading-snug">
+                        <h3 class="text-lg font-bold text-slate-900 font-['Outfit',sans-serif] group-hover:text-primary transition-colors leading-snug">
                             {{ partner.name }}
                         </h3>
 
                         <div v-if="partner.description" class="mt-3">
                             <p 
                                 :class="[
-                                    'text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed transition-all duration-300',
+                                    'text-xs sm:text-sm text-slate-600 leading-relaxed transition-all duration-300',
                                     expandedPartners[partner.id] ? '' : 'line-clamp-4'
                                 ]"
                             >
@@ -116,16 +119,16 @@ const displayPartners = computed(() => {
                     </div>
 
                     <!-- External Link -->
-                    <div class="mt-6 pt-4 border-t border-gray-100 dark:border-slate-700/60 flex items-center justify-between">
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
                         <a 
                             v-if="partner.website_url"
                             :href="partner.website_url"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-xs font-extrabold text-primary hover:text-primary-dark inline-flex items-center gap-1.5 transition-transform group-hover:translate-x-1"
+                            class="text-xs font-extrabold text-primary hover:text-primary-dark inline-flex items-center gap-1.5 transition-all group-hover:translate-x-1.5"
                         >
                             <span>Learn More</span>
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </a>
                         <span v-else class="text-xs font-bold text-slate-400">Official Affiliate</span>
                     </div>
