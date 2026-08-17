@@ -56,7 +56,7 @@ const formatTimestamp = (d) => {
 
                 <!-- Title -->
                 <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-['Outfit',sans-serif]">
-                    Media Center
+                    {{ $t('home.mediaCenter') || 'Media Center' }}
                 </h2>
 
                 <!-- Category Tabs -->
@@ -66,7 +66,7 @@ const formatTimestamp = (d) => {
                         :key="tab.value"
                         @click="activeTab = tab.value"
                         :class="[
-                            'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 whitespace-nowrap transform hover:-translate-y-0.5 active:translate-y-0',
+                            'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 whitespace-nowrap transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer',
                             activeTab === tab.value
                                 ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
                                 : 'bg-white text-slate-700 border border-gray-200 hover:border-primary hover:text-primary hover:shadow-md'
@@ -75,7 +75,9 @@ const formatTimestamp = (d) => {
                         <svg class="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="tab.icon"/>
                         </svg>
-                        {{ tab.label }}
+                        {{ tab.value === 'news' ? ($t('home.newsTab') || tab.label) :
+                           tab.value === 'event' ? ($t('home.eventsTab') || tab.label) :
+                           tab.value === 'media' ? ($t('home.videosTab') || tab.label) : tab.label }}
                     </button>
                 </div>
 

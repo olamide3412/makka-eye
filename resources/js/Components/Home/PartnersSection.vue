@@ -57,13 +57,13 @@ const displayPartners = computed(() => {
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up" data-aos-duration="800">
                 <span class="text-xs font-extrabold text-primary uppercase tracking-widest bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-100 shadow-sm">
-                    Global Health Alliances
+                    {{ $t('home.partnersBadge') || 'Trusted Collaborations' }}
                 </span>
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mt-3 tracking-tight font-['Outfit',sans-serif]">
-                    Strategic Partners & Healthcare Affiliates
+                    {{ $t('home.partnersTitle') || 'Our Global & National Partners' }}
                 </h2>
                 <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-                    Collaborating with premier international foundations and global health organizations to deliver world-class eye care and prevent avoidable blindness.
+                    {{ $t('home.partnersSubtitle') || 'Working hand-in-hand with leading international foundations, health agencies, and eye care institutions to eliminate preventable blindness.' }}
                 </p>
             </div>
 

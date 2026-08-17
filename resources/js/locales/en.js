@@ -1,4 +1,12 @@
 export default {
+    brand: {
+        name: 'Makkah Specialist Eye Hospital',
+        nameLine1: 'Makkah Specialist',
+        nameLine2: 'Eye Hospital',
+        nameUpper: 'MAKKAH SPECIALIST',
+        locationUpper: 'EYE HOSPITAL • IBADAN',
+        subsidiary: 'A subsidiary of Al-Basar International Foundation',
+    },
     nav: {
         home: 'Home',
         about: 'About',
@@ -244,6 +252,101 @@ export default {
         readMore: 'Read More',
         optional: 'optional',
     },
+    faq: {
+        title: 'Frequently Asked Questions',
+        subtitle: 'Find answers to common questions regarding our eye care services, consultations, insurance, and visiting guidelines.',
+        badge: 'Help & FAQs',
+        searchPlaceholder: 'Search questions...',
+        noResults: 'No matching questions found',
+        noResultsDesc: 'Try searching for different keywords or contact our front desk.',
+        items: [
+            {
+                q: "What are the hospital's opening hours?",
+                a: "We are open 24 hours a day, 7 days a week for emergency eye care. Standard consultation hours are Monday through Saturday, from 8:00 AM to 5:00 PM."
+            },
+            {
+                q: "How can I book an appointment online?",
+                a: "You can easily book an appointment by clicking the 'Book Appointment' button on the navigation bar, selecting your preferred date and time, and filling in your details."
+            },
+            {
+                q: "Which specialized treatments do you offer?",
+                a: "We specialize in Cataract Surgery (Phacoemulsification), Retinal & Vitreous Management, Glaucoma Treatment, Pediatric Eye Care, and Comprehensive Ocular Diagnostics."
+            },
+            {
+                q: "Do you accept national and private health insurance?",
+                a: "Yes, we partner with major Health Maintenance Organizations (HMOs) and private insurers. Please contact our administrative desk to check if your provider is on our list."
+            },
+            {
+                q: "What should I bring on my first consultation visit?",
+                a: "Please bring a valid photo identification card, any current optical prescription glasses or contact lenses, a list of active medications, and previous medical history files if available."
+            }
+        ]
+    },
+    home: {
+        blogBadge: 'Eye Health & Clinical Insights',
+        blogTitle: 'Latest From Our Blog',
+        blogSubtitle: 'Stay informed with specialist advice, preventative tips, and treatment breakthroughs from our medical team.',
+        exploreAllArticles: 'Explore All Articles',
+        readFullArticle: 'Read Full Article',
+        whyChooseBadge: 'Clinical Standards & Heritage',
+        mediaCenter: 'Media Center',
+        newsTab: 'News',
+        eventsTab: 'Events',
+        videosTab: 'Videos',
+        viewAll: 'View All',
+        partnersBadge: 'Trusted Collaborations',
+        partnersTitle: 'Our Global & National Partners',
+        partnersSubtitle: 'Working hand-in-hand with leading international foundations, health agencies, and eye care institutions to eliminate preventable blindness.'
+    },
+    booking: {
+        title: 'Book an Appointment',
+        requestTitle: 'Request an Appointment',
+        requestSubtitle: 'Schedule your visit with our world-class ophthalmic specialists.',
+        pausedTitle: 'Online Booking Paused',
+        pausedMessage: 'We are currently restructuring our scheduling system. Online appointment requests are temporarily unavailable.',
+        howToSchedule: 'How to schedule your visit:',
+        callUs: 'Call us directly at:',
+        emailUs: 'Email us at:',
+        goToContact: 'Go to Contact Page',
+        receivedTitle: 'Appointment Request Received!',
+        trackingNotice: 'Thank you for booking with us. Your tracking code is:',
+        saveNotice: 'Please save this tracking code to check your appointment status anytime.',
+        returnHome: 'Return to Home',
+        form: {
+            firstName: 'First Name',
+            lastName: 'Last Name',
+            email: 'Email Address',
+            phone: 'Phone Number',
+            dob: 'Date of Birth',
+            serviceNeeded: 'Service Needed',
+            existingPatient: 'I am an existing patient with a hospital file number',
+            fileNumber: 'Hospital File Number',
+            preferredDate: 'Preferred Date',
+            preferredTime: 'Preferred Time',
+            notes: 'Additional Medical Notes (Optional)',
+            submit: 'Submit Appointment Request',
+            submitting: 'Processing Booking...'
+        }
+    },
+    track: {
+        badge: 'Appointment Status',
+        title: 'Track Your Appointment',
+        subtitle: 'Enter your tracking number below to check the status of your booking.',
+        placeholder: 'e.g. MEH-A8X9-2026',
+        button: 'Track',
+        searching: 'Searching...',
+        detailsTitle: 'Appointment Details',
+        patientName: 'Patient Name',
+        scheduledService: 'Scheduled Service',
+        date: 'Date',
+        time: 'Time',
+        status: 'Status',
+        statusPending: 'Pending Confirmation',
+        statusConfirmed: 'Confirmed',
+        statusCompleted: 'Completed',
+        statusCancelled: 'Cancelled',
+        notes: 'Notes / Instructions'
+    },
     aboutPage: {
         title: 'About Us',
         subtitle: 'Makkah Specialist Eye Hospital is a leading eye care facility dedicated to providing world-class ophthalmology services. Our state-of-the-art facility combines advanced technology with experienced medical professionals to deliver exceptional patient care.',
@@ -252,6 +355,18 @@ export default {
         corePurpose: 'Core Purpose',
         globalGoal: 'Global Goal',
         founderTag: 'Founder & Global Leadership',
+        historyBadge: 'Heritage & Legacy',
+        historyTitle: 'Our History & Milestones',
+        historySubtitle: 'Tracing our global journey in eradicating preventable blindness and providing accessible, world-class ophthalmic care.',
+        heritageImpactBadge: 'Heritage & Global Impact',
+        heritageImpactTitle: 'Leading Eye Care Across Continents',
+        clinicalLeadershipBadge: 'Clinical Leadership',
+        clinicalLeadershipTitle: 'World-Class Ophthalmologists & Surgeons',
+        clinicalLeadershipSubtitle: 'Our team of internationally trained consultants and ophthalmology specialists provide expert diagnostics and surgical care.',
+        contactTeam: 'Contact Our Team',
+        coreValuesBadge: 'Guiding Principles',
+        coreValuesTitle: 'Our Core Values',
+        coreValuesSubtitle: 'Our values guide every clinical decision, surgical procedure, and patient interaction across our hospital.',
         visitingTitle: 'Patient Information & Visiting Hours',
         visitingHours: 'Visiting Hours',
         monFri: 'Monday to Friday: 8:00 AM - 4:00 PM',

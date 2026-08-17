@@ -1,10 +1,10 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { Head, usePage } from '@inertiajs/vue3'
-import Breadcrumb from '@/Components/Navigations/Breadcrumb.vue'
+import { Head, Link } from '@inertiajs/vue3'
+import { useI18n } from 'vue-i18n'
+import PageHeroBanner from '@/Components/Common/PageHeroBanner.vue'
 
-// Current language code from i18n/locale settings
-const { locale } = usePage().props
+const { locale, tm, t } = useI18n()
 
 // Search query for filtering FAQs
 const searchQuery = ref('')
@@ -16,102 +16,13 @@ const toggleAccordion = (index) => {
   openIndex.value = openIndex.value === index ? null : index
 }
 
-// Translated FAQs data
-const faqs = {
-  en: [
-    {
-      q: "What are the hospital's opening hours?",
-      a: "We are open 24 hours a day, 7 days a week for emergency eye care. Standard consultation hours are Monday through Saturday, from 8:00 AM to 5:00 PM."
-    },
-    {
-      q: "How can I book an appointment online?",
-      a: "You can easily book an appointment by clicking the 'Book Appointment' button on the navigation bar, selecting your preferred date and time, and filling in your details."
-    },
-    {
-      q: "Which specialized treatments do you offer?",
-      a: "We specialize in Cataract Surgery (Phacoemulsification), Retinal & Vitreous Management, Glaucoma Treatment, Pediatric Eye Care, and Comprehensive Ocular Diagnostics."
-    },
-    {
-      q: "Do you accept national and private health insurance?",
-      a: "Yes, we partner with major Health Maintenance Organizations (HMOs) and private insurers. Please contact our administrative desk to check if your provider is on our list."
-    },
-    {
-      q: "What should I bring on my first consultation visit?",
-      a: "Please bring a valid photo identification card, any current optical prescription glasses or contact lenses, a list of active medications, and previous medical history files if available."
-    }
-  ],
-  yo: [
-    {
-      q: "Kí ni àwọn wákàtí ìṣiṣẹ́ ti ilé-ìwòsàn?",
-      a: "A wà ní ṣíṣi fún wákàtí 24, ọjọ́ 7 lọ́sẹ̀ fún ìtọ́jú ojú pàjáwìrì. Àwọn wákàtí ìfọ̀rọ̀wánilẹ́nu-wò pápá jẹ́ Látì Ọjọ́ Ajé sí Ọjọ́ Àbámẹ́ta, láti aago 8:00 àárọ̀ sí 5:00 alẹ́."
-    },
-    {
-      q: "Báwo ni mo ṣe lè ṣètò ìbẹ̀wò lórí intanẹ́ẹ̀tì?",
-      a: "O lè rọrun láti ṣètò ìbẹ̀wò nípa títẹ bọtini 'Ṣèlérí Pàdé' lórí igbi ìyàn, yíyàn ọjọ́ àti àkókò tí o fẹ́, àti kíkún àwọn kúlẹ̀kúlẹ̀ rẹ."
-    },
-    {
-      q: "Àwọn ìtọ́jú pàtàkì wo ni ẹ pèsè?",
-      a: "A ṣe àkànṣe ní Ìtọ́jú Cataract, Ìtọ́jú Retina, Ìtọ́jú Glaucoma, Ìtọ́jú Ojú Àwọn Ọmọdé, àti Àwọn Àyẹ̀wò Ojú."
-    },
-    {
-      q: "Ṣé ẹ gba àwọn ètò ìbáradára (HMO) ti orílẹ̀-èdè tàbí ti ara ẹni?",
-      a: "Bẹ́ẹ̀ ni, a ń ṣiṣẹ́ pẹ̀lú ọ̀pọ̀lọpọ̀ àwọn àjọ HMO tó ṣe pàtàkì àti àwọn ilé-iṣẹ́ ìbáradára ti ara ẹni. Kàn sí aago àbójútó wa láti rii daju."
-    },
-    {
-      q: "Kí ni mo yẹ kí n mú wá fún ìbẹ̀wò àkọ́kọ́ mi?",
-      a: "Jọ̀wọ́ mú káàdì ìdánimọ̀ tó ní àwòrán, àwọn jígí ojú tàbí contact lenses tí o ń lò lọ́wọ́lọ́wọ́, àwọn orúkọ oògùn rẹ, àti àwọn àkọsílẹ̀ ìlera rẹ tẹ́lẹ̀ wá."
-    }
-  ],
-  ha: [
-    {
-      q: "Mene ne lokutan aiki na asibitin?",
-      a: "Muna buɗe sa'o'i 24 a rana, kwana 7 a mako don gaggawa. Lokutan duba marasa lafiya na yau da kullun sune Litinin zuwa Asabar, daga 8:00 na safe zuwa 5:00 na yamma."
-    },
-    {
-      q: "Yaya zan iya yin alƙawarin ganin likita ta intanet?",
-      a: "Kuna iya yin alƙawari cikin sauƙi ta latsa maɓallin 'Yi Alƙawali' a jikin allon sarrafawa, sannan ku zaɓi rana da lokaci da kuke so tare da cika bayananku."
-    },
-    {
-      q: "Wadanne ayyuka na musamman kuke bayarwa?",
-      a: "Muna ba da sabis na musamman don tiyatar Cataract, maganin Retina, maganin Glaucoma, kulawar ido na yara, da gwaje-gwajen ido."
-    },
-    {
-      q: "Kuna karɓar inshorar lafiya ta ƙasa ko ta kuɗi?",
-      a: "Haka ne, muna aiki tare da manyan kamfanonin inshorar lafiya (HMOs) da inshora mai zaman kansa. Tuntuɓi sashen gudanarwarmu don tabbatarwa."
-    },
-    {
-      q: "Me ya kamata in zo da shi lokacin ziyarar farko?",
-      a: "Da fatan za a zo da katin shaida mai hoto, gilashin ido da kuke amfani da su yanzu, jerin magungunan da kuke sha, da rahotannin likita na baya idan akwai."
-    }
-  ],
-  ar: [
-    {
-      q: "ما هي ساعات عمل المستشفى؟",
-      a: "نحن متواجدون على مدار 24 ساعة طوال أيام الأسبوع لحالات طوارئ العيون. أما ساعات العيادات الخارجية والاستشارات العامة فهي من الاثنين إلى السبت، من الساعة 8:00 صباحاً حتى 5:00 مساءً."
-    },
-    {
-      q: "كيف يمكنني حجز موعد عبر الإنترنت؟",
-      a: "يمكنك حجز موعد بسهولة بالضغط على زر 'حجز موعد' في شريط التنقل، واختيار التاريخ والوقت المناسبين لك، ثم ملء بياناتك الشخصية."
-    },
-    {
-      q: "ما هي العلاجات المتخصصة التي تقدمونها؟",
-      a: "نحن متخصصون في جراحة المياه البيضاء (الكاتاركت)، تصحيح النظر بالليزك، علاج المياه الزرقاء (الجلوكوما)، رعاية عيون الأطفال، وفحوصات العين التشخيصية المتقدمة."
-    },
-    {
-      q: "هل تقبلون التأمين الصحي الحكومي والخاص؟",
-      a: "نعم، نحن نقبل معظم شركات التأمين الصحي الكبرى وإدارات الرعاية الصحية (HMOs). يرجى التواصل مع مكتب الاستقبال للتحقق من توافق شركتك."
-    },
-    {
-      q: "ما الذي يجب علي إحضاره في زيارتي الأولى؟",
-      a: "يرجى إحضار بطاقة هوية سارية المفعول تحتوي على صورة شخصية، وأي نظارات طبية أو عدسات لاصقة تستخدمها حالياً، وقائمة بالأدوية التي تتناولها، بالإضافة إلى تقاريرك الطبية السابقة إن وجدت."
-    }
-  ]
-}
-
-// Get active FAQs list based on current locale fallback
+// Get active FAQs list based on dynamic i18n locale
 const activeFaqs = computed(() => {
-  const currentLang = locale || 'en'
-  return faqs[currentLang] || faqs.en
+  const items = tm('faq.items')
+  if (Array.isArray(items) && items.length > 0) {
+    return items
+  }
+  return []
 })
 
 // Search filtered FAQs list
@@ -120,21 +31,28 @@ const filteredFaqs = computed(() => {
   
   const query = searchQuery.value.toLowerCase()
   return activeFaqs.value.filter(item => 
-    item.q.toLowerCase().includes(query) || 
-    item.a.toLowerCase().includes(query)
+    (item.q && item.q.toLowerCase().includes(query)) || 
+    (item.a && item.a.toLowerCase().includes(query))
   )
 })
 </script>
 
 <template>
-  <Head title="Frequently Asked Questions" />
+  <Head :title="($t('faq.title') || 'Frequently Asked Questions') + ' | Makkah Specialist Eye Hospital'" />
   
-  <div>
-    <!-- Page Header/Breadcrumb -->
-    <Breadcrumb title="Frequently Asked Questions" name="FAQ" />
+  <div class="bg-slate-50 min-h-screen">
+    <!-- Page Hero Banner (Moorfields Style) -->
+    <PageHeroBanner 
+        :title="$t('faq.title') || 'Frequently Asked Questions'"
+        :badge="$t('faq.badge') || 'Help & FAQs'"
+        :breadcrumbs="[
+            { label: $t('nav.home') || 'Home', href: route('home') },
+            { label: $t('faq.title') || 'FAQs' }
+        ]"
+    />
 
     <!-- FAQ Body -->
-    <div class="py-12 md:py-20 bg-gray-50/50 transition-colors duration-300">
+    <div class="py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Search Input -->
@@ -147,7 +65,7 @@ const filteredFaqs = computed(() => {
           <input 
             type="text" 
             v-model="searchQuery" 
-            placeholder="Search questions..." 
+            :placeholder="$t('faq.searchPlaceholder') || 'Search questions...'" 
             class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/45 hover:border-primary/30 transition-all shadow-sm font-medium"
           />
         </div>
@@ -204,8 +122,8 @@ const filteredFaqs = computed(() => {
           <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <h3 class="text-lg font-bold text-gray-700">No matching questions found</h3>
-          <p class="text-sm text-gray-400 mt-1">Try searching for other keywords.</p>
+          <h3 class="text-lg font-bold text-gray-700">{{ $t('faq.noResults') || 'No matching questions found' }}</h3>
+          <p class="text-sm text-gray-400 mt-1">{{ $t('faq.noResultsDesc') || 'Try searching for other keywords.' }}</p>
         </div>
 
       </div>

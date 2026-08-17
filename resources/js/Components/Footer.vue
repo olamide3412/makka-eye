@@ -27,7 +27,7 @@ const scrollToTop = () => {
             <div>
               <span class="block font-bold text-lg leading-tight text-white tracking-wide">MAKKAH SPECIALIST</span>
               <span class="block text-xs font-semibold text-sky-400 tracking-wider">EYE HOSPITAL • IBADAN</span>
-              <span class="block text-[10px] text-slate-400 mt-0.5">A branch of Al-Basar International Foundation</span>
+              <span class="block text-[10px] text-slate-400 mt-0.5">{{ $t('brand.subsidiary') || 'A subsidiary of Al-Basar International Foundation' }}</span>
             </div>
           </Link>
 

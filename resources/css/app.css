@@ -9,10 +9,30 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+:root {
+    --color-primary: #0A96EB;
+    --color-primary-dark: #0880cc;
+    --color-primary-contrast: #ffffff;
+    --color-primary-faint: rgba(10, 150, 235, 0.25);
+    --color-title-dark: #06465C;
+
+    --brand-primary: #06465C;
+    --brand-accent: #0A96EB;
+    --brand-surface: #f8fafc;
+    --brand-surface-alt: #f0f9ff;
+}
+
 @theme {
     /* ── Brand colors ─────────────────────────────────────── */
     --color-primary:        #0A96EB;
     --color-primary-dark:   #0880cc;
+    --color-primary-contrast: #ffffff;
+    --color-primary-faint:  rgba(10, 150, 235, 0.25);
+    --color-title-dark:     #06465C;
+    --brand-primary:        #06465C;
+    --brand-accent:         #0A96EB;
+    --brand-surface:        #f8fafc;
+    --brand-surface-alt:    #f0f9ff;
     --color-secondary-100:  #e0f2fe;
     --color-secondary-200:  #bae6fd;
     --color-secondary-300:  #7dd3fc;

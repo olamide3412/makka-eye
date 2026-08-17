@@ -1,4 +1,12 @@
 export default {
+    brand: {
+        name: 'Asibitin Ido na Ƙwararru na Makkah',
+        nameLine1: 'Asibitin Ido na',
+        nameLine2: 'Ƙwararru na Makkah',
+        nameUpper: 'ASIBITIN IDO NA MAKKAH',
+        locationUpper: 'KWARARRU • IBADAN',
+        subsidiary: 'Ƙungiya ce ƙarƙashin Gidauniyar Al-Basar ta Duniya',
+    },
     nav: {
         home: 'Gida',
         about: 'Game da Mu',
@@ -244,6 +252,101 @@ export default {
         readMore: 'Karanta Ƙari',
         optional: 'na zaɓi',
     },
+    faq: {
+        title: 'Tambayoyin da Aka Fi Yi',
+        subtitle: 'Nemo amsoshin tambayoyi na yau da kullun game da ayyukan kula da ido, ganin likita, inshora, da ka\'idojin ziyara.',
+        badge: 'Taimako & Tambayoyi',
+        searchPlaceholder: 'Bincika tambayoyi...',
+        noResults: 'Ba a sami tambayoyin da suka dace ba',
+        noResultsDesc: 'Gwada bincika da wasu kalmomi daban ko tuntuɓi teburin karɓar baƙi.',
+        items: [
+            {
+                q: "Mene ne lokutan aiki na asibitin?",
+                a: "Muna buɗe sa'o'i 24 a rana, kwana 7 a mako don gaggawa. Lokutan duba marasa lafiya na yau da kullun sune Litinin zuwa Asabar, daga 8:00 na safe zuwa 5:00 na yamma."
+            },
+            {
+                q: "Yaya zan iya yin alƙawarin ganin likita ta intanet?",
+                a: "Kuna iya yin alƙawari cikin sauƙi ta latsa maɓallin 'Yi Alƙawali' a jikin allon sarrafawa, sannan ku zaɓi rana da lokaci da kuke so tare da cika bayananku."
+            },
+            {
+                q: "Wadanne ayyuka na musamman kuke bayarwa?",
+                a: "Muna ba da sabis na musamman don tiyatar Cataract, maganin Retina, maganin Glaucoma, kulawar ido na yara, da gwaje-gwajen ido na zamani."
+            },
+            {
+                q: "Kuna karɓar inshorar lafiya ta ƙasa ko ta kuɗi?",
+                a: "Haka ne, muna aiki tare da manyan kamfanonin inshorar lafiya (HMOs) da inshora mai zaman kansa. Tuntuɓi sashen gudanarwarmu don tabbatarwa."
+            },
+            {
+                q: "Me ya kamata in zo da shi lokacin ziyarar farko?",
+                a: "Da fatan za a zo da katin shaida mai hoto, gilashin ido da kuke amfani da su yanzu, jerin magungunan da kuke sha, da rahotannin likita na baya idan akwai."
+            }
+        ]
+    },
+    home: {
+        blogBadge: 'Lafiyar Ido & Bayanan Likitanci',
+        blogTitle: 'Sabbin Labarai Daga Shafinmu',
+        blogSubtitle: 'Kasance da masaniya game da shawarwarin kwararru, matakan kariya, da sabbin hanyoyin jinya daga tawagarmu ta likitoci.',
+        exploreAllArticles: 'Bincika Duk Labarai',
+        readFullArticle: 'Karanta Cikakken Labari',
+        whyChooseBadge: 'Matsayin Asibiti & Tarihi',
+        mediaCenter: 'Sashen Yaɗa Labarai',
+        newsTab: 'Labarai',
+        eventsTab: 'Tarurruka',
+        videosTab: 'Bidiyoyi',
+        viewAll: 'Duba Duka',
+        partnersBadge: 'Amintattun Abokan Aiki',
+        partnersTitle: 'Abokan Aikinmu na Duniya da na Ƙasa',
+        partnersSubtitle: 'Muna aiki kafada da kafada da manyan gidauniyoyi na duniya da hukumomin kiwon lafiya don kawar da makanta da za a iya kariya.'
+    },
+    booking: {
+        title: 'Yi Alƙawarin Ganin Likita',
+        requestTitle: 'Nemi Ganin Likita',
+        requestSubtitle: 'Tsara ziyararku tare da ƙwararrun likitocin idonmu na duniya.',
+        pausedTitle: 'An Dakatar da Yin Alƙawari ta Intanet',
+        pausedMessage: 'A halin yanzu muna sake tsara tsarin jadawalinmu. Neman alƙawari ta intanet ba ya aiki na ɗan lokaci.',
+        howToSchedule: 'Yadda zaku tsara ziyararku:',
+        callUs: 'Kira mu kai tsaye a:',
+        emailUs: 'Aika mana da imel a:',
+        goToContact: 'Je zuwa Shafin Tuntuɓar Mu',
+        receivedTitle: 'An Karɓi Buƙatar Ganin Likita!',
+        trackingNotice: 'Mun gode da yin alƙawari tare da mu. Lambar bin diddiginku ita ce:',
+        saveNotice: 'Da fatan za a ajiye wannan lambar don bincika matsayin alƙawarinku a kowane lokaci.',
+        returnHome: 'Koma Babban Shafin',
+        form: {
+            firstName: 'Sunan Farko',
+            lastName: 'Sunan Iyali',
+            email: 'Adireshin Imel',
+            phone: 'Lambar Waya',
+            dob: 'Ranar Haihuwa',
+            serviceNeeded: 'Sabis ɗin da Ake Buƙata',
+            existingPatient: 'Ni tsohon majinyaci ne mai lambar fayil a asibiti',
+            fileNumber: 'Lambar Fayil na Asibiti',
+            preferredDate: 'Ranar da Aka Fi So',
+            preferredTime: 'Lokacin da Aka Fi So',
+            notes: 'Ƙarin Bayanan Likita (Na Zaɓi)',
+            submit: 'Aika Buƙatar Alƙawari',
+            submitting: 'Ana Aiwatar da Buƙatar...'
+        }
+    },
+    track: {
+        badge: 'Matsayin Alƙawari',
+        title: 'Bibiyi Alƙawarinku',
+        subtitle: 'Shigar da lambar bin diddiginku a ƙasa don bincika matsayin buƙatarku.',
+        placeholder: 'misali: MEH-A8X9-2026',
+        button: 'Bibiyi',
+        searching: 'Ana bincike...',
+        detailsTitle: 'Cikakkun Bayanan Alƙawari',
+        patientName: 'Sunan Majinyaci',
+        scheduledService: 'Sabis ɗin da Aka Tsara',
+        date: 'Rana',
+        time: 'Lokaci',
+        status: 'Matsayi',
+        statusPending: 'Yana Jiran Tabbatarwa',
+        statusConfirmed: 'An Tabbatar',
+        statusCompleted: 'An Kammala',
+        statusCancelled: 'An Soke',
+        notes: 'Bayani / Umarni'
+    },
     aboutPage: {
         title: 'Game da Mu',
         subtitle: 'Asibitin Ido na Ƙwararru na Makkah shine babban asibitin kula da ido da aka sadaukar domin samar da ayyukan likitancin ido masu inganci na duniya. Wurinmu yana haɗa fasaha ta zamani tare da ƙwararrun likitoci don ba da kulawa ta musamman ga marasa lafiya.',
@@ -252,6 +355,18 @@ export default {
         corePurpose: 'Babban Makasudi',
         globalGoal: 'Manufa ta Duniya',
         founderTag: 'Wanda ya Kafa & Shugabancin Duniya',
+        historyBadge: 'Tarihi & Gado',
+        historyTitle: 'Tarihinmu da Muhimman Matakai',
+        historySubtitle: 'Bibiyar tafiyarmu ta duniya wajen kawar da makanta da samar da kulawar ido mai inganci ga kowa.',
+        heritageImpactBadge: 'Gado da Tasiri a Duniya',
+        heritageImpactTitle: 'Jagorancin Kulawar Ido a Nahiyoyi Daban-daban',
+        clinicalLeadershipBadge: 'Shugabancin Likitanci',
+        clinicalLeadershipTitle: 'Likitocin Ido da Kwararrun Tiyata na Duniya',
+        clinicalLeadershipSubtitle: 'Tawagarmu ta kwararrun likitocin ido masu ba da shawara suna samar da bincike da aikin tiyata mafi inganci.',
+        contactTeam: 'Tuntuɓi Ƙungiyarmu',
+        coreValuesBadge: 'Ƙa\'idodin Jagoranci',
+        coreValuesTitle: 'Muhimman Ƙimominmu',
+        coreValuesSubtitle: 'Ƙimominmu suna jagorantar kowane yanke shawara na likitanci, aikin tiyata, da kyakkyawar mu\'amala da kowane majinyaci.',
         visitingTitle: 'Bayanin Majinyata & Lokacin Ziyara',
         visitingHours: 'Lokacin Ziyara',
         monFri: 'Litinin zuwa Jum\'a: 8:00 na safe - 4:00 na yamma',

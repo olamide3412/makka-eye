@@ -3,6 +3,9 @@ import Layout from '@/Layouts/Layout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import CallToAction from '@/Components/Home/CallToAction.vue';
 import PageHeroBanner from '@/Components/Common/PageHeroBanner.vue';
+import HistoryTimeline from '@/Components/About/HistoryTimeline.vue';
+import OurMission from '@/Components/About/OurMission.vue';
+import CoreValues from '@/Components/About/CoreValues.vue';
 import AboutHospitalImg from '../../images/about_hospital.jpg';
 import { StatCard, TeamCard } from '@/Components/Cards';
 
@@ -34,6 +37,59 @@ const props = defineProps({
         default: ''
     }
 });
+
+const milestones = [
+    {
+        year: '1989',
+        title: 'Foundation Established',
+        points: [
+            'Founded by HRH Prince Abdul-Aziz bin Ahmed Al-Saud',
+            'Launched mobile ophthalmic camps to fight preventable blindness'
+        ],
+        image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=600&auto=format&fit=crop',
+        imageAlt: 'Foundation Established 1989'
+    },
+    {
+        year: '1994',
+        title: 'Global Hospital Network',
+        points: [
+            'Opened permanent specialized eye hospitals across Asia and Africa',
+            'Established clinical training institutes for ophthalmologists'
+        ],
+        image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=600&auto=format&fit=crop',
+        imageAlt: 'Hospital Network Expansion'
+    },
+    {
+        year: '2005',
+        title: 'Nigeria Expansion',
+        points: [
+            'Commenced large-scale tertiary eye care operations in Nigeria',
+            'Over 500,000 free sight-saving screenings conducted'
+        ],
+        image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=600&auto=format&fit=crop',
+        imageAlt: 'Nigeria Eye Care Outreach'
+    },
+    {
+        year: '2018',
+        title: 'Advanced Surgical Centers',
+        points: [
+            'Introduced laser vitrectomy and micro-incision phaco cataract surgery',
+            'Expanded sub-specialty clinics in pediatric strabismus and glaucoma'
+        ],
+        image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=600&auto=format&fit=crop',
+        imageAlt: 'Advanced Surgical Equipment'
+    },
+    {
+        year: '2024+',
+        title: 'Makkah Eye Hospital Ibadan',
+        points: [
+            'Full-service tertiary center at Alao-Akala Express, Ibadan',
+            'State-of-the-art diagnostics, optical workshop, and 24/7 emergency'
+        ],
+        image: AboutHospitalImg,
+        imageAlt: 'Makkah Specialist Eye Hospital Ibadan'
+    }
+];
 </script>
 
 <template>
@@ -41,7 +97,7 @@ const props = defineProps({
 
     <div class="bg-slate-50 transition-colors duration-300 min-h-screen">
         
-        <!-- Page Hero Banner (Moorfields Style) -->
+        <!-- 1. Page Hero Banner (Moorfields Style) -->
         <PageHeroBanner 
             :title="$t('aboutPage.heroTitle')"
             :breadcrumbs="[
@@ -50,66 +106,35 @@ const props = defineProps({
             ]"
         />
 
-        <!-- Mission & Vision Cards Section -->
+        <!-- 2. Intro Section -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative z-10">
-            <!-- Subtitle Intro -->
-            <div class="max-w-3xl mb-10" data-aos="fade-up" data-aos-duration="800">
+            <div class="max-w-3xl" data-aos="fade-up" data-aos-duration="800">
                 <span class="inline-block px-3.5 py-1.5 bg-sky-50 text-primary font-extrabold text-xs rounded-full uppercase tracking-wider mb-3 border border-sky-100 shadow-xs">
                     {{ $t('aboutPage.heroTag') }}
                 </span>
-                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-['Plus_Jakarta_Sans',sans-serif] font-medium">
+                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-medium">
                     {{ $t('aboutPage.subtitle') }}
                 </p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Our Mission Card -->
-                <div class="bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xl transition-transform hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-2xl bg-sky-50 text-primary flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <span class="text-xs font-extrabold text-primary uppercase tracking-widest">{{ $t('aboutPage.corePurpose') }}</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1 mb-4 font-['Outfit',sans-serif]">
-                        {{ $t('about.mission') }}
-                    </h2>
-                    <div 
-                        class="prose prose-slate text-base leading-relaxed text-slate-600 font-['Plus_Jakarta_Sans',sans-serif]" 
-                        v-html="props.about_mission"
-                    ></div>
-                </div>
-
-                <!-- Our Vision Card -->
-                <div class="bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xl transition-transform hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                    </div>
-                    <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest">{{ $t('aboutPage.globalGoal') }}</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1 mb-4 font-['Outfit',sans-serif]">
-                        {{ $t('about.vision') }}
-                    </h2>
-                    <div 
-                        class="prose prose-slate text-base leading-relaxed text-slate-600 font-['Plus_Jakarta_Sans',sans-serif]" 
-                        v-html="props.about_vision"
-                    ></div>
-                </div>
-
-            </div>
         </div>
+
+        <!-- 3. History Timeline Section (Dark Horizontal / Stacked Mobile) -->
+        <HistoryTimeline :milestones="milestones" />
+
+        <!-- 4. Our Mission & Vision Section (Two-Column with Striped Accent) -->
+        <OurMission :image="AboutHospitalImg" />
+
+        <!-- 5. Core Values Section (2-Column x 3-Row Grid with Expanding Hover) -->
+        <CoreValues />
 
         <!-- Key Heritage & Impact Metrics (Pattern 1 Stat Cards) -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div class="text-center max-w-2xl mx-auto mb-10" data-aos="fade-up">
                 <span class="text-xs font-extrabold text-primary uppercase tracking-widest bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-100">
-                    Heritage & Global Impact
+                    {{ $t('aboutPage.heritageImpactBadge') || 'Heritage & Global Impact' }}
                 </span>
                 <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight font-['Outfit',sans-serif]">
-                    Leading Eye Care Across Continents
+                    {{ $t('aboutPage.heritageImpactTitle') || 'Leading Eye Care Across Continents' }}
                 </h2>
             </div>
 
@@ -206,7 +231,7 @@ const props = defineProps({
                                 :href="route('contact')" 
                                 class="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white font-extrabold text-sm px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg"
                             >
-                                Contact Our Team
+                                {{ $t('aboutPage.contactTeam') || 'Contact Our Team' }}
                             </Link>
                         </div>
                     </div>
@@ -219,13 +244,13 @@ const props = defineProps({
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
                 <span class="text-xs font-extrabold text-primary uppercase tracking-widest bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-100">
-                    Clinical Leadership
+                    {{ $t('aboutPage.clinicalLeadershipBadge') || 'Clinical Leadership' }}
                 </span>
                 <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight font-['Outfit',sans-serif]">
-                    World-Class Ophthalmologists & Surgeons
+                    {{ $t('aboutPage.clinicalLeadershipTitle') || 'World-Class Ophthalmologists & Surgeons' }}
                 </h2>
                 <p class="mt-3 text-slate-600 text-sm sm:text-base">
-                    Our team of internationally trained consultants and ophthalmology specialists provide expert diagnostics and surgical care.
+                    {{ $t('aboutPage.clinicalLeadershipSubtitle') || 'Our team of internationally trained consultants and ophthalmology specialists provide expert diagnostics and surgical care.' }}
                 </p>
             </div>
 

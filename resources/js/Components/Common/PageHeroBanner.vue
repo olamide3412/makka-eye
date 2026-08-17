@@ -1,7 +1,8 @@
 <script setup>
+import { ref, onMounted, watch } from 'vue';
 import { Link } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
     title: {
         type: String,
         required: true
@@ -15,6 +16,20 @@ defineProps({
         default: ''
     }
 });
+
+const titleVisible = ref(false);
+
+function playFadeIn() {
+    titleVisible.value = false;
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            titleVisible.value = true;
+        });
+    });
+}
+
+onMounted(playFadeIn);
+watch(() => props.title, playFadeIn);
 </script>
 
 <template>
@@ -52,8 +67,8 @@ defineProps({
                     </span>
                 </div>
 
-                <!-- Page Title -->
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-[#06465C] tracking-tight leading-tight font-['Outfit',sans-serif] drop-shadow-xs">
+                <!-- Page Title with Opacity/Color Fade In -->
+                <h1 :class="['page-title text-3xl sm:text-4xl md:text-5xl font-black text-[#06465C] tracking-tight leading-tight font-[\'Outfit\',sans-serif] drop-shadow-xs', { 'is-visible': titleVisible }]">
                     {{ title }}
                 </h1>
             </div>
@@ -84,3 +99,14 @@ defineProps({
         </div>
     </section>
 </template>
+
+<style scoped>
+.page-title {
+    color: var(--color-title-dark, #06465C);
+    opacity: 0.25;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.page-title.is-visible {
+    opacity: 1;
+}
+</style>

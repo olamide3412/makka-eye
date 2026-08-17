@@ -29,13 +29,13 @@ const formatDate = (dateStr) => {
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-aos="fade-up" data-aos-duration="800">
                 <div class="max-w-2xl">
                     <span class="inline-flex items-center space-x-2 bg-sky-50 text-primary font-extrabold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-3 border border-sky-100 shadow-xs">
-                        <span>Eye Health & Clinical Insights</span>
+                        <span>{{ $t('home.blogBadge') || 'Eye Health & Clinical Insights' }}</span>
                     </span>
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-['Outfit',sans-serif]">
-                        Latest From Our Blog
+                        {{ $t('home.blogTitle') || 'Latest From Our Blog' }}
                     </h2>
                     <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed font-medium">
-                        Stay informed with specialist advice, preventative tips, and treatment breakthroughs from our medical team.
+                        {{ $t('home.blogSubtitle') || 'Stay informed with specialist advice, preventative tips, and treatment breakthroughs from our medical team.' }}
                     </p>
                 </div>
 
@@ -44,7 +44,7 @@ const formatDate = (dateStr) => {
                         :href="route('blog.index')" 
                         class="inline-flex items-center gap-2 bg-white hover:bg-primary text-primary hover:text-white border-2 border-primary/20 hover:border-primary font-extrabold text-sm px-6 py-3 rounded-full transition-all duration-300 shadow-xs hover:shadow-lg hover:-translate-y-0.5"
                     >
-                        <span>Explore All Articles</span>
+                        <span>{{ $t('home.exploreAllArticles') || 'Explore All Articles' }}</span>
                         <span class="text-base leading-none">→</span>
                     </Link>
                 </div>
@@ -83,7 +83,7 @@ const formatDate = (dateStr) => {
                             <div class="flex items-center gap-3 text-xs font-semibold text-slate-400 mb-3">
                                 <span>{{ formatDate(post.published_at) }}</span>
                                 <span>•</span>
-                                <span>{{ post.read_time || '4 min read' }}</span>
+                                <span>{{ post.read_time || ('4 ' + ($t('blog.readTime') || 'min read')) }}</span>
                             </div>
 
                             <!-- Post Title -->
@@ -106,7 +106,7 @@ const formatDate = (dateStr) => {
                             :href="route('blog.show', post.slug)" 
                             class="inline-flex items-center gap-1.5 text-xs font-extrabold text-primary group-hover:text-[#0880cc] transition-colors"
                         >
-                            <span>Read Full Article</span>
+                            <span>{{ $t('home.readFullArticle') || 'Read Full Article' }}</span>
                             <span class="group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                     </div>

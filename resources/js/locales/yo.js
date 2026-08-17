@@ -1,4 +1,12 @@
 export default {
+    brand: {
+        name: 'Ilé-ìwòsàn Amọ̀nà Ojú Makkah',
+        nameLine1: 'Ilé-ìwòsàn Amọ̀nà',
+        nameLine2: 'Ojú Makkah',
+        nameUpper: 'ILÉ-ÌWÒSÀN AMỌ̀NÀ OJÚ',
+        locationUpper: 'MAKKAH • IBADAN',
+        subsidiary: 'Ẹka kan lábẹ́ Àjọ Àgbáyé Al-Basar',
+    },
     nav: {
         home: 'Ilé',
         about: 'Nípa Wa',
@@ -244,6 +252,101 @@ export default {
         readMore: 'Ka Síi',
         optional: 'àṣàyàn',
     },
+    faq: {
+        title: 'Àwọn Ìbéèrè Tí A Máa Ń Béèrè Lóòrèkóòrè',
+        subtitle: 'Wá àwọn ìdáhùn sí àwọn ìbéèrè tó wọ́pọ̀ nípa àwọn iṣẹ́ ìtọ́jú ojú, ìbẹ̀wò, ìbáradára, àti àwọn ìtọ́sọ́nà ìbẹ̀wò wa.',
+        badge: 'Ìrànwọ́ & FAQ',
+        searchPlaceholder: 'Ṣàwárí àwọn ìbéèrè...',
+        noResults: 'A kò rí àwọn ìbéèrè tó bá a mu',
+        noResultsDesc: 'Gbìyànjú láti lo àwọn ọ̀rọ̀ mìíràn tàbí kàn sí aago àbójútó wa.',
+        items: [
+            {
+                q: "Kí ni àwọn wákàtí ìṣiṣẹ́ ti ilé-ìwòsàn?",
+                a: "A wà ní ṣíṣi fún wákàtí 24, ọjọ́ 7 lọ́sẹ̀ fún ìtọ́jú ojú pàjáwìrì. Àwọn wákàtí ìfọ̀rọ̀wánilẹ́nu-wò pápá jẹ́ Látì Ọjọ́ Ajé sí Ọjọ́ Àbámẹ́ta, láti aago 8:00 àárọ̀ sí 5:00 alẹ́."
+            },
+            {
+                q: "Báwo ni mo ṣe lè ṣètò ìbẹ̀wò lórí intanẹ́ẹ̀tì?",
+                a: "O lè rọrun láti ṣètò ìbẹ̀wò nípa títẹ bọtini 'Ṣèlérí Pàdé' lórí igbi ìyàn, yíyàn ọjọ́ àti àkókò tí o fẹ́, àti kíkún àwọn kúlẹ̀kúlẹ̀ rẹ."
+            },
+            {
+                q: "Àwọn ìtọ́jú pàtàkì wo ni ẹ pèsè?",
+                a: "A ṣe àkànṣe ní Ìtọ́jú Cataract, Ìtọ́jú Retina, Ìtọ́jú Glaucoma, Ìtọ́jú Ojú Àwọn Ọmọdé, àti Àwọn Àyẹ̀wò Ojú Ìmọ̀-ẹ̀rọ Tuntun."
+            },
+            {
+                q: "Ṣé ẹ gba àwọn ètò ìbáradára (HMO) ti orílẹ̀-èdè tàbí ti ara ẹni?",
+                a: "Bẹ́ẹ̀ ni, a ń ṣiṣẹ́ pẹ̀lú ọ̀pọ̀lọpọ̀ àwọn àjọ HMO tó ṣe pàtàkì àti àwọn ilé-iṣẹ́ ìbáradára ti ara ẹni. Kàn sí aago àbójútó wa láti rii daju."
+            },
+            {
+                q: "Kí ni mo yẹ kí n mú wá fún ìbẹ̀wò àkọ́kọ́ mi?",
+                a: "Jọ̀wọ́ mú káàdì ìdánimọ̀ tó ní àwòrán, àwọn jígí ojú tàbí contact lenses tí o ń lò lọ́wọ́lọ́wọ́, àwọn orúkọ oògùn rẹ, àti àwọn àkọsílẹ̀ ìlera rẹ tẹ́lẹ̀ wá."
+            }
+        ]
+    },
+    home: {
+        blogBadge: 'Ìlera Ojú & Àwọn Ìmọ̀ Ìṣègùn',
+        blogTitle: 'Tuntun Látí Àkọsílẹ̀ Wa',
+        blogSubtitle: 'Kọ́ ẹ̀kọ́ nípa ìmọ̀ràn àwọn oníṣègùn, àwọn ìdènà àrùn, àti àwọn àṣeyọrí ìtọ́jú láti ọ̀dọ̀ àwọn amọ̀dájú wa.',
+        exploreAllArticles: 'Ṣàwárí Gbogbo Àwọn Àkọsílẹ̀',
+        readFullArticle: 'Ka Cikakken Àkọsílẹ̀',
+        whyChooseBadge: 'Àwọn Ìlànà Ìṣègùn & Ìtàn',
+        mediaCenter: 'Gbọ̀ngàn Ìròyìn',
+        newsTab: 'Ìròyìn',
+        eventsTab: 'Àwọn Ìṣẹ̀lẹ̀',
+        videosTab: 'Fídíò',
+        viewAll: 'Wo Gbogbo Rẹ̀',
+        partnersBadge: 'Àwọn Alájọṣiṣẹ́pọ̀ Tó Dára',
+        partnersTitle: 'Àwọn Alájọṣiṣẹ́pọ̀ Àgbáyé & Orílẹ̀-èdè Wa',
+        partnersSubtitle: 'A ń ṣiṣẹ́ pọ̀ pẹ̀lú àwọn àjọ àgbáyé àti àwọn ilé-iṣẹ́ ìlera láti pa àìríran run pátápátá.'
+    },
+    booking: {
+        title: 'Ṣètò Ìbẹ̀wò',
+        requestTitle: 'Béèrè fún Ìbẹ̀wò',
+        requestSubtitle: 'Ṣètò ìbẹ̀wò rẹ pẹ̀lú àwọn amọ̀dájú oníṣègùn ojú tó ga jùlọ lágbàáyé.',
+        pausedTitle: 'Ìdádúró Fún Ìbẹ̀wò Lórí Íńtánẹ́ẹ̀tì',
+        pausedMessage: 'A ń tún ètò ìbẹ̀wò wa ṣe lọ́wọ́lọ́wọ́. Ìbẹ̀wò lórí íńtánẹ́ẹ̀tì wà ní ìdádúró fún ìgbà díẹ̀.',
+        howToSchedule: 'Bí o ṣe lè ṣètò ìbẹ̀wò rẹ:',
+        callUs: 'Pè wá tààrà lórí:',
+        emailUs: 'Kọ lẹ́tà sí wa lórí:',
+        goToContact: 'Lọ Sí Ojú Ewé Ìkànkàn',
+        receivedTitle: 'A Ti Gba Ìbéèrè Ìbẹ̀wò Rẹ!',
+        trackingNotice: 'A dúpẹ́ fún ìgbẹ́kẹ̀lé rẹ. Nọ́mbà ìtẹ̀léra rẹ ni:',
+        saveNotice: 'Jọ̀wọ́ tọ́jú nọ́mbà yìí láti mọ ipò ìbẹ̀wò rẹ ní gbogbo ìgbà.',
+        returnHome: 'Padà Sí Ojú Ewé Àkọ́kọ́',
+        form: {
+            firstName: 'Orúkọ Àkọ́kọ́',
+            lastName: 'Orúkọ Ìdílé',
+            email: 'Àdírẹ́sì Ímeèlì',
+            phone: 'Nọ́mbà Fóònù',
+            dob: 'Ọjọ́ Ìbí',
+            serviceNeeded: 'Iṣẹ́ Tí O Nílò',
+            existingPatient: 'Mo ti jẹ́ aláìsàn ní ilé-ìwòsàn yìí tẹ́lẹ̀ pẹ̀lú nọ́mbà fáìlì',
+            fileNumber: 'Nọ́mbà Fáìlì Ilé-ìwòsàn',
+            preferredDate: 'Ọjọ́ Tí O Fẹ́',
+            preferredTime: 'Àkókò Tí O Fẹ́',
+            notes: 'Àwọn Àlàyé Ìlera Mìíràn (Àṣàyàn)',
+            submit: 'Fi Ìbéèrè Ìbẹ̀wò Ránṣẹ́',
+            submitting: 'A ń fi ìbẹ̀wò rẹ ránṣẹ́...'
+        }
+    },
+    track: {
+        badge: 'Ipò Ìbẹ̀wò',
+        title: 'Tẹ̀lé Ìbẹ̀wò Rẹ',
+        subtitle: 'Tẹ nọ́mbà ìtẹ̀léra rẹ sí abẹ́ yìí láti mọ ipò ìbẹ̀wò rẹ.',
+        placeholder: 'àpẹẹrẹ: MEH-A8X9-2026',
+        button: 'Tẹ̀lé',
+        searching: 'A ń wá a...',
+        detailsTitle: 'Àwọn Kúlẹ̀kúlẹ̀ Ìbẹ̀wò',
+        patientName: 'Orúkọ Aláìsàn',
+        scheduledService: 'Iṣẹ́ Tí A Ṣètò',
+        date: 'Ọjọ́',
+        time: 'Àkókò',
+        status: 'Ipò',
+        statusPending: 'A Ń Dúró De Ìfọwọ́sí',
+        statusConfirmed: 'A Ti Fọwọ́ Sí I',
+        statusCompleted: 'A Ti Parí Rẹ̀',
+        statusCancelled: 'A Ti Fagilé E',
+        notes: 'Àwọn Àkọsílẹ̀ / Ìtọ́sọ́nà'
+    },
     aboutPage: {
         title: 'Nípa Wa',
         subtitle: 'Ilé-ìwòsàn Amọ̀nà Ojú Makkah jẹ́ ilé-iṣẹ́ ìtọ́jú ojú tó ṣe kókó tí ó pèsè àwọn iṣẹ́ amọ̀nà ojú didara. Ilé-ìwòsàn wa darapọ̀ mọ́ ìmọ̀-ẹ̀rọ tí ó ti ilọ siwájú àti àwọn amọ̀dájú oníṣègùn láti pèsè ìtọ́jú tó tayọ fún aláìsàn.',
@@ -252,6 +355,18 @@ export default {
         corePurpose: 'Èdè Ìdí Gangan',
         globalGoal: 'Àfojúsùn Àgbáyé',
         founderTag: 'Olùdásílẹ̀ & Àwọn Aláṣẹ Àgbáyé',
+        historyBadge: 'Ìtàn & Àjogúnbá',
+        historyTitle: 'Àwọn Ìtàn & Àkókò Pàtàkì Wa',
+        historySubtitle: 'Títẹ̀lé ìrìn-àjò wa káàkiri àgbáyé láti pa àìríran run àti láti pèsè ìtọ́jú ojú tó dára jùlọ fún gbogbo ènìyàn.',
+        heritageImpactBadge: 'Àjogúnbá & Ìpa Àgbáyé',
+        heritageImpactTitle: 'Amọ̀nà Ìtọ́jú Ojú Káàkiri Àwọn Ilẹ̀ Àgbáyé',
+        clinicalLeadershipBadge: 'Àwọn Olórí Oníṣègùn',
+        clinicalLeadershipTitle: 'Àwọn Amọ̀dájú Oníṣègùn Ojú & Oníṣẹ́ Abẹ Tó Dára Jùlọ',
+        clinicalLeadershipSubtitle: 'Ẹgbẹ́ àwọn amọ̀dájú wa ń pèsè ìtọ́jú tó dára jùlọ nípa àyẹ̀wò àti iṣẹ́ abẹ.',
+        contactTeam: 'Kàn Sí Ẹgbẹ́ Wa',
+        coreValuesBadge: 'Àwọn Ìlànà Ìtọ́sọ́nà',
+        coreValuesTitle: 'Àwọn Kókó Ìwà Ìtọ́sọ́nà Wa',
+        coreValuesSubtitle: 'Àwọn ìlànà wa ń tọ́ gbogbo ìpinnu ìṣègùn, iṣẹ́ abẹ, àti ìbáṣepọ̀ wa pẹ̀lú aláìsàn ní ilé-ìwòsàn wa sọ́nà.',
         visitingTitle: 'Ìsọfúnni Aláìsàn & Àwọn Wákàtí Ìbẹ̀wò',
         visitingHours: 'Àwọn Wákàtí Ìbẹ̀wò',
         monFri: 'Ọjọ́ Ajé sí Ọjọ́ Ẹtì: 8:00 Àárọ̀ - 4:00 Alẹ́',

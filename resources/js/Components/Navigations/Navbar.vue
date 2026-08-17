@@ -169,7 +169,7 @@ const departmentsList = [
           <div class="flex flex-col font-['Poppins',sans-serif]">
             <span class="font-bold leading-tight text-[#06465C]" style="font-size: 26px;">Makkah Specialist</span>
             <span class="font-bold leading-tight text-[#06465C]" style="font-size: 26px;">Eye Hospital</span>
-            <span class="text-sm text-slate-500 font-normal mt-0.5">A branch of Al-Basar International Foundation</span>
+            <span class="text-sm text-slate-500 font-normal mt-0.5">{{ $t('brand.subsidiary') || 'A subsidiary of Al-Basar International Foundation' }}</span>
           </div>
         </Link>
 

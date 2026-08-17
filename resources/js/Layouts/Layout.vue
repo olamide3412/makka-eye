@@ -6,6 +6,7 @@ import Navbar from '@/Components/Navigations/Navbar.vue';
 import WhatsAppButton from '@/Components/WhatsAppButton.vue';
 import Footer from '@/Components/Footer.vue';
 import FlashMessages from '../Components/FlashMessages.vue';
+import RouteLoader from '@/Components/Common/RouteLoader.vue';
 
 onMounted(() => {
     AOS.refresh();
@@ -21,6 +22,9 @@ onMounted(() => {
 
 <template>
     <div class="bg-white font-sans">
+        <!-- Global Route Navigation Loader Overlay -->
+        <RouteLoader />
+
         <!-- Unified header (top bar + nav) is inside Navbar component -->
         <Navbar />
 
