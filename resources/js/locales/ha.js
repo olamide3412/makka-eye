@@ -60,7 +60,6 @@ export default {
     },
     services: {
         sectionLabel: 'Ayyukanmu',
-        sectionTitle: 'Ayyukan Kulawa da Ido masu Shahara',
         viewAll: 'Duba Duk Ayyukan',
         learnMore: 'Koyi Ƙari',
         pageDescription: 'Muna ba da cikakken kewayon ayyukan kula da ido ga manya da yara ta ƙwararrun likitocin ido.',

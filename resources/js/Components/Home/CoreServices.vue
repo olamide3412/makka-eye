@@ -30,10 +30,9 @@ const selectService = (index) => {
     <section class="py-16 sm:py-20 bg-gray-100 transition-colors duration-300 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-8 sm:mb-12 relative" data-aos="fade-up" data-aos-duration="800">
-                <span class="hidden sm:block text-5xl md:text-6xl font-bold text-gray-200 leading-none select-none opacity-80" style="font-family: Georgia, serif;">{{ $t('services.sectionLabel') }}</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 sm:-mt-8 relative z-10" style="font-family: Georgia, serif;">
-                    {{ $t('services.sectionTitle') }}
+            <div class="text-center mb-8 sm:mb-12" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 font-['Outfit',sans-serif] tracking-tight">
+                    {{ $t('services.sectionLabel') }}
                 </h2>
                 <p class="mt-2 text-xs sm:text-sm text-gray-500 block lg:hidden">
                     Tap a service to view details below ↓

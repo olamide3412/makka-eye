@@ -60,7 +60,6 @@ export default {
     },
     services: {
         sectionLabel: 'Àwọn Iṣẹ́ Wa',
-        sectionTitle: 'Àwọn Iṣẹ́ Ìtọ́jú Ojú Tó Gbajúmọ̀',
         viewAll: 'Wo Gbogbo Àwọn Iṣẹ́',
         learnMore: 'Kọ́ Síi',
         pageDescription: 'A n pese ọpọlọpọ awọn iṣẹ itọju oju fun awọn agbalagba ati awọn ọmọde nipasẹ awọn ẹgbẹ pataki ti awọn alamọja oju.',

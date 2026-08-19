@@ -60,7 +60,6 @@ export default {
     },
     services: {
         sectionLabel: 'Our Services',
-        sectionTitle: 'Featured Eye Care Services',
         viewAll: 'View All Services',
         learnMore: 'Learn More',
         pageDescription: 'We provide a comprehensive range of eye care services for adults and children by specialised teams of ophthalmologists, optometrists and orthoptists.',
