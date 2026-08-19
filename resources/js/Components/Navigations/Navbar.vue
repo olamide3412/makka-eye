@@ -150,26 +150,32 @@ const departmentsList = [
     <nav
       :class="[
         'site-header border-b transition-all duration-300',
-        isSticky ? 'py-[15px]' : 'py-[22px]'
+        isSticky ? 'py-2 sm:py-3 lg:py-[15px]' : 'py-2.5 sm:py-3.5 lg:py-[22px]'
       ]"
       style="border-bottom: 1px solid rgba(48,48,48,0.1);"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
 
-        <!-- Logo -->
-        <Link href="/" class="site-branding flex items-center gap-3 flex-shrink-0 group">
+        <!-- Logo & Title -->
+        <Link href="/" class="site-branding flex items-center gap-2 sm:gap-3.5 flex-shrink-0 group max-w-[80%] sm:max-w-none">
           <img
             :src="Logo"
             alt="Makkah Specialist Eye Hospital Logo"
             :class="[
-              'object-contain transition-all duration-300',
-              isSticky ? 'max-h-[70px]' : 'max-h-[100px]'
+              'object-contain transition-all duration-300 w-auto',
+              isSticky ? 'max-h-[48px] sm:max-h-[60px] lg:max-h-[70px]' : 'max-h-[56px] sm:max-h-[75px] md:max-h-[85px] lg:max-h-[100px]'
             ]"
           />
-          <div class="flex flex-col font-['Poppins',sans-serif]">
-            <span class="font-bold leading-tight text-[#06465C]" style="font-size: 26px;">Makkah Specialist</span>
-            <span class="font-bold leading-tight text-[#06465C]" style="font-size: 26px;">Eye Hospital</span>
-            <span class="text-sm text-slate-500 font-normal mt-0.5">{{ $t('brand.subsidiary') || 'A subsidiary of Al-Basar International Foundation' }}</span>
+          <div class="flex flex-col font-['Poppins',sans-serif] min-w-0">
+            <span class="font-bold leading-tight text-[#06465C] text-sm xs:text-base sm:text-lg md:text-xl lg:text-[24px] xl:text-[26px] truncate">
+              Makkah Specialist
+            </span>
+            <span class="font-bold leading-tight text-[#06465C] text-sm xs:text-base sm:text-lg md:text-xl lg:text-[24px] xl:text-[26px] truncate">
+              Eye Hospital Ibadan
+            </span>
+            <span class="text-[10px] xs:text-xs sm:text-sm text-slate-500 font-normal mt-0.5 truncate max-w-[190px] xs:max-w-[260px] sm:max-w-none">
+              {{ $t('brand.subsidiary') || 'A subsidiary of Al-Basar International Foundation' }}
+            </span>
           </div>
         </Link>
 

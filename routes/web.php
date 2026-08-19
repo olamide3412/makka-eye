@@ -67,9 +67,9 @@ Route::get('/services', function () {
 
 Route::get('/services/{slug}', function ($slug) {
     $serviceNames = [
-        'glaucoma' => 'Adult & Paediatric Glaucoma',
-        'squint' => 'Adult & Paediatric Squint',
-        'cataracts' => 'Adult & Paediatric Cataracts',
+        'glaucoma' => 'Glaucoma',
+        'squint' => 'Squint',
+        'cataracts' => 'Cataracts',
         'prosthetic' => 'Artificial Eye Creation & Fitting',
         'examination' => 'Comprehensive Eye Examinations',
         'retina' => 'Retinal Disorders Treatment',

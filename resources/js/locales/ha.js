@@ -496,7 +496,7 @@ export default {
         },
         list: {
             glaucoma: {
-                title: 'Maganin Glaucoma na Manya da Yara',
+                title: 'Maganin Glaucoma',
                 description: 'Cikakken binciken glaucoma, lura da karfin idanu, da tiyata da maganin laser na zamani don kare lafiyar jijiyar ido.',
                 f1: 'Gwajin filin gani (perimetry)',
                 f2: 'Optical Coherence Tomography (OCT) na jijiyar ido',
@@ -505,7 +505,7 @@ export default {
                 f5: 'Kula da magungunan digo da gwajin karfin ido',
             },
             squint: {
-                title: 'Maganin Squint na Manya da Yara',
+                title: 'Maganin Squint',
                 description: 'Gano cututtuka na musamman da maganin rashin daidaiton idanu (strabismus) da malalacin ido (amblyopia) ga yara da manya.',
                 f1: 'Cikakken gwajin hangen nesa da orthoptics',
                 f2: 'Tiyatar daidaita squint ga manya da yara',
@@ -514,7 +514,7 @@ export default {
                 f5: 'Ganin likitan ido na yara da manya',
             },
             cataracts: {
-                title: 'Maganin Cataract na Manya da Yara',
+                title: 'Maganin Cataracts',
                 description: 'Tiyatar cataract ta zamani (phacoemulsification) tare da dasa ruwan tabarau mai inganci (IOL) don dawo da gani mai haske.',
                 f1: 'Tiyatar cataract ta phacoemulsification ba tare da zafi ko dinki ba',
                 f2: 'Zaɓin ruwan tabarau na monofocal, multifocal, da toric IOL',

@@ -2,7 +2,8 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { router } from '@inertiajs/vue3';
 
-const loading = ref(false);
+// Initial state: true on initial page load
+const loading = ref(true);
 
 // Guards against rapid navigation where an earlier timeout could hide the loader of a pending navigation
 let navId = 0;
@@ -12,6 +13,13 @@ let removeCancel = null;
 let removeError = null;
 
 onMounted(() => {
+    // Dismiss initial page load overlay smoothly
+    setTimeout(() => {
+        if (navId === 0) {
+            loading.value = false;
+        }
+    }, 400);
+
     removeStart = router.on('start', () => {
         navId++;
         loading.value = true;

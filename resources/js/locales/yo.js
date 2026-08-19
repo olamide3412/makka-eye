@@ -496,7 +496,7 @@ export default {
         },
         list: {
             glaucoma: {
-                title: 'Glaucoma Àgbà & Ọmọdé',
+                title: 'Glaucoma',
                 description: 'Àyẹ̀wò glaucoma pipe, àbojútó ẹlẹ́rù ojú, àti àwọn ìtọ́jú abẹ́rẹ́ tàbí laser tuntun láti dáàbò bò ìlera ojú.',
                 f1: 'Àyẹ̀wò visual field (perimetry)',
                 f2: 'Optical Coherence Tomography (OCT) ti iṣan ojú',
@@ -505,7 +505,7 @@ export default {
                 f5: 'Àbójútó oògùn ojú àti àyẹ̀wò ẹlẹ́rù',
             },
             squint: {
-                title: 'Squint Àgbà & Ọmọdé',
+                title: 'Squint',
                 description: 'Àyẹ̀wò àti ìtọ́jú àwọn ojú tí kò tọ́ (strabismus) àti ojú ọ̀lẹ (amblyopia) fún àwọn ọmọdé àti àgbà.',
                 f1: 'Àyẹ̀wò binocular vision & orthoptic pipe',
                 f2: 'Iṣẹ́ abẹ́ squint fún àgbà àti ọmọdé',
@@ -514,7 +514,7 @@ export default {
                 f5: 'Ìfọ̀rọ̀wánilẹ́nu-wò ojú fún ọmọdé àti àgbà',
             },
             cataracts: {
-                title: 'Cataract Àgbà & Ọmọdé',
+                title: 'Cataracts',
                 description: 'Iṣẹ́ abẹ́ cataract phacoemulsification tuntun pẹ̀lú premium intraocular lens (IOL) láti mú ìríran mọ́lẹ̀.',
                 f1: 'Iṣẹ́ abẹ́ cataract phacoemulsification láìsí ìrora tàbí titi ojú',
                 f2: 'Àwọn àṣàyàn premium monofocal, multifocal, àti toric IOL',

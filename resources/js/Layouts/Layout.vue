@@ -28,10 +28,10 @@ onMounted(() => {
         <!-- Unified header (top bar + nav) is inside Navbar component -->
         <Navbar />
 
-        <!-- Top bar (52px) + nav default (~135px-145px) = ~190px at top of page -->
-        <main class="pt-[175px] md:pt-[190px]">
+        <!-- Top bar (min 52px) + nav responsive height -->
+        <main class="pt-[140px] xs:pt-[150px] sm:pt-[170px] md:pt-[190px]">
             <slot />
-            <WhatsAppButton v-if="$page.props.auth.user" />
+            <WhatsAppButton />
         </main>
 
         <Footer />

@@ -496,8 +496,8 @@ export default {
         },
         list: {
             glaucoma: {
-                title: 'Adult & Paediatric Glaucoma',
-                description: 'Complete glaucoma screening, intraocular pressure monitoring, and advanced surgical/laser therapies to preserve optic nerve health.',
+                title: 'Glaucoma',
+                description: 'Comprehensive glaucoma screening, intraocular pressure monitoring, and advanced laser and surgical procedures to preserve your optic nerve health.',
                 f1: 'Visual field testing (perimetry)',
                 f2: 'Optical Coherence Tomography (OCT) of optic nerve',
                 f3: 'Selective Laser Trabeculoplasty (SLT)',
@@ -505,7 +505,7 @@ export default {
                 f5: 'Prescription eye drop management and pressure checks',
             },
             squint: {
-                title: 'Adult & Paediatric Squint',
+                title: 'Squint',
                 description: 'Specialized diagnosis and treatment of eye misalignment (strabismus) and lazy eye (amblyopia) in both children and adults.',
                 f1: 'Comprehensive binocular vision & orthoptic assessments',
                 f2: 'Squint correction surgery for adults and children',
@@ -514,7 +514,7 @@ export default {
                 f5: 'Pediatric and adult ophthalmology consultations',
             },
             cataracts: {
-                title: 'Adult & Paediatric Cataracts',
+                title: 'Cataracts',
                 description: 'Modern phacoemulsification surgery with premium intraocular lens (IOL) implants to restore sharp, clear vision.',
                 f1: 'Painless, sutureless phacoemulsification cataract surgery',
                 f2: 'Premium monofocal, multifocal, and toric IOL options',

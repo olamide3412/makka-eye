@@ -1,7 +1,6 @@
 <script setup>
 import HeroSection from '@/Components/Home/HeroSection.vue';
 import MediaCenterSection from '@/Components/Home/MediaCenterSection.vue';
-import MissionSection from '@/Components/Home/MissionSection.vue';
 import CoreServices from '@/Components/Home/CoreServices.vue';
 import WhyChooseUs from '@/Components/Home/WhyChooseUs.vue';
 import BlogSection from '@/Components/Home/BlogSection.vue';
@@ -26,7 +25,6 @@ const props = defineProps({
     <div>
         <HeroSection/>
         <MediaCenterSection :articles="props.mediaCenterArticles" />
-        <MissionSection/>
         <WhyChooseUs/>
         <CoreServices/>
         <BlogSection :posts="props.blogPosts" />
