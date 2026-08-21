@@ -1,12 +1,15 @@
 <script setup>
 import { computed } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import Layout from '@/Layouts/Layout.vue';
 import PageHeroBanner from '@/Components/Common/PageHeroBanner.vue';
 import EyeIcon from '@/Components/Services/EyeIcon.vue';
 import CallToAction from '@/Components/Home/CallToAction.vue';
 
 defineOptions({ layout: Layout });
+
+const { t, tm, te } = useI18n();
 
 const props = defineProps({
     slug: {
@@ -16,9 +19,9 @@ const props = defineProps({
 });
 
 const allServices = [
-    { key: 'glaucoma', iconType: 'glaucoma' },
-    { key: 'squint', iconType: 'squint' },
-    { key: 'cataracts', iconType: 'cataracts' },
+    { key: 'glaucoma', iconType: 'glaucoma', image: '/images/services/glaucoma.jpg' },
+    { key: 'squint', iconType: 'squint', image: '/images/services/squint.jpg' },
+    { key: 'cataracts', iconType: 'cataracts', image: '/images/services/cataracts.jpg' },
     { key: 'prosthetic', iconType: 'prosthetic' },
     { key: 'examination', iconType: 'examination' },
     { key: 'retina', iconType: 'retina' },
@@ -33,6 +36,24 @@ const currentService = computed(() => {
 
 const otherServices = computed(() => {
     return allServices.filter(s => s.key !== currentService.value.key);
+});
+
+const serviceTypes = computed(() => {
+    try {
+        const types = tm(`serviceList.list.${currentService.value.key}.types`);
+        return Array.isArray(types) ? types : [];
+    } catch {
+        return [];
+    }
+});
+
+const riskFactors = computed(() => {
+    try {
+        const list = tm(`serviceList.list.${currentService.value.key}.riskFactors`);
+        return Array.isArray(list) ? list : [];
+    } catch {
+        return [];
+    }
 });
 </script>
 
@@ -75,6 +96,11 @@ const otherServices = computed(() => {
                             {{ $t('serviceList.list.' + currentService.key + '.description') }}
                         </p>
 
+                        <!-- Secondary Paragraph if present -->
+                        <p v-if="te('serviceList.list.' + currentService.key + '.p2')" class="mt-4 text-base sm:text-lg text-slate-700 leading-relaxed max-w-3xl font-medium">
+                            {{ $t('serviceList.list.' + currentService.key + '.p2') }}
+                        </p>
+
                         <!-- Retinal Disorders Highlight Alert Banner -->
                         <div v-if="currentService.key === 'retina'" class="mt-6 p-4 sm:p-5 rounded-2xl bg-amber-50/90 border border-amber-200/90 flex items-start gap-4 hover:shadow-md transition-shadow duration-300">
                             <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 text-lg font-bold shadow-xs">
@@ -114,9 +140,21 @@ const otherServices = computed(() => {
                         </div>
                     </div>
 
-                    <!-- Icon Banner -->
+                    <!-- Image / Icon Banner -->
                     <div class="mt-8 lg:mt-0 lg:col-span-4 flex justify-center" data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
-                        <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-3xl bg-sky-50/80 border border-sky-100 flex items-center justify-center p-7 shadow-sm text-primary hover:scale-105 hover:shadow-lg transition-all duration-300">
+                        <div v-if="currentService.image" class="w-full max-w-[360px] sm:max-w-[420px] aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-sky-100/80 bg-white group hover:shadow-2xl transition-all duration-300 relative">
+                            <img 
+                                :src="currentService.image" 
+                                :alt="$t('serviceList.list.' + currentService.key + '.title')" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none"></div>
+                            <div class="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-800 shadow-sm flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span>Clinical Care & Diagnostics</span>
+                            </div>
+                        </div>
+                        <div v-else class="w-40 h-40 sm:w-48 sm:h-48 rounded-3xl bg-sky-50/80 border border-sky-100 flex items-center justify-center p-7 shadow-sm text-primary hover:scale-105 hover:shadow-lg transition-all duration-300">
                             <EyeIcon :type="currentService.iconType" class="w-full h-full" />
                         </div>
                     </div>
@@ -130,6 +168,54 @@ const otherServices = computed(() => {
                 
                 <!-- Main Content Panel -->
                 <div class="lg:col-span-2 space-y-8" data-aos="fade-up" data-aos-duration="800">
+
+                    <!-- Types Section (if available) -->
+                    <div v-if="serviceTypes.length" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-6 font-['Outfit',sans-serif] flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-sky-50 text-primary flex items-center justify-center text-sm font-black">📋</span>
+                            {{ $t('serviceList.list.' + currentService.key + '.typesTitle') }}
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                            <div v-for="(typeItem, idx) in serviceTypes" :key="idx" class="bg-slate-50 p-5 rounded-2xl border border-gray-100/90 hover:border-primary/30 hover:bg-sky-50/30 transition-all duration-200">
+                                <h4 class="font-bold text-slate-900 text-base font-['Outfit',sans-serif] mb-2 text-primary">
+                                    {{ typeItem.name }}
+                                </h4>
+                                <p class="text-sm text-slate-600 leading-relaxed font-medium">
+                                    {{ typeItem.desc }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Factors Section (if available) -->
+                    <div v-if="riskFactors.length" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-2 font-['Outfit',sans-serif] flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm font-black">⚠️</span>
+                            {{ $t('serviceList.list.' + currentService.key + '.riskFactorsTitle') }}
+                        </h2>
+                        <p class="text-sm text-slate-600 mb-6 font-medium">
+                            {{ $t('serviceList.list.' + currentService.key + '.riskFactorsSubtitle') }}
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <li v-for="(factor, fIdx) in riskFactors" :key="fIdx" class="flex items-start gap-3 bg-slate-50 p-3.5 rounded-xl border border-gray-100 text-sm font-semibold text-slate-800">
+                                <span class="w-2 h-2 rounded-full bg-amber-500 mt-2 shrink-0"></span>
+                                <span>{{ factor }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Our Approach Section (if available) -->
+                    <div v-if="te('serviceList.list.' + currentService.key + '.approachDesc')" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4 font-['Outfit',sans-serif] flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm font-black">🌟</span>
+                            {{ $t('serviceList.list.' + currentService.key + '.approachTitle') }}
+                        </h2>
+                        <p class="text-base text-slate-700 leading-relaxed font-medium">
+                            {{ $t('serviceList.list.' + currentService.key + '.approachDesc') }}
+                        </p>
+                    </div>
+
+                    <!-- Service Inclusions / Diagnostics -->
                     <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
                         <h2 class="text-2xl font-bold text-slate-900 mb-6 font-['Outfit',sans-serif]">
                             {{ $t('serviceList.includes') }}

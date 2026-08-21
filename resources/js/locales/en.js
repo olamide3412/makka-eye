@@ -496,7 +496,24 @@ export default {
         list: {
             glaucoma: {
                 title: 'Glaucoma',
-                description: 'Comprehensive glaucoma screening, intraocular pressure monitoring, and advanced laser and surgical procedures to preserve your optic nerve health.',
+                description: 'Glaucoma, often called the “silent thief of sight,” is a group of eye conditions where elevated eye pressure gradually damages the optic nerve—the vital pathway that carries visual information from the eye to the brain. Left untreated, glaucoma can lead to irreversible vision loss.',
+                p2: 'The eye naturally produces a nourishing fluid called aqueous humour, which circulates and drains through tiny outflow channels. When this balance is disrupted and fluid does not drain properly, eye pressure rises. Over time, this increased pressure can harm the optic nerve, requiring expert care from a glaucoma specialist.',
+                typesTitle: 'Types of Glaucoma',
+                types: [
+                    { name: 'Open-Angle Glaucoma', desc: 'Progresses slowly and often shows no symptoms until advanced stages.' },
+                    { name: 'Angle-Closure Glaucoma', desc: 'Develops rapidly, causing sudden eye pain, nausea, and blurred vision.' },
+                ],
+                riskFactorsTitle: 'Risk Factors',
+                riskFactorsSubtitle: 'Certain factors can increase the likelihood of developing glaucoma, including:',
+                riskFactors: [
+                    'Advanced age',
+                    'Family history of glaucoma',
+                    'Ethnic background (higher risk in African, Asian, and Hispanic populations)',
+                    'Medical conditions such as diabetes, heart disease, high blood pressure, or sickle cell anaemia',
+                    'Previous eye injuries',
+                ],
+                approachTitle: 'Our Approach',
+                approachDesc: 'At our clinic, we provide comprehensive glaucoma care—from early detection and monitoring to advanced treatment options. Our specialists use the latest diagnostic tools and therapies to protect your vision and preserve your quality of life.',
                 f1: 'Visual field testing (perimetry)',
                 f2: 'Optical Coherence Tomography (OCT) of optic nerve',
                 f3: 'Selective Laser Trabeculoplasty (SLT)',
@@ -505,7 +522,18 @@ export default {
             },
             squint: {
                 title: 'Squint',
-                description: 'Specialized diagnosis and treatment of eye misalignment (strabismus) and lazy eye (amblyopia) in both children and adults.',
+                description: 'A squint, medically known as strabismus, is a condition where the eyes are misaligned and do not look in the same direction. One eye may turn inwards, outwards, upwards, or downwards while the other remains focused. This condition affects both children and adults, though the causes and impact can vary with age.',
+                typesTitle: 'Squint Across Age Groups',
+                types: [
+                    {
+                        name: 'Squint in Children',
+                        desc: 'In children, squint often develops due to an imbalance in the eye muscles, leading to poor coordination. If left untreated, it can cause amblyopia (lazy eye), where the brain begins to favour one eye, reducing vision in the other. Early detection is essential, and treatment may involve glasses, eye patches, or surgery to restore proper alignment and prevent long-term vision problems.'
+                    },
+                    {
+                        name: 'Squint in Adults',
+                        desc: 'In adults, strabismus may result from trauma, neurological conditions, or illnesses such as stroke or diabetes. Symptoms can include double vision, headaches, and eye strain, which interfere with daily activities and quality of life. Treatment options range from corrective lenses and vision therapy to surgical intervention, depending on the underlying cause.'
+                    },
+                ],
                 f1: 'Comprehensive binocular vision & orthoptic assessments',
                 f2: 'Squint correction surgery for adults and children',
                 f3: 'Amblyopia (lazy eye) patching & vision therapy',
@@ -514,7 +542,15 @@ export default {
             },
             cataracts: {
                 title: 'Cataracts',
-                description: 'Modern phacoemulsification surgery with premium intraocular lens (IOL) implants to restore sharp, clear vision.',
+                description: 'A cataract is a progressive clouding of the eye’s natural crystalline lens, which lies behind the iris and the pupil. As we age or due to injury or metabolic conditions, proteins inside the lens clump together, preventing light from focusing sharply onto the retina and causing vision to become misty, faded, or glared.',
+                p2: 'Cataracts cannot be cleared with medication or eye drops; modern microsurgical lens replacement is the only proven, definitive cure. Using advanced sutureless phacoemulsification technology, our surgeons gently break up and remove the cloudy lens through a micro-incision and replace it with an artificial intraocular lens (IOL).',
+                typesTitle: 'Types & Stages of Cataracts',
+                types: [
+                    { name: 'Age-Related & Nuclear Cataracts', desc: 'Develops deep in the central zone (nucleus) of the lens, gradually causing distance vision to blur and colors to appear yellowed or washed out.' },
+                    { name: 'Cortical & Subcapsular Cataracts', desc: 'Begins around the outer edges or back of the lens capsule, causing severe night-time light sensitivity, halos around streetlights, and reading difficulty.' },
+                ],
+                approachTitle: 'Our Surgical Expertise & Premium IOLs',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, we specialize in high-precision, painless phacoemulsification day-surgery. With cutting-edge optical biometry and premium lens implants (Monofocal, Multifocal, and Toric for astigmatism), our goal is to restore crystal-clear vision tailored to your lifestyle.',
                 f1: 'Painless, sutureless phacoemulsification cataract surgery',
                 f2: 'Premium monofocal, multifocal, and toric IOL options',
                 f3: 'Detailed pre-surgical biometry and lens calculations',
@@ -523,7 +559,16 @@ export default {
             },
             prosthetic: {
                 title: 'Artificial Eye Creation & Fitting',
-                description: 'Custom-made ocular prostheses (artificial eyes) designed and fitted to match the patient\'s other eye perfectly.',
+                description: 'Oculoplastics is a specialized branch of ophthalmology that focuses on the management and surgical treatment of conditions affecting the eyelids, tear ducts, and orbit (the bony cavity surrounding the eye). It combines the precision of eye care with the artistry of plastic surgery—restoring function, enhancing appearance, and improving quality of life.',
+                typesTitle: 'What Oculoplastics Covers',
+                types: [
+                    { name: 'Eyelid Malpositions', desc: 'Surgical correction of ptosis (droopy eyelid), entropion (inward turning eyelid), and ectropion (outward turning eyelid).' },
+                    { name: 'Lacrimal (Tear Duct) Disorders', desc: 'Diagnosis and management of tear duct obstructions, excessive tearing, and lacrimal drainage abnormalities.' },
+                    { name: 'Cosmetic & Blepharoplasty', desc: 'Cosmetic procedures for eyebrows and eyelids, including upper and lower eyelid blepharoplasty surgery.' },
+                    { name: 'Trauma & Reconstruction', desc: 'Complex surgical reconstruction and ocular prosthesis restoration following trauma or severe eye injuries.' },
+                ],
+                approachTitle: 'Our Approach',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, our oculoplastic specialists provide advanced surgical and non-surgical treatments tailored to each patient’s needs. Whether the goal is to correct functional problems, restore natural appearance, or manage complex eye conditions, our team is committed to delivering safe, effective, and compassionate care.',
                 f1: 'Custom color matching to the natural iris',
                 f2: 'Hand-painted sclera and blood vessel detailing',
                 f3: 'Precision fitting for comfort and natural movement',
@@ -532,7 +577,15 @@ export default {
             },
             examination: {
                 title: 'Comprehensive Eye Examinations',
-                description: 'Routine and diagnostic examinations checking visual acuity, refractive errors, and overall eye health.',
+                description: 'A comprehensive eye examination is a detailed, multi-step medical assessment that goes far beyond a simple vision screening or spectacle test. It evaluates both your visual clarity and the overall neurological and vascular health of the entire eye system—from the cornea and crystalline lens to the retina and optic nerve.',
+                p2: 'Many serious sight-threatening conditions, including glaucoma, diabetic retinopathy, and retinal degeneration, develop silently in their early stages without causing pain or noticeable vision loss. Routine dilated examinations allow our ophthalmologists and optometrists to catch and treat issues long before permanent damage occurs.',
+                typesTitle: 'Core Stages of Your Examination',
+                types: [
+                    { name: 'Refractive & Visual Acuity Testing', desc: 'Precise measurement of myopia, hyperopia, presbyopia, and astigmatism to prescribe perfectly optimized glasses and contact lenses.' },
+                    { name: 'Slit-Lamp Biomicroscopy & Dilated Fundoscopy', desc: 'High-magnification bio-microscopy to scrutinize the cornea, anterior chamber, crystalline lens, vitreous humor, and retinal vasculature.' },
+                ],
+                approachTitle: 'Our Advanced Diagnostic Approach',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, our state-of-the-art diagnostic suites utilize automated perimeter visual field testing, digital fundus photography, and optical coherence tomography (OCT) to deliver unmatched diagnostic precision and personalized eye health roadmaps.',
                 f1: 'Refraction testing for prescription glasses & contact lenses',
                 f2: 'Slit-lamp bio-microscopy external eye evaluations',
                 f3: 'Dilated fundus examination for retina health checks',
@@ -541,7 +594,15 @@ export default {
             },
             lasik: {
                 title: 'LASIK & Refractive Surgery',
-                description: 'Advanced laser procedures to correct myopia, hyperopia, and astigmatism, helping you live free of glasses.',
+                description: 'Refractive surgery encompasses advanced laser procedures designed to reshape the cornea and permanently correct refractive errors—including myopia (nearsightedness), hyperopia (farsightedness), and astigmatism—dramatically reducing or completely eliminating your dependence on glasses and contact lenses.',
+                p2: 'During LASIK (Laser-Assisted in Situ Keratomileusis), an ultra-precise computer-guided excimer laser gently reshapes the corneal curvature with microscopic accuracy so light rays focus directly and cleanly onto the retina. The procedure is virtually painless, takes just a few minutes per eye, and offers rapid visual recovery.',
+                typesTitle: 'Modern Laser Vision Correction Options',
+                types: [
+                    { name: 'Custom Wavefront LASIK', desc: 'High-definition, topography-guided laser correction tailored to the unique micro-contours of your eye, maximizing visual sharpness day and night.' },
+                    { name: 'PRK / Surface Ablation', desc: 'An excellent, flapless alternative for patients with thinner corneas, dry eye predispositions, or active sports lifestyles.' },
+                ],
+                approachTitle: 'Our Clinical Precision & Safety',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, patient safety is our highest priority. Every candidate undergoes exhaustive corneal pachymetry, topography, and wavefront screening to ensure optimal eligibility, outstanding visual acuity, and rapid recovery.',
                 f1: 'Wavefront-guided custom LASIK laser vision correction',
                 f2: 'Photorefractive Keratectomy (PRK) alternative option',
                 f3: 'Detailed corneal topography and pachymetry screening',
@@ -550,7 +611,15 @@ export default {
             },
             retina: {
                 title: 'Retinal Disorders Treatment',
-                description: 'Medical and surgical treatment for conditions affecting the retina, vitreous, and macula.',
+                description: 'The retina is the light-sensitive neural tissue lining the back of the eye that captures visual images and transmits them through the optic nerve to the brain. Disorders affecting the retina, vitreous body, or macula represent critical medical emergencies that require prompt subspecialist intervention to prevent permanent blindness.',
+                p2: 'Conditions such as retinal detachments, macular holes, vitreous hemorrhage, and age-related macular degeneration (AMD) demand expert micro-surgical and pharmacological management. Early diagnosis and timely intervention are essential to preserve functional central and peripheral vision.',
+                typesTitle: 'Key Retinal Conditions We Manage',
+                types: [
+                    { name: 'Retinal Tears & Detachment', desc: 'Breaks or separations in the retinal layer requiring urgent laser photocoagulation or advanced vitreoretinal surgical reattachment.' },
+                    { name: 'Macular Degeneration & Vascular Occlusions', desc: 'Age-related macular breakdown and retinal vein occlusions treated with advanced anti-VEGF intravitreal injection therapies.' },
+                ],
+                approachTitle: 'Specialized Retinal Care & Visiting Specialists',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, our dedicated vitreoretinal specialists and visiting subspecialty surgeons utilize high-definition OCT imaging, digital fluorescein angiography, and micro-incision vitrectomy surgery (MIVS) to deliver world-class clinical outcomes.',
                 f1: 'Diabetic retinopathy screening and management',
                 f2: 'Intravitreal anti-VEGF injections for macular degeneration',
                 f3: 'Retinal tear laser photocoagulation',
@@ -559,7 +628,16 @@ export default {
             },
             cornea: {
                 title: 'Corneal Transplantation',
-                description: 'Surgical replacement of damaged or diseased cornea tissue with healthy donor tissue to restore sight.',
+                description: 'The cornea, often described as the clear window at the front of the eye, plays a vital role in vision. It provides nearly two-thirds of the eye’s focusing power and is essential for maintaining sharp, clear images. However, the cornea can be affected by a variety of conditions, including infections, inflammatory diseases, and shape disorders.',
+                typesTitle: 'Common Corneal Conditions We Treat',
+                types: [
+                    { name: 'Keratitis & Corneal Ulcers', desc: 'Inflammation and infectious conditions of the corneal surface requiring rapid, targeted therapy.' },
+                    { name: 'Corneal Abrasion & Laceration', desc: 'Superficial scratches, traumatic wounds, and partial or full-thickness corneal lacerations.' },
+                    { name: 'Foreign Body & Scarring', desc: 'Embedded surface debris removal and specialized management for grey-white marks left after trauma or inflammation.' },
+                    { name: 'Keratoconus & Dystrophies', desc: 'Corneal thinning, distortion, Fuchs endothelial dystrophy, and inherited progressive clouding of the cornea.' },
+                ],
+                approachTitle: 'Our Expertise & Comprehensive Assessments',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, our cornea specialists have advanced subspecialty training in diagnosing, managing, and treating a wide range of corneal conditions. Using state-of-the-art diagnostic tools and both surgical and non-surgical treatments, we provide personalized evaluations, detailed testing, and tailored treatment plans to ensure optimal vision and overall eye health.',
                 f1: 'Penetrating Keratoplasty (full-thickness corneal transplant)',
                 f2: 'DSEK / DMEK (partial-thickness endothelial transplant)',
                 f3: 'Corneal collagen cross-linking (CXL) for keratoconus',
@@ -568,7 +646,15 @@ export default {
             },
             diabetic: {
                 title: 'Diabetic Eye Care',
-                description: 'Specialized screenings and preventative treatments to manage diabetic eye diseases and protect vision.',
+                description: 'Diabetes mellitus can have a profound impact on ocular health, primarily through diabetic retinopathy—a condition where prolonged high blood sugar levels damage the delicate micro-blood vessels nourishing the retina. Left unmanaged, diabetic eye disease can cause fluid leakage, retinal swelling, abnormal vessel proliferation, and sudden vision loss.',
+                p2: 'Diabetic eye disease often progresses without warning signs or pain during its initial stages. Regular annual dilated eye exams and proactive medical management are vital for identifying vascular changes before irreversible damage occurs to your central sight.',
+                typesTitle: 'Stages of Diabetic Eye Disease',
+                types: [
+                    { name: 'Non-Proliferative Retinopathy & DME', desc: 'Early microvascular swelling, microaneurysms, and Diabetic Macular Edema (DME) that cause blurry central vision.' },
+                    { name: 'Proliferative Diabetic Retinopathy (PDR)', desc: 'Advanced stage characterized by fragile new blood vessels that can bleed into the vitreous or cause tractional retinal detachments.' },
+                ],
+                approachTitle: 'Integrated Multi-Disciplinary Care',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, our diabetic eye care program combines targeted retinal laser photocoagulation, anti-VEGF injections, and visual rehabilitation with close collaboration alongside your primary care physician and endocrinologist.',
                 f1: 'Regular dilated examinations for early retinopathy detection',
                 f2: 'Macular edema diagnosis and laser photocoagulation',
                 f3: 'Coordination with your primary care and endocrinology teams',
@@ -577,7 +663,15 @@ export default {
             },
             emergency: {
                 title: 'Emergency Eye Care',
-                description: 'Immediate diagnostic and treatment services for urgent eye conditions, trauma, and sudden vision loss.',
+                description: 'Ocular emergencies encompass acute injuries, chemical exposures, sudden infections, and rapid vision changes that require immediate, urgent medical evaluation to protect your sight. Prompt intervention within the first few hours can make the vital difference between full recovery and permanent sight loss.',
+                p2: 'From severe mechanical trauma and penetrating injuries to chemical alkaline/acid splashes, acute angle-closure glaucoma attacks, and corneal infections, our emergency eye service is structured to deliver rapid triage, expert diagnosis, and immediate medical or surgical stabilization.',
+                typesTitle: 'Common Ophthalmic Emergencies We Handle',
+                types: [
+                    { name: 'Trauma, Foreign Bodies & Chemical Splashes', desc: 'Corneal lacerations, blunt ocular trauma, embedded metal/wood fragments, and emergency copious chemical irrigation.' },
+                    { name: 'Sudden Vision Loss & Acute Red Eye', desc: 'Sudden painless or painful vision blackout, severe corneal ulcers, acute internal ocular infections (endophthalmitis), and orbital cellulitis.' },
+                ],
+                approachTitle: 'Our Rapid Emergency Response',
+                approachDesc: 'At Makkah Specialist Eye Hospital Ibadan, our dedicated emergency eye team provides swift triage, advanced surgical capabilities, and immediate therapeutic protocols 24 hours a day to safeguard your vision during critical emergencies.',
                 f1: '24/7 emergency response for sudden eye pain or vision changes',
                 f2: 'Safe removal of corneal and conjunctival foreign bodies',
                 f3: 'Treatment for chemical splashes, burns, and trauma',
